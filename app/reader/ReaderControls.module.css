@@ -1,0 +1,141 @@
+.reader-controls-chapter {
+  display: flex;
+  align-items: center;
+}
+
+.chapter-dropdown {
+  background: rgba(31, 31, 31, 0.9);
+  border-radius: 8px;
+  padding: 8px 32px 8px 12px;
+  color: #e6e6e6;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  min-width: 140px;
+  transition: background 0.2s ease;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg width='12' height='12' viewBox='0 0 12 12' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M2.5 4.5L6 8L9.5 4.5' stroke='%23e6e6e6' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 12px 12px;
+}
+
+.chapter-dropdown:hover {
+  background-color: rgba(31, 31, 31, 1);
+}
+
+.chapter-dropdown:focus {
+  outline: none;
+  border-color: rgba(139, 92, 246, 0.6);
+  box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.1);
+}
+
+.chapter-dropdown option {
+  background: #1f1f1f;
+  color: #e6e6e6;
+  padding: 8px 12px;
+}
+
+.settings-menu-wrapper {
+  position: relative;
+}
+
+.settings-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  background: rgba(139, 92, 246, 0.15);
+  color: #e9d5ff;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.settings-btn:hover {
+  background: rgba(139, 92, 246, 0.25);
+  border-color: rgba(139, 92, 246, 0.5);
+  transform: scale(1.05);
+}
+
+.settings-dropdown {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  background: rgba(20, 20, 20, 0.98);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 8px;
+  padding: 12px;
+  min-width: 200px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(12px);
+  z-index: 100;
+}
+
+.settings-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.settings-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #d1d5db;
+}
+
+.zoom-controls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.zoom-btn-small {
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  background: rgba(139, 92, 246, 0.15);
+  color: #e9d5ff;
+  font-size: 18px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.zoom-btn-small:hover {
+  background: rgba(139, 92, 246, 0.25);
+  border-color: rgba(139, 92, 246, 0.5);
+}
+
+.zoom-level-small {
+  font-size: 13px;
+  font-weight: 600;
+  color: #d1d5db;
+  min-width: 45px;
+  text-align: center;
+}
+
+.back-btn {
+  background: rgba(255, 255, 255, 0.05);
+  color: #f3f4f6;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.back-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.25);
+  transform: translateY(-1px);
+}

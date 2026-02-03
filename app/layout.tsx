@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import ConditionalNav from "./components/ConditionalNav";
+import ConditionalWrapper from "./components/ConditionalWrapper";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -24,10 +26,34 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
+        <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap" rel="stylesheet" />
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {children}
+        <ConditionalNav>
+          <header className="nav-wrap">
+            <nav className="site-nav" aria-label="Main navigation">
+              <div className="brand">Manhua Rush</div>
+
+              <ul className="breadcrumb" role="list">
+                <li><a className="nav-link" href="/">Home</a></li>
+                <span>/</span>
+                <li><a className="nav-link" href="/collections/all?p=all">Collections</a></li>
+                <span>/</span>
+                <li><a className="nav-link" href="/craft?mode=dev">Craft</a></li>
+              </ul>
+
+              <div className="nav-right" >
+                <a className="nav-link " style={{background:'rgba(167,139,250,0.12)'}} href="#">Login</a>
+              </div>
+            </nav>
+          </header>
+        </ConditionalNav>
+
+        <ConditionalWrapper>{children}</ConditionalWrapper>
       </body>
     </html>
   );
