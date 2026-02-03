@@ -28,7 +28,7 @@ export default async function ManhuaDetailPage({ params, searchParams }: Props) 
         <div className="cover">
           {manhua.cover ? (
             // eslint-disable-next-line @next/next/no-img-element
-            <img src={manhua.cover} alt={manhua.title} className="cover-img" />
+            <img src="https://uploads.mangadex.org/covers/c089b50c-beeb-434a-ab8d-2676dc026564/1b68d2fc-8e1c-4703-8daa-2e8228d5ad6c.jpg" alt={manhua.title} className="cover-img" />
           ) : (
             <div style={{ width: '100%', height: 320, background: '#2d2d2d', borderRadius: 8 }} />
           )}
