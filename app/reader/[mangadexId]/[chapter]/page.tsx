@@ -35,7 +35,7 @@ export default async function ReaderPage({ params }: Props) {
     notFound();
   }
 
-  const productionRoot = path.resolve(process.cwd(), '..', 'production');
+  const productionRoot = path.resolve(process.cwd(), 'production');
   const chapterDir = path.join(productionRoot, String(mangadexId), String(chapter));
 
   let files: string[] = [];

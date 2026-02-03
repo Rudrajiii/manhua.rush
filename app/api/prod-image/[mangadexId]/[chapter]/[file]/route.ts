@@ -14,7 +14,7 @@ export async function GET(
     return new Response('Bad Request', { status: 400 });
   }
 
-  const productionRoot = path.resolve(process.cwd(), '..', 'production');
+  const productionRoot = path.resolve(process.cwd(), 'production');
   const targetPath = path.join(productionRoot, mangadexId, chapter, file);
 
   // prevent path traversal
