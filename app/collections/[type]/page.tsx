@@ -56,7 +56,7 @@ export default async function CollectionPage({ params, searchParams }: Props) {
                       loading="lazy"
                       className="absolute inset-0 h-full w-full rounded-xl bg-[#000000] object-cover contrast-75"
                       alt={item.title}
-                      src={ttp.src || 'https://images.unsplash.com/photo-1505506874110-6a7a69069a08?q=80&w=1287&auto=format&fit=crop'}
+                      src={item.cover || 'https://images.unsplash.com/photo-1505506874110-6a7a69069a08?q=80&w=1287&auto=format&fit=crop'}
                       style={{
                         boxShadow: "rgba(0, 0, 0, 0.05) 0px 5px 6px 0px",
                         opacity: 1,

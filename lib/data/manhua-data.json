@@ -63,5 +63,65 @@
       }
     ],
       "status": "On Going"
+    },
+      "strength-through-adversity-my-cultivation-knows-no-limits": {
+      "id": "strength-through-adversity-my-cultivation-knows-no-limits",
+      "slug": "strength-through-adversity-my-cultivation-knows-no-limits",
+      "name": "Strength Through Adversity",
+      "mangadexId": "68e0f783-66ce-41a4-8115-e2cf2a70c30d",
+      "type": "manhua",
+      "cachedCoverUrl": "https://uploads.mangadex.org/covers/68e0f783-66ce-41a4-8115-e2cf2a70c30d/b5f0a144-e121-4c17-9782-3b6c3dd82447.jpg",
+      "title": "Strength Through Adversity, My Cultivation Knows No Limits",
+      "year": 2024,
+      "altTitles": [
+        "Limitless Ascension: Strength Amid Adversity",
+        "As I Become Stronger When I Meet a Strong Opponent, My Cultivation Has No Upper Limit",
+        "My cultivation has no limits",
+        "遇强则强，我的修为无上限",
+        "Yu Qiang Ze Qiang, Wo De Xiu Wei Wu Shang Xian",
+        "Força Através da Adversidade, Meu Cultivo Não Tem Limites",
+        "Gặp Mạnh Thì Càng Mạnh, Tu Vi Của Ta Không Giới Hạn"
+      ],
+      "description": "With a system that grows stronger against it’s enemies, Ye Jun Ling who almost passed away from old age began his cheating life of cultivating with no upper limits. Divine emperor? Saint? The heavenly principles? Stand aside! Other than that, he also had several disciples. The senior disciple is a demonic sect master, with vicious heart and treacherous mind, but got easily taken care of everytime! The second disciple is a white hair loli, with the number one divine constitution, likes to cook despite being super strong, and serve her master…",
+      "tags": [
+        "Action",
+        "Long Strip",
+        "Comedy",
+        "Martial Arts",
+        "Adventure",
+        "Wuxia",
+        "Isekai",
+        "Web Comic",
+        "Adaptation",
+        "Full Color"
+      ],
+      "chapters": [
+        {
+        "id": "ch106",
+        "chapter": "106",
+        "title": "Let’s play with you",
+        "createdAt": "2026-01-30T12:00:00.000Z",
+        "latest": true,
+        "link": "https://example.com/read/248",
+        "language": "en"
+      },
+      {
+        "id": "ch105",
+        "chapter": "105",
+        "title": " It’s all my fault for being too charming",
+        "createdAt": "2026-01-25T12:00:00.000Z",
+        "latest": false,
+        "language": "en"
+      },
+      {
+        "id": "ch104",
+        "chapter": "104",
+        "title": "Don't! Come Here",
+        "createdAt": "2026-01-10T12:00:00.000Z",
+        "latest": false,
+        "language": "en"
+      }
+      ],
+      "status": "ongoing"
     }
 }

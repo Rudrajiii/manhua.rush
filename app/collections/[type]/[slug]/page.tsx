@@ -30,7 +30,7 @@ export default async function ManhuaDetailPage({ params, searchParams }: Props) 
         <div className="cover">
           {manhua.cover ? (
             // eslint-disable-next-line @next/next/no-img-element
-            <img src={ttp.src} alt={manhua.title} className="cover-img" />
+            <img src={manhua.cover} alt={manhua.title} className="cover-img" />
           ) : (
             <div style={{ width: '100%', height: 320, background: '#2d2d2d', borderRadius: 8 }} />
           )}
