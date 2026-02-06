@@ -47,9 +47,16 @@ export default async function ManhuaDetailPage({ params, searchParams }: Props) 
           )}
 
           <div className="actions">
-            <button className="btn-start">Start Reading
-              
-            </button>
+            {manhua.mangadexId && manhua.chapters && manhua.chapters.length > 0 ? (
+              <Link
+                href={`/reader/${manhua.mangadexId}/${manhua.chapters[0].chapter}`}
+                className="btn-start"
+              >
+                Start Reading
+              </Link>
+            ) : (
+              <button className="btn-start" disabled>Start Reading</button>
+            )}
             <button className="icon-btn">{manhua.status}</button>
             {/* <button className="icon-btn">⚠</button> */}
           </div>

@@ -48,8 +48,8 @@ export default function ReaderPanels({ imageUrls }: Props) {
           <p className="loading-text">Loading panels...</p>
         </div>
 
-        <style dangerouslySetInnerHTML={{
-          __html: `
+        <style jsx>{
+          `
           .reader-loading {
             display: flex;
             flex-direction: column;
@@ -117,7 +117,7 @@ export default function ReaderPanels({ imageUrls }: Props) {
             50% { opacity: 1; }
           }
           `
-        }} />
+   } </style>
       </div>
     );
   }

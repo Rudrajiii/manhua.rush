@@ -64,8 +64,8 @@ export default function ResizableReader({ panels, sidebar }: Props) {
         {sidebar}
       </div>
 
-      <style dangerouslySetInnerHTML={{
-        __html: `
+      <style jsx>{
+        `
         /* Custom scrollbars for reader panels and sidebar */
         .${styles['reader-panels-wrapper']}::-webkit-scrollbar,
         .${styles['reader-sidebar']}::-webkit-scrollbar {
@@ -119,7 +119,7 @@ export default function ResizableReader({ panels, sidebar }: Props) {
           scrollbar-color: rgba(139, 92, 246, 0.6) transparent !important;
         }
         `
-      }} />
+      }</style>
     </div>
   );
 }

@@ -215,8 +215,8 @@ export default function CommentSection({ mangaId, chapter }: { mangaId: string; 
         ))}
       </div>
 
-      <style dangerouslySetInnerHTML={{
-        __html: `
+      <style jsx>
+        {`
         .${styles['comment-list']}::-webkit-scrollbar,
         .comment-list::-webkit-scrollbar {
           width: 6px !important;
@@ -257,9 +257,8 @@ export default function CommentSection({ mangaId, chapter }: { mangaId: string; 
         .comment-list {
           scrollbar-width: thin !important;
           scrollbar-color: rgba(139, 92, 246, 0.6) transparent !important;
-        }
-        `
-      }} />
+        `}
+      </style>
     </div>
   );
 }
