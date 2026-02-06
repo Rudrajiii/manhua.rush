@@ -46,6 +46,14 @@ type ManhuaDataEntry = {
  * Transform JSON data entry to Manhua type
  */
 function transformToManhua(entry: ManhuaDataEntry): Manhua {
+  // Convert MangaDex URLs to use proxy
+  let coverUrl = entry.cachedCoverUrl;
+  if (coverUrl && coverUrl.includes('uploads.mangadex.org/')) {
+    // Extract path after uploads.mangadex.org/
+    const path = coverUrl.replace('https://uploads.mangadex.org/', '');
+    coverUrl = `/api/mangadex-proxy/${path}`;
+  }
+
   return {
     id: entry.id,
     mangadexId: entry.mangadexId,
@@ -55,7 +63,7 @@ function transformToManhua(entry: ManhuaDataEntry): Manhua {
     year: entry.year,
     altTitles: entry.altTitles,
     description: entry.description,
-    cover: entry.cachedCoverUrl,
+    cover: coverUrl,
     tags: entry.tags,
     chapters: entry.chapters,
     status: entry.status
