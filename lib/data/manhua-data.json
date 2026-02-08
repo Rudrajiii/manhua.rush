@@ -97,12 +97,21 @@
       ],
       "chapters": [
         {
+        "id": "ch107",
+        "chapter": "107",
+        "title": "Dual Cultivation of Soul and Spirit? Innocence in Danger!",
+        "createdAt": "2026-01-30T12:00:00.000Z",
+        "latest": true,
+        "link": "https://comic.io/home",
+        "language": "en"
+      },
+        {
         "id": "ch106",
         "chapter": "106",
         "title": "Let’s play with you",
         "createdAt": "2026-01-30T12:00:00.000Z",
         "latest": true,
-        "link": "https://example.com/read/248",
+        "link": "https://comic.io/home",
         "language": "en"
       },
       {
