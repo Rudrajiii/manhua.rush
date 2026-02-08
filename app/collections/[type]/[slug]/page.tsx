@@ -113,7 +113,7 @@ export default async function ManhuaDetailPage({ params, searchParams }: Props) 
               Little Reminder — to read previous chapters visit{' '}
               <a
                 className="no-underline hover:underline"
-                href="https://example.com"
+                href="https://comic.io/home"
                 target="_blank"
                 rel="noreferrer"
                 style={{ color: '#a78bfa' }}
