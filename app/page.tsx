@@ -11,6 +11,7 @@ import yuji from "../public/yuji.png"
 import reze from "../public/reze.png"
 import ichigo from "../public/ichigo.png"
 
+
 export default function Home() {
   return (
     <main className="relative min-h-screen w-full overflow-hidden">
