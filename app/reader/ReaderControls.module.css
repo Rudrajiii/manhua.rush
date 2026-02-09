@@ -139,3 +139,118 @@
   border-color: rgba(255, 255, 255, 0.25);
   transform: translateY(-1px);
 }
+
+/* Mobile Menu Styles */
+.mobile-menu-wrapper {
+  position: relative;
+}
+
+.mobile-menu-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  background: rgba(139, 92, 246, 0.15);
+  color: #e9d5ff;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mobile-menu-btn:hover {
+  background: rgba(139, 92, 246, 0.25);
+  transform: scale(1.05);
+}
+
+.mobile-menu-dropdown {
+  position: absolute;
+  top: calc(100% + 7px);
+  right: 0;
+  background: rgba(20, 20, 20, 0.98);
+  border: none;
+  border-radius: 12px;
+  padding: 12px;
+  min-width: 220px;
+  backdrop-filter: blur(12px);
+  z-index: 100;
+}
+
+.mobile-menu-item {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.mobile-menu-item:last-of-type {
+  border-bottom: none;
+}
+
+.mobile-menu-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: #9ca3af;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.mobile-chapter-select {
+  background: rgba(31, 31, 31, 0.9);
+  border: .8px solid rgba(139, 92, 246, 0.3);
+  border-radius: 6px;
+  padding: 8px 12px;
+  color: #e6e6e6;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  width: 100%;
+}
+
+.mobile-chapter-select:focus {
+  outline: none;
+  border-color: #a78bfa;
+}
+
+.mobile-back-btn {
+  width: 100%;
+  background: rgba(139, 92, 246, 0.15);
+  color: #e9d5ff;
+  padding: 10px 16px;
+  border-radius: 8px;
+  border: none;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.mobile-back-btn:hover {
+  background: rgba(139, 92, 246, 0.25);
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .reader-controls-chapter,
+  .settings-menu-wrapper,
+  .back-btn {
+    display: none;
+  }
+
+  .mobile-menu-wrapper {
+    display: block;
+  }
+}
+
+@media (min-width: 769px) {
+  .mobile-menu-wrapper {
+    display: none;
+  }
+}

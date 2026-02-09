@@ -42,7 +42,6 @@
         "title": "I wish to be the southwest wind, to forever enter your embrace.",
         "createdAt": "2026-02-09T12:00:00.000Z",
         "latest": true,
-        "link": "https://example.com/read/248",
         "language": "en"
       },
       {
@@ -102,7 +101,6 @@
         "title": "Dual Cultivation of Soul and Spirit? Innocence in Danger!",
         "createdAt": "2026-02-09T12:00:00.000Z",
         "latest": true,
-        "link": "https://comic.io/home",
         "language": "en"
       },
         {
@@ -111,7 +109,6 @@
         "title": "Let’s play with you",
         "createdAt": "2026-02-08T12:00:00.000Z",
         "latest": true,
-        "link": "https://comic.io/home",
         "language": "en"
       },
       {
@@ -131,6 +128,47 @@
         "language": "en"
       }
       ],
+      "status": "ongoing"
+    },
+    "invincible-after-shocking-my-empress-wife": {
+      "id": "invincible-after-shocking-my-empress-wife",
+      "slug": "invincible-after-shocking-my-empress-wife",
+      "name": "Invincible After Shocking My Empress Wife",
+      "mangadexId": "f8653ef9-eabc-4125-bd95-6a8aa171cb9a",
+      "type": "manhua",
+      "cachedCoverUrl": "https://uploads.mangadex.org/covers/f8653ef9-eabc-4125-bd95-6a8aa171cb9a/855d71d1-1035-485b-940a-1b608694a177.png",
+      "title": "Invincible After Shocking My Empress Wife",
+      "year": 2023,
+      "altTitles": [
+        "开局震惊女帝老婆，我无敌了",
+        "Bắt Đầu Chấn Kinh Nữ Đế Lão Bà, Ta Vô Địch!",
+        "Kāijú Zhènjīng Nǚdì Lǎopó, Wǒ Wúdí le"
+      ],
+      "description": "Ning Tian came to the Tianxuan World as a good-for-nothing but he somehow managed to get into the Empress’s bedroom and the extremely beautiful Empress Luo planned to marry him tonight?! Shocked! System activated! He can earn rewards by shocking others?! The beginning shocked the Empress and that was the first step for him to achieve his goal of shocking the whole world! Ning Tian looked at the countless prodigies and said, “No way… I was only cultivating casually and you guys are shocked by that already?",
+      "tags": [
+        "Reincarnation",
+        "Action",
+        "Long Strip",
+        "Romance",
+        "Comedy",
+        "Martial Arts",
+        "Wuxia",
+        "Isekai",
+        "Fantasy",
+        "Web Comic",
+        "Adaptation",
+        "Full Color"
+      ],
+       "chapters" : [
+         {
+        "id": "ch113",
+        "chapter": "113",
+        "title": "The Chaos Gathering",
+        "createdAt": "2026-02-09T12:00:00.000Z",
+        "latest": true,
+        "language": "en"
+      }
+       ],
       "status": "ongoing"
     }
 }

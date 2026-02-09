@@ -7,6 +7,7 @@ import CommentSection from '@/app/reader/CommentSection';
 import ReaderControls from '@/app/reader/ReaderControls';
 import ResizableReader from '@/app/reader/ResizableReader';
 import ReaderPanels from '@/app/reader/ReaderPanels';
+import ReaderTitle from '@/app/reader/ReaderTitle';
 import manhuaData from '@/lib/data/manhua-data.json';
 
 type Props = {
@@ -62,10 +63,7 @@ export default async function ReaderPage({ params }: Props) {
       {/* Reader Header with all controls */}
       <header className="reader-header-bar">
         <div className="reader-brand">ManhuaRush</div>
-        <div className="reader-title-section">
-          <h1 className="reader-manga-title">{manhua.title}</h1>
-          <span className="reader-chapter-badge">Chapter {chapter}</span>
-        </div>
+        <ReaderTitle title={manhua.title} chapter={chapter} />
         <div className="reader-controls-wrapper">
           <ReaderControls
             mangaId={mangadexId}

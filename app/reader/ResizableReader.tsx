@@ -10,10 +10,25 @@ type Props = {
 export default function ResizableReader({ panels, sidebar }: Props) {
   const [panelWidth, setPanelWidth] = useState(65); // percentage
   const [isDragging, setIsDragging] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+  const [showComments, setShowComments] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
 
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
   const handleMouseDown = () => {
-    setIsDragging(true);
+    if (!isMobile) {
+      setIsDragging(true);
+    }
   };
 
   useEffect(() => {
@@ -43,6 +58,34 @@ export default function ResizableReader({ panels, sidebar }: Props) {
       document.removeEventListener('mouseup', handleMouseUp);
     };
   }, [isDragging]);
+
+  if (isMobile) {
+    return (
+      <div className={styles['reader-main']} ref={containerRef}>
+        {/* Mobile Toggle Button */}
+        <button
+          className={styles['mobile-toggle-btn']}
+          onClick={() => setShowComments(!showComments)}
+        >
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+            <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/>
+          </svg>
+          <span>{showComments ? 'Reader' : 'Comments'}</span>
+        </button>
+
+        {/* Panels or Comments based on toggle */}
+        {!showComments ? (
+          <div className={styles['reader-panels-wrapper-mobile']}>
+            {panels}
+          </div>
+        ) : (
+          <div className={styles['reader-sidebar-mobile']}>
+            {sidebar}
+          </div>
+        )}
+      </div>
+    );
+  }
 
   return (
     <div className={styles['reader-main']} ref={containerRef}>

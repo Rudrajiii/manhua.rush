@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import ConditionalNav from "./components/ConditionalNav";
 import ConditionalWrapper from "./components/ConditionalWrapper";
+import UserButton from "./components/UserButton";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -47,7 +48,7 @@ export default function RootLayout({
               </ul>
 
               <div className="nav-right" >
-                <a className="nav-link " style={{background:'rgba(167,139,250,0.12)'}} href="#">Login</a>
+                <UserButton />
               </div>
             </nav>
           </header>

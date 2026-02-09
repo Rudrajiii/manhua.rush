@@ -67,3 +67,85 @@
   flex-direction: column;
   height: 100%;
 }
+
+/* Mobile Styles */
+.mobile-toggle-btn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #a78bfa;
+  color: #000;
+  border: none;
+  border-radius: 50px;
+  padding: 12px 20px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  z-index: 100;
+  font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  transition: all 0.2s;
+}
+
+.mobile-toggle-btn:hover {
+  background: #8b5cf6;
+  transform: scale(1.05);
+}
+
+.mobile-toggle-btn:active {
+  transform: scale(0.95);
+}
+
+.reader-panels-wrapper-mobile {
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  background: #000000;
+  padding: 20px 12px;
+  display: flex;
+  justify-content: center;
+}
+
+.reader-sidebar-mobile {
+  width: 100%;
+  height: 100%;
+  background: rgba(15, 15, 15, 0.98);
+  padding: 16px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Tablet Styles */
+@media (max-width: 1024px) and (min-width: 769px) {
+  .reader-main {
+    height: calc(100vh - 56px);
+  }
+
+  .reader-panels-wrapper {
+    padding: 16px;
+  }
+
+  .reader-sidebar {
+    padding: 20px;
+  }
+
+  .resizer-handle {
+    width: 6px;
+  }
+}
+
+/* Mobile Styles */
+@media (max-width: 768px) {
+  .reader-main {
+    height: calc(100vh - 56px);
+  }
+
+  .resizer-handle {
+    display: none;
+  }
+}

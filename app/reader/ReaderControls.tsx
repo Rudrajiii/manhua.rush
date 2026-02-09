@@ -2,6 +2,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useRouter } from 'next/navigation';
 import { FaGear } from "react-icons/fa6";
+import { HiMenu } from "react-icons/hi";
 import styles from './ReaderControls.module.css';
 
 
@@ -23,7 +24,21 @@ export default function ReaderControls({ mangaId, currentChapter, chapters, mang
   const router = useRouter();
   const [zoom, setZoom] = useState(100);
   const [showSettings, setShowSettings] = useState(false);
+  const [showMobileMenu, setShowMobileMenu] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
   const settingsRef = useRef<HTMLDivElement>(null);
+  const mobileMenuRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   const handleChapterChange = (chapterNum: string) => {
     router.push(`/reader/${mangaId}/${chapterNum}`);
@@ -42,16 +57,19 @@ export default function ReaderControls({ mangaId, currentChapter, chapters, mang
       if (settingsRef.current && !settingsRef.current.contains(event.target as Node)) {
         setShowSettings(false);
       }
+      if (mobileMenuRef.current && !mobileMenuRef.current.contains(event.target as Node)) {
+        setShowMobileMenu(false);
+      }
     }
 
-    if (showSettings) {
+    if (showSettings || showMobileMenu) {
       document.addEventListener('mousedown', handleClickOutside);
     }
 
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
-  }, [showSettings]);
+  }, [showSettings, showMobileMenu]);
 
   // Apply zoom scale as a CSS variable on the root so other components can use it
   useEffect(() => {
@@ -62,6 +80,71 @@ export default function ReaderControls({ mangaId, currentChapter, chapters, mang
       // optional: leave value as-is or reset
     };
   }, [zoom]);
+
+  if (isMobile) {
+    return (
+      <>
+        {/* Mobile Menu Button */}
+        <div className={styles['mobile-menu-wrapper']} ref={mobileMenuRef}>
+          <button 
+            onClick={() => setShowMobileMenu(!showMobileMenu)} 
+            className={styles['mobile-menu-btn']}
+            title="Menu"
+          >
+            <HiMenu size={20} />
+          </button>
+          
+          {showMobileMenu && (
+            <div className={styles['mobile-menu-dropdown']}>
+              <div className={styles['mobile-menu-item']}>
+                <span className={styles['mobile-menu-label']}>Chapter</span>
+                <select
+                  value={currentChapter}
+                  onChange={(e) => {
+                    handleChapterChange(e.target.value);
+                    setShowMobileMenu(false);
+                  }}
+                  className={styles['mobile-chapter-select']}
+                >
+                  {chapters.map((ch) => (
+                    <option key={ch.id} value={ch.chapter}>
+                      Ch. {ch.chapter}
+                    </option>
+                  ))}
+                </select>
+              </div>
+              
+              <div className={styles['mobile-menu-item']}>
+                <span className={styles['mobile-menu-label']}>Zoom</span>
+                <div className={styles['zoom-controls']}>
+                  <button onClick={zoomOut} className={styles['zoom-btn-small']} title="Zoom Out">
+                    −
+                  </button>
+                  <span className={styles['zoom-level-small']}>{zoom}%</span>
+                  <button onClick={zoomIn} className={styles['zoom-btn-small']} title="Zoom In">
+                    +
+                  </button>
+                </div>
+              </div>
+              
+              <button 
+                onClick={() => {
+                  handleBack();
+                  setShowMobileMenu(false);
+                }} 
+                className={styles['mobile-back-btn']}
+              >
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M19 12H5M12 19l-7-7 7-7"/>
+                </svg>
+                Back to Manga
+              </button>
+            </div>
+          )}
+        </div>
+      </>
+    );
+  }
 
   return (
     <>

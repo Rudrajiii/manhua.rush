@@ -1,0 +1,65 @@
+.alertContainer {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 9999;
+  animation: slideIn 0.3s ease-out;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(400px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.alertContent {
+  background: #1a1a1a;
+  color: #fff;
+  padding: 16px 20px;
+  border-radius: 8px;
+  border: none;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  max-width: 400px;
+  font-size: 15px;
+}
+
+.closeButton {
+  background: none;
+  border: none;
+  color: #9ca3af;
+  font-size: 24px;
+  cursor: pointer;
+  padding: 0;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.2s;
+  flex-shrink: 0;
+}
+
+.closeButton:hover {
+  color: #a78bfa;
+}
+
+.actionButton {
+  background: transparent;
+  border: 1px solid rgba(167,139,250,0.2);
+  color: #a78bfa;
+  padding: 6px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.actionButton:hover {
+  background: rgba(167,139,250,0.06);
+}

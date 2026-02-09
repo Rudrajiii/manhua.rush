@@ -2,10 +2,10 @@ import React from 'react';
 import { getManhuaBySlug } from '@/lib/api/manhua';
 import { notFound } from 'next/navigation';
 import DescriptionToggle from '@/app/components/DescriptionToggle';
+import ViewCounter from '@/app/components/ViewCounter';
 import Link from 'next/link';
 import { FaPlay } from "react-icons/fa";
 import type { StaticImageData } from "next/image";
-import ttp from "../../../../public/ttp.png"
 
 type Props = {
   params: Promise<{ type: string; slug: string }>;
@@ -40,6 +40,10 @@ export default async function ManhuaDetailPage({ params, searchParams }: Props) 
           <div className="title-row">
             <h1 className="manga-title">{manhua.title}</h1>
             <span className="manga-year">{manhua.year}</span>
+          </div>
+
+          <div style={{ marginTop: '8px', marginBottom: '8px' }}>
+            <ViewCounter slug={manhua.slug} />
           </div>
 
           {manhua.altTitles.length > 0 && (
@@ -113,7 +117,7 @@ export default async function ManhuaDetailPage({ params, searchParams }: Props) 
               Little Reminder — to read previous chapters visit{' '}
               <a
                 className="no-underline hover:underline"
-                href="https://comic.io/home"
+                href="https://comix.to/home"
                 target="_blank"
                 rel="noreferrer"
                 style={{ color: '#a78bfa' }}
