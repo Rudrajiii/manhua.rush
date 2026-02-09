@@ -19,17 +19,6 @@ export async function POST(request: NextRequest) {
 
     const trimmedUsername = username.trim();
 
-    // Prevent users from registering the reserved admin username (case-insensitive)
-    if (
-      ADMIN_USERNAME &&
-      trimmedUsername.toLowerCase() === ADMIN_USERNAME.toLowerCase()
-    ) {
-      return NextResponse.json(
-        { error: 'This username is reserved for admin only.' },
-        { status: 403 }
-      );
-    }
-
     const db = await getDatabase();
     const usersCollection = db.collection('users');
 
@@ -124,17 +113,6 @@ export async function PUT(request: NextRequest) {
     }
 
     const trimmedUsername = newUsername.trim();
-
-    // Prevent users from updating to the reserved admin username (case-insensitive)
-    if (
-      ADMIN_USERNAME &&
-      trimmedUsername.toLowerCase() === ADMIN_USERNAME.toLowerCase()
-    ) {
-      return NextResponse.json(
-        { error: 'This username is reserved for admin only.' },
-        { status: 403 }
-      );
-    }
 
     const db = await getDatabase();
     const usersCollection = db.collection('users');
