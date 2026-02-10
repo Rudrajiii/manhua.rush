@@ -161,11 +161,19 @@
       ],
        "chapters" : [
          {
+        "id": "ch114",
+        "chapter": "114",
+        "title": "Wanbao gathers together",
+        "createdAt": "2026-02-11T12:00:00.000Z",
+        "latest": true,
+        "language": "en"
+      },
+         {
         "id": "ch113",
         "chapter": "113",
         "title": "The Chaos Gathering",
         "createdAt": "2026-02-09T12:00:00.000Z",
-        "latest": true,
+        "latest": false,
         "language": "en"
       }
        ],
