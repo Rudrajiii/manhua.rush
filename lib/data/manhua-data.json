@@ -213,11 +213,19 @@
       ],
       "chapters" : [
         {
+       "id": "ch475",
+       "chapter": "475",
+       "title": "",
+       "createdAt": "2026-02-13T12:00:00.000Z",
+       "latest": true,
+       "language": "en"
+     },
+        {
        "id": "ch474",
        "chapter": "474",
        "title": "",
        "createdAt": "2026-02-10T12:00:00.000Z",
-       "latest": true,
+       "latest": false,
        "language": "en"
      }
       ],
