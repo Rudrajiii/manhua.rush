@@ -222,5 +222,46 @@
      }
       ],
       "status": "ongoing"
+    },
+    "martial-evolution": {
+      "id": "martial-evolution",
+      "slug": "martial-evolution",
+      "name": "Martial Evolution",
+      "mangadexId": "b9ad2728-b052-4203-8263-fcd36c85ea26",
+      "type": "manhua",
+      "cachedCoverUrl": "https://uploads.mangadex.org/covers/b9ad2728-b052-4203-8263-fcd36c85ea26/4ae88d94-8cc7-4b55-91d9-9ae8e53234b2.jpg",
+      "title": "Martial Evolution: Start by Awakening the King of Monsters",
+      "year": 2025,
+      "altTitles": [
+        "高武进化：从觉醒怪兽之王开始",
+        "Evolución de Alto Nivel: Comenzando como el Rey de los Monstruos"
+      ],
+      "description": "A youth named Yi He is reborn into the world of powerful Martial arts and awakens the King of Monsters with the strongest bloodline!",
+      "tags": [
+        "Action",
+        "Long Strip",
+        "Martial Arts",
+        "Fantasy",
+        "Supernatural"
+      ],
+      "chapters" : [
+          {
+        "id": "ch104",
+        "chapter": "104",
+        "title": "artificial Demora",
+        "createdAt": "2026-02-11T12:00:00.000Z",
+        "latest": true,
+        "language": "en"
+      },
+          {
+        "id": "ch103",
+        "chapter": "103",
+        "title": "Daxia is going to change",
+        "createdAt": "2026-02-11T12:00:00.000Z",
+        "latest": true,
+        "language": "en"
+      }
+      ],
+      "status": "ongoing"
     }
 }
