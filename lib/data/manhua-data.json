@@ -262,6 +262,14 @@
       ],
       "chapters" : [
           {
+        "id": "ch105",
+        "chapter": "105",
+        "title": "Reporting for duty",
+        "createdAt": "2026-02-14T12:00:00.000Z",
+        "latest": true,
+        "language": "en"
+      },
+          {
         "id": "ch104",
         "chapter": "104",
         "title": "artificial Demora",
@@ -274,7 +282,7 @@
         "chapter": "103",
         "title": "Daxia is going to change",
         "createdAt": "2026-02-11T12:00:00.000Z",
-        "latest": true,
+        "latest": false,
         "language": "en"
       }
       ],
