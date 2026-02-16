@@ -1,9 +1,12 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import Link from "next/link";
 import ConditionalNav from "./components/ConditionalNav";
 import ConditionalWrapper from "./components/ConditionalWrapper";
 import UserButton from "./components/UserButton";
+import MobileNav from "./components/MobileNav";
+import TopLoader from "./components/TopLoader";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -34,22 +37,26 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <TopLoader />
         <ConditionalNav>
           <header className="nav-wrap">
             <nav className="site-nav" aria-label="Main navigation">
               <div className="brand">Manhua Rush</div>
 
               <ul className="breadcrumb" role="list">
-                <li><a className="nav-link" href="/">Home</a></li>
+                <li><Link className="nav-link" href="/">Home</Link></li>
                 <span>/</span>
-                <li><a className="nav-link" href="/collections/all?p=all">Collections</a></li>
+                <li><Link className="nav-link" href="/collections/all?p=all">Collections</Link></li>
                 <span>/</span>
-                <li><a className="nav-link" href="/craft?mode=dev">Craft</a></li>
+                <li><Link className="nav-link" href="/craft?mode=dev">Craft</Link></li>
               </ul>
 
-              <div className="nav-right" >
+              <div className="nav-right">
                 <UserButton />
               </div>
+
+              {/* Mobile hamburger (hidden on desktop) */}
+              <MobileNav />
             </nav>
           </header>
         </ConditionalNav>

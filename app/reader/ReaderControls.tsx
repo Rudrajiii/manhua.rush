@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useTransition } from 'react';
 import { useRouter } from 'next/navigation';
 import { FaGear } from "react-icons/fa6";
 import { HiMenu } from "react-icons/hi";
@@ -26,6 +26,7 @@ export default function ReaderControls({ mangaId, currentChapter, chapters, mang
   const [showSettings, setShowSettings] = useState(false);
   const [showMobileMenu, setShowMobileMenu] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+  const [isPending, startTransition] = useTransition();
   const settingsRef = useRef<HTMLDivElement>(null);
   const mobileMenuRef = useRef<HTMLDivElement>(null);
 
@@ -41,11 +42,15 @@ export default function ReaderControls({ mangaId, currentChapter, chapters, mang
   }, []);
 
   const handleChapterChange = (chapterNum: string) => {
-    router.push(`/reader/${mangaId}/${chapterNum}`);
+    startTransition(() => {
+      router.push(`/reader/${mangaId}/${chapterNum}`);
+    });
   };
 
   const handleBack = () => {
-    router.push(`/collections/all/${mangaSlug}`);
+    startTransition(() => {
+      router.push(`/collections/all/${mangaSlug}`);
+    });
   };
 
   const zoomIn = () => setZoom((z) => Math.min(z + 10, 200));
@@ -133,11 +138,16 @@ export default function ReaderControls({ mangaId, currentChapter, chapters, mang
                   setShowMobileMenu(false);
                 }} 
                 className={styles['mobile-back-btn']}
+                disabled={isPending}
               >
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <path d="M19 12H5M12 19l-7-7 7-7"/>
-                </svg>
-                Back to Manga
+                {isPending ? (
+                  <span className={styles['btn-spinner']} />
+                ) : (
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <path d="M19 12H5M12 19l-7-7 7-7"/>
+                  </svg>
+                )}
+                {isPending ? 'Going back…' : 'Back to Manga'}
               </button>
             </div>
           )}
@@ -192,11 +202,15 @@ export default function ReaderControls({ mangaId, currentChapter, chapters, mang
       </div>
 
       {/* Back Button with Icon */}
-      <button onClick={handleBack} className={styles['back-btn']}>
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-          <path d="M19 12H5M12 19l-7-7 7-7"/>
-        </svg>
-        Back
+      <button onClick={handleBack} className={styles['back-btn']} disabled={isPending}>
+        {isPending ? (
+          <span className={styles['btn-spinner']} />
+        ) : (
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+            <path d="M19 12H5M12 19l-7-7 7-7"/>
+          </svg>
+        )}
+        {isPending ? 'Returning…' : 'Back'}
       </button>
       {/* static styles moved to ReaderControls.module.css */}
 

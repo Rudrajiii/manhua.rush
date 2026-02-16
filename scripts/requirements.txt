@@ -1,0 +1,10 @@
+Pillow
+cloudinary
+python-dotenv
+flask
+flask-cors
+
+# For AVIF support, install ONE of these (recommended for best compression):
+# pip install pillow-avif-plugin>=1.4.1
+# pip install pillow-heif>=0.13.0
+# Without either, the script falls back to WebP (still great compression).

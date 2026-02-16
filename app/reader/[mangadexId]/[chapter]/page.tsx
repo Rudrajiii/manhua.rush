@@ -9,6 +9,7 @@ import ResizableReader from '@/app/reader/ResizableReader';
 import ReaderPanels from '@/app/reader/ReaderPanels';
 import ReaderTitle from '@/app/reader/ReaderTitle';
 import manhuaData from '@/lib/data/manhua-data.json';
+import { panelCache } from '@/lib/cache';
 
 type Props = {
   params: Promise<{ mangadexId: string; chapter: string }> | { mangadexId: string; chapter: string };
@@ -17,6 +18,63 @@ type Props = {
 function isImageFile(name: string) {
   const ext = name.split('.').pop()?.toLowerCase() || '';
   return ['avif', 'webp', 'png', 'jpg', 'jpeg'].includes(ext);
+}
+
+interface ManifestPanel {
+  order: number;
+  cloudinary_url: string;
+  obfuscated_name: string;
+}
+
+interface Manifest {
+  manga_id: string;
+  chapter: string;
+  total_panels: number;
+  panels: ManifestPanel[];
+}
+
+/**
+ * Try to load panel URLs from Cloudinary manifest (scripts/manifests/).
+ * Returns sorted Cloudinary URLs, or null if manifest doesn't exist.
+ */
+async function loadCloudPanels(mangadexId: string, chapter: string): Promise<string[] | null> {
+  const cacheKey = `cloud-panels:${mangadexId}:${chapter}`;
+  return panelCache.getOrSet<string[] | null>(cacheKey, async () => {
+    const manifestPath = path.resolve(
+      process.cwd(), 'scripts', 'manifests',
+      `${mangadexId}_${chapter}.json`
+    );
+    try {
+      const raw = await fs.readFile(manifestPath, 'utf-8');
+      const manifest: Manifest = JSON.parse(raw);
+      const urls = manifest.panels
+        .sort((a, b) => a.order - b.order)
+        .map((p) => p.cloudinary_url)
+        .filter(Boolean);
+      return urls.length > 0 ? urls : null;
+    } catch {
+      return null;
+    }
+  }, 600);
+}
+
+/**
+ * Fallback: load panel URLs from local production/ folder.
+ */
+async function loadLocalPanels(mangadexId: string, chapter: string): Promise<string[]> {
+  const productionRoot = path.resolve(process.cwd(), 'production');
+  const chapterDir = path.join(productionRoot, String(mangadexId), String(chapter));
+  try {
+    const items = await fs.readdir(chapterDir);
+    const files = items.filter(isImageFile).sort((a, b) => {
+      const na = a.match(/(\d+)/g)?.join('') || a;
+      const nb = b.match(/(\d+)/g)?.join('') || b;
+      return Number(na) - Number(nb);
+    });
+    return files.map((f) => `/api/prod-image/${mangadexId}/${chapter}/${encodeURIComponent(f)}`);
+  } catch {
+    return [];
+  }
 }
 
 export default async function ReaderPage({ params }: Props) {
@@ -36,25 +94,14 @@ export default async function ReaderPage({ params }: Props) {
     notFound();
   }
 
-  const productionRoot = path.resolve(process.cwd(), 'production');
-  const chapterDir = path.join(productionRoot, String(mangadexId), String(chapter));
-
-  let files: string[] = [];
-  try {
-    const items = await fs.readdir(chapterDir);
-    files = items.filter(isImageFile).sort((a, b) => {
-      const na = a.match(/(\d+)/g)?.join('') || a;
-      const nb = b.match(/(\d+)/g)?.join('') || b;
-      return Number(na) - Number(nb);
-    });
-  } catch (e) {
-    // no files
-    files = [];
+  // Try Cloudinary manifest first, fall back to local production folder
+  let imageUrls = await loadCloudPanels(mangadexId, chapter);
+  const isCloud = imageUrls !== null;
+  if (!imageUrls) {
+    imageUrls = await loadLocalPanels(mangadexId, chapter);
   }
 
-  const imageUrls = files.map((f) => `/api/prod-image/${mangadexId}/${chapter}/${encodeURIComponent(f)}`);
-
-  const panelsContent = <ReaderPanels imageUrls={imageUrls} />;
+  const panelsContent = <ReaderPanels imageUrls={imageUrls} isCloud={isCloud} />;
 
   const sidebarContent = <CommentSection mangaId={mangadexId} chapter={chapter} />;
 

@@ -1,9 +1,10 @@
 import React from 'react';
+import Link from 'next/link';
 import { getManhuaBySlug } from '@/lib/api/manhua';
 import { notFound } from 'next/navigation';
 import DescriptionToggle from '@/app/components/DescriptionToggle';
 import ViewCounter from '@/app/components/ViewCounter';
-import Link from 'next/link';
+import LinkWithLoader from '@/app/components/LinkWithLoader';
 import { FaPlay } from "react-icons/fa";
 import type { StaticImageData } from "next/image";
 
@@ -52,12 +53,13 @@ export default async function ManhuaDetailPage({ params, searchParams }: Props) 
 
           <div className="actions">
             {manhua.mangadexId && manhua.chapters && manhua.chapters.length > 0 ? (
-              <Link
+              <LinkWithLoader
                 href={`/reader/${manhua.mangadexId}/${manhua.chapters[0].chapter}`}
                 className="btn-start"
+                loadingText="Loading…"
               >
                 Start Reading
-              </Link>
+              </LinkWithLoader>
             ) : (
               <button className="btn-start" disabled>Start Reading</button>
             )}

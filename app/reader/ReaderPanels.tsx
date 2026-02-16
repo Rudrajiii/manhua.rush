@@ -1,132 +1,153 @@
 "use client";
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from "react";
 
 type Props = {
   imageUrls: string[];
+  isCloud?: boolean;
 };
 
-export default function ReaderPanels({ imageUrls }: Props) {
-  const [isLoading, setIsLoading] = useState(true);
+/** How many panels to render eagerly on first visit (no observer needed). */
+const EAGER_COUNT = 3;
 
+type PanelState = "pending" | "loading" | "loaded" | "error";
+
+/**
+ * Single panel with 4 exclusive states:
+ *   pending  → grey placeholder (waiting for scroll)
+ *   loading  → centered spinner (image downloading in background via JS Image)
+ *   loaded   → the actual <img>
+ *   error    → error message + retry button
+ *
+ * Only ONE element is in the DOM at a time so there are no layout conflicts.
+ */
+function LazyPanel({
+  src,
+  index,
+  isCloud,
+  scrollRoot,
+  eager,
+}: {
+  src: string;
+  index: number;
+  isCloud: boolean;
+  scrollRoot: Element | null;
+  eager: boolean;
+}) {
+  const [state, setState] = useState<PanelState>(eager ? "loading" : "pending");
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  /* ── Observer: transition pending → loading when near the scroll viewport ── */
   useEffect(() => {
-    if (imageUrls.length === 0) {
-      setIsLoading(false);
-      return;
-    }
+    if (state !== "pending") return;
+    const el = containerRef.current;
+    if (!el) return;
 
-    // Preload first image
-    const img = new Image();
-    img.onload = () => setIsLoading(false);
-    img.onerror = () => setIsLoading(false);
-    img.src = imageUrls[0];
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setState("loading");
+          observer.unobserve(el);
+        }
+      },
+      {
+        root: scrollRoot, // the actual scrollable container, NOT the viewport
+        rootMargin: "600px 0px",
+        threshold: 0,
+      }
+    );
 
-    // Fallback timeout
-    const timeout = setTimeout(() => {
-      setIsLoading(false);
-    }, 5000);
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [state, scrollRoot]);
 
-    return () => clearTimeout(timeout);
-  }, [imageUrls]);
+  /* ── Preload: download the image in JS, then flip to "loaded" ── */
+  useEffect(() => {
+    if (state !== "loading") return;
+    const img = new window.Image();
+    img.onload = () => setState("loaded");
+    img.onerror = () => setState("error");
+    img.src = src;
+    // If the image is already cached the callbacks fire synchronously/next‑tick
+  }, [state, src]);
+
+  return (
+    <div ref={containerRef} className="reader-panel-container">
+      {/* ---- Pending: placeholder so the observer has geometry to track ---- */}
+      {state === "pending" && <div className="panel-placeholder" />}
+
+      {/* ---- Loading: centered spinner ---- */}
+      {state === "loading" && (
+        <div className="panel-spinner">
+          <div className="panel-spinner-ring" />
+          <span className="panel-spinner-text">Panel {index + 1}</span>
+        </div>
+      )}
+
+      {/* ---- Loaded: the actual image (served from browser cache) ---- */}
+      {state === "loaded" && (
+        // eslint-disable-next-line @next/next/no-img-element
+        <img
+          src={src}
+          alt={`page-${index + 1}`}
+          className="reader-panel-img"
+          draggable={false}
+          {...(isCloud
+            ? { onContextMenu: (e: React.MouseEvent) => e.preventDefault() }
+            : {})}
+        />
+      )}
+
+      {/* ---- Error: message + retry ---- */}
+      {state === "error" && (
+        <div className="panel-error">
+          <span>Failed to load panel {index + 1}</span>
+          <button
+            className="panel-retry-btn"
+            onClick={() => setState("loading")}
+          >
+            Retry
+          </button>
+        </div>
+      )}
+    </div>
+  );
+}
+
+export default function ReaderPanels({ imageUrls, isCloud = false }: Props) {
+  const panelsRef = useRef<HTMLDivElement>(null);
+  const [scrollRoot, setScrollRoot] = useState<Element | null>(null);
+
+  /*
+   * Resolve the scroll container: the parent of .reader-panels is
+   * .reader-panels-wrapper (overflow-y: auto) — that's what the user
+   * actually scrolls. We need it as the IntersectionObserver root so
+   * "in view" means "scrolled into the visible part of the reader pane",
+   * not "inside the browser viewport" (which would be everything at once).
+   */
+  useEffect(() => {
+    const el = panelsRef.current?.parentElement;
+    if (el) setScrollRoot(el);
+  }, []);
 
   if (imageUrls.length === 0) {
     return (
-      <div className="reader-panels">
+      <div className="reader-panels" ref={panelsRef}>
         <div className="reader-empty">No images found for this chapter.</div>
       </div>
     );
   }
 
-  if (isLoading) {
-    return (
-      <div className="reader-panels">
-        <div className="reader-loading">
-          <div className="loading-spinner">
-            <div className="spinner-ring"></div>
-            <div className="spinner-ring"></div>
-            <div className="spinner-ring"></div>
-          </div>
-          <p className="loading-text">Loading panels...</p>
-        </div>
-
-        <style jsx>{
-          `
-          .reader-loading {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 70vh;
-            gap: 32px;
-          }
-
-          .loading-spinner {
-            position: relative;
-            width: 80px;
-            height: 80px;
-          }
-
-          .spinner-ring {
-            position: absolute;
-            border-radius: 50%;
-            border: 2px solid transparent;
-            animation: spin 2s linear infinite;
-          }
-
-          .spinner-ring:nth-child(1) {
-            width: 100%;
-            height: 100%;
-            border-top-color: rgba(139, 92, 246, 0.8);
-            border-right-color: rgba(139, 92, 246, 0.2);
-          }
-
-          .spinner-ring:nth-child(2) {
-            width: 75%;
-            height: 75%;
-            top: 12.5%;
-            left: 12.5%;
-            border-top-color: rgba(167, 139, 250, 0.6);
-            border-left-color: rgba(167, 139, 250, 0.2);
-            animation-duration: 1.5s;
-            animation-direction: reverse;
-          }
-
-          .spinner-ring:nth-child(3) {
-            width: 50%;
-            height: 50%;
-            top: 25%;
-            left: 25%;
-            border-top-color: rgba(196, 181, 253, 0.5);
-            animation-duration: 1s;
-          }
-
-          @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-          }
-
-          .loading-text {
-            color: rgba(255, 255, 255, 0.8);
-            font-size: 18px;
-            font-weight: 500;
-            letter-spacing: 0.5px;
-            animation: pulse 1.5s ease-in-out infinite;
-          }
-
-          @keyframes pulse {
-            0%, 100% { opacity: 0.6; }
-            50% { opacity: 1; }
-          }
-          `
-   } </style>
-      </div>
-    );
-  }
-
   return (
-    <div className="reader-panels">
+    <div className="reader-panels" ref={panelsRef}>
       {imageUrls.map((src, idx) => (
-        // eslint-disable-next-line @next/next/no-img-element
-        <img key={src} src={src} alt={`page-${idx + 1}`} className="reader-panel-img" />
+        <LazyPanel
+          key={`${idx}-${src}`}
+          src={src}
+          index={idx}
+          isCloud={isCloud}
+          scrollRoot={scrollRoot}
+          eager={idx < EAGER_COUNT}
+        />
       ))}
     </div>
   );

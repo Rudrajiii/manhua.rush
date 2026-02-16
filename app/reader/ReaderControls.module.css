@@ -254,3 +254,19 @@
     display: none;
   }
 }
+
+/* ====== Button Spinner ====== */
+.btn-spinner {
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(139, 92, 246, 0.25);
+  border-top-color: #e9d5ff;
+  border-radius: 50%;
+  animation: btn-spin 0.6s linear infinite;
+  display: inline-block;
+  flex-shrink: 0;
+}
+
+@keyframes btn-spin {
+  to { transform: rotate(360deg); }
+}
