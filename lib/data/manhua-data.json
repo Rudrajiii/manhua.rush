@@ -278,6 +278,14 @@
       ],
       "chapters" : [
           {
+        "id": "ch106",
+        "chapter": "106",
+        "title": "Disguise",
+        "createdAt": "2026-02-17T12:00:00.000Z",
+        "latest": true,
+        "language": "en"
+      },
+          {
         "id": "ch105",
         "chapter": "105",
         "title": "Reporting for duty",
