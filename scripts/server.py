@@ -236,6 +236,64 @@ def get_config():
     })
 
 
+@app.route("/api/upload-production", methods=["POST"])
+def upload_production():
+    """Upload files into the production folder.
+
+    Expects multipart form-data with a `mangadexId` field and multiple files.
+    Each uploaded file may include a relative path in its filename (e.g. "12/img.png").
+    On a single upload, the existing production folder is removed entirely
+    and replaced with the newly uploaded contents.
+    """
+    try:
+        manga_id = request.form.get("mangadexId")
+        if not manga_id:
+            return jsonify({"error": "mangadexId is required"}), 400
+
+        # Remove existing production directory completely for a fresh upload
+        prod_dir = config.PRODUCTION_DIR
+        if prod_dir.exists():
+            import shutil
+            try:
+                shutil.rmtree(prod_dir)
+            except Exception as e:
+                return jsonify({"error": f"Failed to clear production dir: {e}"}), 500
+
+        # Recreate production dir
+        prod_dir.mkdir(parents=True, exist_ok=True)
+
+        # Save all uploaded files. Flask/Werkzeug preserves the filename string that
+        # the client provided, so we rely on that to contain relative paths like
+        # "<chapter>/<image>.png". We'll safely normalize paths and prevent
+        # path traversal attacks.
+        saved = []
+        from pathlib import Path
+        import os
+
+        for key in request.files:
+            for file_storage in request.files.getlist(key):
+                raw_name = file_storage.filename or ""
+                # Normalize and strip drive letters
+                norm = os.path.normpath(raw_name).lstrip("/\\")
+                parts = Path(norm).parts
+                # Prevent traversal
+                if any(p == ".." for p in parts):
+                    continue
+
+                # Destination: production/<manga_id>/<norm>
+                dest = prod_dir / manga_id / Path(*parts)
+                dest.parent.mkdir(parents=True, exist_ok=True)
+                try:
+                    file_storage.save(str(dest))
+                    saved.append(str(dest.relative_to(prod_dir)))
+                except Exception as e:
+                    return jsonify({"error": f"Failed to save {raw_name}: {e}"}), 500
+
+        return jsonify({"status": "ok", "saved": saved, "production_dir": str(prod_dir)}), 200
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
+
 if __name__ == "__main__":
     print("\n" + "=" * 60)
     print("  ManhuaRush Panel Manager Dashboard")

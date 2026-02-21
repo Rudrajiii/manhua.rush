@@ -37,11 +37,19 @@
       ],
       "chapters": [
         {
+        "id": "ch251",
+        "chapter": "251",
+        "title": "Happy New Year",
+        "createdAt": "2026-02-22T12:00:00.000Z",
+        "latest": true,
+        "language": "en"
+      },
+        {
         "id": "ch250",
         "chapter": "250",
         "title": "Ancient Spirit",
         "createdAt": "2026-02-14T12:00:00.000Z",
-        "latest": true,
+        "latest": false,
         "language": "en"
       },
       {
