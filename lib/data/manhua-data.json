@@ -79,7 +79,7 @@
     ],
       "status": "On Going"
     },
-      "strength-through-adversity-my-cultivation-knows-no-limits": {
+    "strength-through-adversity-my-cultivation-knows-no-limits": {
       "id": "strength-through-adversity-my-cultivation-knows-no-limits",
       "slug": "strength-through-adversity-my-cultivation-knows-no-limits",
       "name": "Strength Through Adversity",
@@ -245,11 +245,19 @@
       ],
       "chapters" : [
         {
+       "id": "ch477",
+       "chapter": "477",
+       "title": "",
+       "createdAt": "2026-02-22T12:00:00.000Z",
+       "latest": true,
+       "language": "en"
+     },
+        {
        "id": "ch476",
        "chapter": "476",
        "title": "",
        "createdAt": "2026-02-17T12:00:00.000Z",
-       "latest": true,
+       "latest": false,
        "language": "en"
      },
         {
