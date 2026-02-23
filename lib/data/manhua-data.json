@@ -302,11 +302,27 @@
       ],
       "chapters" : [
           {
+        "id": "ch108",
+        "chapter": "108",
+        "title": "Your Fate is in my hand",
+        "createdAt": "2026-02-23T12:00:00.000Z",
+        "latest": true,
+        "language": "en"
+      },
+          {
+        "id": "ch107",
+        "chapter": "107",
+        "title": "Targets are easy",
+        "createdAt": "2026-02-23T12:00:00.000Z",
+        "latest": true,
+        "language": "en"
+      },
+          {
         "id": "ch106",
         "chapter": "106",
         "title": "Disguise",
         "createdAt": "2026-02-17T12:00:00.000Z",
-        "latest": true,
+        "latest": false,
         "language": "en"
       },
           {
@@ -314,7 +330,7 @@
         "chapter": "105",
         "title": "Reporting for duty",
         "createdAt": "2026-02-14T12:00:00.000Z",
-        "latest": true,
+        "latest": false,
         "language": "en"
       },
           {

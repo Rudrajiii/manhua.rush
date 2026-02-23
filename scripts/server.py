@@ -303,4 +303,4 @@ if __name__ == "__main__":
     print(f"  Cloud root: {config.CLOUDINARY_ROOT_FOLDER}")
     print("=" * 60 + "\n")
 
-    app.run(host="0.0.0.0", port=5000, debug=True, threaded=True)
+    app.run(host="0.0.0.0", port=5100, debug=True, threaded=True)
