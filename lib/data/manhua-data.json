@@ -185,11 +185,19 @@
       ],
        "chapters" : [
          {
+        "id": "ch116",
+        "chapter": "116",
+        "title": "Palm descending from the sky (2)",
+        "createdAt": "2026-02-26T12:00:00.000Z",
+        "latest": true,
+        "language": "en"
+      },
+         {
         "id": "ch115",
         "chapter": "115",
-        "title": "Palm descending from the sky",
+        "title": "Palm descending from the sky (1)",
         "createdAt": "2026-02-15T12:00:00.000Z",
-        "latest": true,
+        "latest": false,
         "language": "en"
       },
          {
