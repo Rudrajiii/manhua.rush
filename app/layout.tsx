@@ -41,7 +41,9 @@ export default function RootLayout({
         <ConditionalNav>
           <header className="nav-wrap">
             <nav className="site-nav" aria-label="Main navigation">
-              <div className="brand">Manhua Rush</div>
+              <div className="brand cursor-pointer">
+                <Link href="/">Manhua Rush</Link>
+              </div>
 
               <ul className="breadcrumb" role="list">
                 <li><Link className="nav-link" href="/">Home</Link></li>

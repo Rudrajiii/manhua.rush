@@ -65,7 +65,12 @@ export default async function CollectionPage({ params, searchParams }: Props) {
                   </div>
                 </div>
                 <div className="mt-2 flex items-center justify-between pl-2 pr-2 font-sans">
-                  <div className="text-xs font-semibold truncate bg-[#5e5d6048] p-2 rounded-lg">Latest Ch. {item.chapters[0].chapter}</div>
+                  
+                  <div className="text-xs font-semibold truncate bg-[#5e5d6048] p-2 rounded-lg">
+                    <span className="latest-dot" />
+                    Latest Ch. {item.chapters[0].chapter}
+                    
+                  </div>
                   <div className="text-xs text-gray-300 opacity-50">{item.chapters[0].createdAt.slice(0,10)}</div>
                 </div>
                 

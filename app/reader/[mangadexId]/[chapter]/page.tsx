@@ -1,6 +1,7 @@
 import React from 'react';
 import fs from 'fs/promises';
 import path from 'path';
+import Link from "next/link";
 import { notFound } from 'next/navigation';
 import { getManhuaBySlug } from '@/lib/api/manhua';
 import CommentSection from '@/app/reader/CommentSection';
@@ -109,7 +110,9 @@ export default async function ReaderPage({ params }: Props) {
     <div className="reader-container">
       {/* Reader Header with all controls */}
       <header className="reader-header-bar">
-        <div className="reader-brand">ManhuaRush</div>
+        <div className="reader-brand">
+          <Link href="/">Manhua Rush</Link>
+        </div>
         <ReaderTitle title={manhua.title} chapter={chapter} />
         <div className="reader-controls-wrapper">
           <ReaderControls
