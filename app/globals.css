@@ -155,6 +155,47 @@ body {
   font-size: 13px;
   color: #e6e6e6;
 }
+/* Series notification banner */
+.series-notification {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  background: rgba(167, 139, 250, 0.08);
+  /* border: 1px solid rgba(167, 139, 250, 0.25); */
+  border-radius: 8px;
+  padding: 14px 18px;
+  margin-bottom: 20px;
+  text-align: justify;
+  color: #e9e9e9;
+  font-size: 14px;
+  line-height: 1.55;
+}
+.series-notification-icon {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  margin-top: 1px;
+  color: #a78bfa;
+}
+.series-notification-label {
+  font-weight: 700;
+  color: #a78bfa;
+  margin-right: 6px;
+}
+
+/* Chapter title + latest badge row */
+.chapter-title-row {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  min-width: 0;
+}
+.chapter-title {
+  font-weight: 600;
+  min-width: 0;
+  word-break: break-word;
+}
+
 .chapters-section { margin-top: 28px }
 .chapters-list {
   margin-top: 12px;
@@ -170,7 +211,6 @@ body {
   border-bottom: 1px solid rgba(255,255,255,0.03);
 }
 .chapter-item:last-child { border-bottom: none }
-.chapter-title { font-weight: 600 }
 .chapter-meta { font-size: 13px; color: #9ca3af }
 
 
@@ -180,6 +220,7 @@ body {
   border-radius: 8px;
   position: relative;
   overflow: hidden;
+  margin-bottom:5px;
 }
 .chapter-item.latest::after {
   content: "";
@@ -899,6 +940,13 @@ body {
   .latest-badge {
     font-size: 11px;
     padding: 4px 8px;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .series-notification {
+    padding: 12px 14px;
+    font-size: 13px;
   }
 }
 

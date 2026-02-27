@@ -22,7 +22,9 @@ export type Manhua = {
   cover: string;
   tags: string[];
   chapters: Chapter[];
-  status:String
+  status: String;
+  notification?: boolean;
+  notificationMsg?: string;
 };
 
 // Internal type matching the JSON structure
@@ -40,6 +42,8 @@ type ManhuaDataEntry = {
   tags: string[];
   chapters: Chapter[];
   status: string;
+  notification?: boolean;
+  notificationMsg?: string;
 };
 
 /**
@@ -66,7 +70,9 @@ function transformToManhua(entry: ManhuaDataEntry): Manhua {
     cover: coverUrl,
     tags: entry.tags,
     chapters: entry.chapters,
-    status: entry.status
+    status: entry.status,
+    notification: entry.notification,
+    notificationMsg: entry.notificationMsg,
   };
 }
 

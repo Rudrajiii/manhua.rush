@@ -27,6 +27,20 @@ export default async function ManhuaDetailPage({ params, searchParams }: Props) 
 
   return (
     <main className="manga-page">
+      {manhua.notification && (
+        <div className="series-notification">
+          <span className="series-notification-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" width="20" height="20">
+              <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" />
+              <path d="M13.73 21a2 2 0 0 1-3.46 0" />
+            </svg>
+          </span>
+          <div>
+            <span className="series-notification-label">Official Notice :</span>
+            {manhua.notificationMsg ?? 'Stay tuned for updates on this series!'}
+          </div>
+        </div>
+      )}
       <div className="manga-header">
         <div className="cover">
           {manhua.cover ? (
@@ -92,7 +106,7 @@ export default async function ManhuaDetailPage({ params, searchParams }: Props) 
                       className={`chapter-item ${chapter.latest ? 'latest' : ''}`}
                     >
                       <div>
-                        <div style={{ display: 'flex', gap: 10, alignItems: 'center' }}>
+                        <div className="chapter-title-row">
                           <div className="chapter-title">
                             Ch. {chapter.chapter}
                             {chapter.title ? ` — ${chapter.title}` : ''}
