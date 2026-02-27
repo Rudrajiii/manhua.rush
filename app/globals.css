@@ -392,6 +392,52 @@ body {
   .breadcrumb { display: none; }
   .nav-right  { display: none; }
   .mobile-nav-wrapper { display: block; }
+}
+
+/* Craft page placeholder styles */
+.craft-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 68vh;
+  padding: 40px 20px;
+}
+.craft-card {
+  padding: 28px 36px;
+  border-radius: 14px;
+  max-width: 840px;
+  width: 100%;
+}
+.craft-title {
+  margin: 0 0 8px 0;
+  font-size: 28px;
+  color: var(--foreground);
+  font-weight: 800;
+}
+.craft-sub {
+  margin: 0 0 16px 0;
+  color: #bdbdbd;
+  font-size: 15px;
+  text-align: justify;
+  line-height: 1.5;
+}
+.craft-pill {
+  display: inline-block;
+  background: linear-gradient(90deg, rgba(139,92,246,0.12), rgba(99,102,241,0.06));
+  color: #ae4aff;
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 13px;
+  margin-bottom: 12px;
+}
+.craft-note {
+  margin-top: 18px;
+  text-align: justify;
+  color: #bdbdbd;
+  font-size: 15px;
+}
+
 
   .site-nav {
     padding: 10px 14px;
@@ -435,7 +481,7 @@ body {
     grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
     gap: 12px;
   }
-}
+
 
 @media (max-width: 480px) {
   .home-title {
