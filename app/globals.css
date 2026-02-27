@@ -403,7 +403,7 @@ body {
   padding: 40px 20px;
 }
 .craft-card {
-  padding: 25px;
+  padding: 25px 0;
   border-radius: 14px;
   max-width: 840px;
   width: 100%;
