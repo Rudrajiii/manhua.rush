@@ -320,6 +320,14 @@
       ],
       "chapters" : [
           {
+        "id": "ch109",
+        "chapter": "109",
+        "title": "You are mine",
+        "createdAt": "2026-02-28T12:00:00.000Z",
+        "latest": true,
+        "language": "en"
+      },
+          {
         "id": "ch108",
         "chapter": "108",
         "title": "Your Fate is in my hand",
@@ -332,7 +340,7 @@
         "chapter": "107",
         "title": "Targets are easy",
         "createdAt": "2026-02-23T12:00:00.000Z",
-        "latest": true,
+        "latest": false,
         "language": "en"
       },
           {
