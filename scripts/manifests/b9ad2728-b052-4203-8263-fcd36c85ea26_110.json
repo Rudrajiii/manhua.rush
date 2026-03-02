@@ -1,7 +1,7 @@
 {
   "manga_id": "b9ad2728-b052-4203-8263-fcd36c85ea26",
   "chapter": "110",
-  "total_panels": 14,
+  "total_panels": 15,
   "panels": [
     {
       "order": 1,
@@ -142,13 +142,23 @@
       "original_size": 713015,
       "converted_size": 105097,
       "skipped_conversion": false
+    },
+    {
+      "order": 15,
+      "original_name": "img_015.jpg",
+      "obfuscated_name": "8d3088934a90ce29.avif",
+      "cloudinary_url": "https://res.cloudinary.com/dsc1cwi5i/image/upload/v1772459539/manhua-rush-production/b9ad2728-b052-4203-8263-fcd36c85ea26/110/8d3088934a90ce29.avif",
+      "cloudinary_public_id": "manhua-rush-production/b9ad2728-b052-4203-8263-fcd36c85ea26/110/8d3088934a90ce29",
+      "original_size": 273079,
+      "converted_size": 55410,
+      "skipped_conversion": false
     }
   ],
   "stats": {
-    "total_original_size": 13343004,
-    "total_converted_size": 2322099,
-    "compression_ratio": 0.174,
-    "space_saved_bytes": 11020905,
-    "space_saved_percent": 82.6
+    "total_original_size": 273079,
+    "total_converted_size": 55410,
+    "compression_ratio": 0.2029,
+    "space_saved_bytes": 217669,
+    "space_saved_percent": 79.71
   }
 }
