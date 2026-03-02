@@ -15,6 +15,14 @@ const nextConfig: NextConfig = {
   async headers() {
     return [
       {
+        // Cache logo images aggressively so browsers and CDNs don't re-request
+        // them on every page load.
+        source: '/logo/:path*',
+        headers: [
+          { key: 'Cache-Control', value: 'public, max-age=31536000, immutable' },
+        ],
+      },
+      {
         // Apply to reader pages — prevent image hotlinking from other sites
         source: "/reader/:path*",
         headers: [

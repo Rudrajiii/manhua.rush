@@ -282,29 +282,52 @@ body {
 .site-nav {
   width: 100%;
   max-width: 1017px;
-  display: flex;
+  /* 3-col grid: brand | breadcrumb (true center) | nav-right */
+  display: grid;
+  grid-template-columns: auto 1fr auto;
   align-items: center;
-  gap: 12px;
-  padding: 12px 20px;
+  padding: 8px 20px;
   border-radius: 14px;
-  /* border: 1px solid rgba(255,255,255,0.08); */
   background: rgba(10,10,10,0.4);
-  /* box-shadow: 0 8px 32px rgba(0,0,0,0.3), 0 2px 8px rgba(0,0,0,0.2); */
   backdrop-filter: blur(24px) saturate(180%);
   -webkit-backdrop-filter: blur(24px) saturate(180%);
 }
 .brand {
-  font-size: 22px;
+  display: flex;
+  align-items: center;
   color: #f8fafc;
-  font-weight: 800;
-  font-family: 'Patrick Hand', cursive;
-  padding-left: 6px;
+  /* grid child: sits in column 1, no extra margin needed */
 }
+
+.brand-logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0;
+}
+
+.logo-icon {
+  width: 90px;
+  height: 90px;
+  object-fit: contain;
+  display: block;
+  flex-shrink: 0;
+}
+
+.logo-wordmark {
+  height: 100px;
+  width: auto;
+  display: block;
+  /* pull wordmark left to close the gap from dragon's transparent edge */
+  margin-left: -14px;
+}
+
+/* Reader header: wordmark-only */
+.reader-brand .logo-wordmark { height: 26px; margin-left: 0 }
 
 .breadcrumb {
   color: #e6e6e6;
   opacity: 0.95;
-  flex: 1 1 auto;
+  /* grid child: stretches across column 2; internal flex centers content */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -316,7 +339,10 @@ body {
 
 .nav-right {
   color: #f8fafc;
-  flex: 0 0 auto;
+  /* grid child: sits in column 3 */
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
 }
 .nav-link {
   text-decoration: none;
@@ -378,7 +404,9 @@ body {
 .mobile-nav-wrapper {
   display: none;           /* hidden on desktop */
   position: relative;
-  margin-left: auto;
+  /* grid child: always in column 3 alongside nav-right */
+  grid-column: 3;
+  justify-self: end;
 }
 .mobile-nav-toggle {
   width: 40px;
@@ -427,11 +455,32 @@ body {
   color: #fff;
 }
 
-/* Responsive site-nav: hide breadcrumbs + nav-right, show hamburger */
+/* ── Tablet: 769px – 1024px ────────────────────────────────────────────── */
+@media (max-width: 1024px) and (min-width: 769px) {
+  .logo-icon     { width: 74px; height: 74px; }
+  .logo-wordmark { height: 82px; margin-left: -10px; }
+  .site-nav      { padding: 8px 16px; }
+}
+
+/* ── Mobile: ≤ 768px ─────────────────────────────────────────────────────
+   Breadcrumbs hidden, hamburger shown — give the logo more compact sizing  */
 @media (max-width: 768px) {
   .breadcrumb { display: none; }
   .nav-right  { display: none; }
-  .mobile-nav-wrapper { display: block; }
+  /* mobile-nav-wrapper slides into column 3, nav-right already hidden */
+  .mobile-nav-wrapper { display: flex; grid-column: 3; justify-self: end; }
+
+  /* Compact logo for mobile */
+  .site-nav      { padding: 6px 12px; }
+  .logo-icon     { width: 58px; height: 58px; }
+  .logo-wordmark { height: 70px; margin-left: -8px; }
+}
+
+/* ── Small mobile: ≤ 480px ───────────────────────────────────────────── */
+@media (max-width: 480px) {
+  .logo-icon     { width: 58px; height: 58px; }
+  .logo-wordmark { height: 70px; margin-left: -6px; }
+  .site-nav      { padding: 6px 10px; }
 }
 
 /* Craft page placeholder styles */

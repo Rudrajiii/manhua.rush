@@ -33,6 +33,7 @@ export default function RootLayout({
       <head>
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
         <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap" rel="stylesheet" />
+        <link rel="icon" href={encodeURI('/logo/Fierce dragon with purple lightning.ico')} />
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
@@ -42,7 +43,20 @@ export default function RootLayout({
           <header className="nav-wrap">
             <nav className="site-nav" aria-label="Main navigation">
               <div className="brand cursor-pointer">
-                <Link href="/">Manhua Rush</Link>
+                <Link href="/">
+                  <span className="brand-logo" aria-label="Manhua Rush home">
+                    <img
+                      src={encodeURI('/logo/Fierce dragon with purple lightning.webp')}
+                      alt="dragon logo"
+                      className="logo-icon"
+                    />
+                    <img
+                      src="/logo/manhua_rush.webp"
+                      alt="Manhua Rush"
+                      className="logo-wordmark"
+                    />
+                  </span>
+                </Link>
               </div>
 
               <ul className="breadcrumb" role="list">
