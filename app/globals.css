@@ -285,12 +285,13 @@ body {
   /* 3-col grid: brand | breadcrumb (true center) | nav-right */
   display: grid;
   grid-template-columns: auto 1fr auto;
-  align-items: center;
+  align-items: flex-start;
   padding: 8px 20px;
   border-radius: 14px;
   background: rgba(10,10,10,0.4);
   backdrop-filter: blur(24px) saturate(180%);
   -webkit-backdrop-filter: blur(24px) saturate(180%);
+  overflow:visible;
 }
 .brand {
   display: flex;
@@ -303,6 +304,7 @@ body {
   display: inline-flex;
   align-items: center;
   gap: 0;
+  position:relative;
 }
 
 .logo-icon {
@@ -311,14 +313,19 @@ body {
   object-fit: contain;
   display: block;
   flex-shrink: 0;
+  margin-left: -10px;
+  margin-top: -28px;
+  margin-bottom: -25px;
 }
 
 .logo-wordmark {
-  height: 100px;
+  height: 80px;
   width: auto;
   display: block;
-  /* pull wordmark left to close the gap from dragon's transparent edge */
-  margin-left: -14px;
+  /* pull wordmark left to close the gap from dragon's transparent e1dge 1423*/
+  margin-left: -10px;
+  margin-top: -28px;
+  margin-bottom: -25px;
 }
 
 /* Reader header: wordmark-only */
@@ -457,9 +464,9 @@ body {
 
 /* ── Tablet: 769px – 1024px ────────────────────────────────────────────── */
 @media (max-width: 1024px) and (min-width: 769px) {
-  .logo-icon     { width: 74px; height: 74px; }
-  .logo-wordmark { height: 82px; margin-left: -10px; }
-  .site-nav      { padding: 8px 16px; }
+  .logo-icon     { width: 68px; height: 68px; margin-top: -28px; margin-bottom: -14px; }
+  .logo-wordmark { height: 68px; margin-left: -8px; margin-top: -18px; margin-bottom: -6px; }
+  .site-nav      { padding: 6px 14px; }
 }
 
 /* ── Mobile: ≤ 768px ─────────────────────────────────────────────────────
@@ -471,14 +478,14 @@ body {
   .mobile-nav-wrapper { display: flex; grid-column: 3; justify-self: end; }
 
   /* Compact logo for mobile */
-  .site-nav      { padding: 6px 12px; }
-  .logo-icon     { width: 58px; height: 58px; }
-  .logo-wordmark { height: 70px; margin-left: -8px; }
+  .site-nav      { padding: 4px 10px; }
+  .logo-icon     { width: 66px; height: 66px; margin-top: -28px; margin-bottom: -12px; }
+  .logo-wordmark { height: 70px; margin-left: -16px; margin-top: -18px; margin-bottom: -4px; }
 }
 
 /* ── Small mobile: ≤ 480px ───────────────────────────────────────────── */
 @media (max-width: 480px) {
-  .logo-icon     { width: 58px; height: 58px; }
+ .logo-icon     { width: 58px; height: 58px; }
   .logo-wordmark { height: 70px; margin-left: -6px; }
   .site-nav      { padding: 6px 10px; }
 }
