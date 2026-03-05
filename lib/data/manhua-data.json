@@ -203,11 +203,19 @@
       ],
        "chapters" : [
          {
+        "id": "ch117",
+        "chapter": "117",
+        "title": "A Blood-Pumping Night.",
+        "createdAt": "2026-03-05T12:00:00.000Z",
+        "latest": true,
+        "language": "en"
+      },
+         {
         "id": "ch116",
         "chapter": "116",
         "title": "Palm descending from the sky (2)",
         "createdAt": "2026-02-26T12:00:00.000Z",
-        "latest": true,
+        "latest": false,
         "language": "en"
       },
          {
