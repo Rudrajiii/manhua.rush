@@ -527,5 +527,55 @@
       }
       ],
       "status": "ongoing"
+    },
+    "evolution-begins-with-a-big-tree": {
+      "id": "evolution-begins-with-a-big-tree",
+      "slug": "evolution-begins-with-a-big-tree",
+      "name": "evolution-begins-with-a-big-tree",
+      "mangadexId": "2707b1cc-05b9-455f-ae6f-f351dd9f8741",
+      "type": "manhua",
+      "cachedCoverUrl": "https://uploads.mangadex.org/covers/2707b1cc-05b9-455f-ae6f-f351dd9f8741/4f99f8ba-8bcf-4098-9c16-351e9c41581c.jpg",
+      "title": "Starting Over as a Tree",
+      "year": 2022,
+      "altTitles": [
+        "Evolution From the Big Tree",
+        "Cóng Dà Shù Kāishǐ De Jìnhuà",
+        "从大树开始的进化",
+        "進化する者たち",
+        "Chuyển Sinh Thành Liễu Đột Biến",
+        "Từ Đại Thụ Tiến Hóa",
+        "Моё перерождение в древо: Начало эволюции",
+        "Começando a Evolução com uma Grande Árvore",
+        "Evolution Begins With a Big Tree",
+        "Shinka suru Monotachi",
+        "Mi Evolución a Partir de un Árbol Gigante"
+      ],
+      "description": "One minute, he was choking on water, and the next, he found himself in a canyon and turned into a willow tree! Before he could reconcile with this new sad reality, the world decided to throw him another curveball. With the return of spirit energy, every living thing started to mutate, and his life was soon turned into a game of survival. Luckily, he was gifted with the ability of infinite evolution. But was it really a blessing? Or was it also a curse in disguise?",
+      "tags": [
+        "Reincarnation",
+        "Monsters",
+        "Action",
+        "Long Strip",
+        "Video Games",
+        "Magic",
+        "Isekai",
+        "Drama",
+        "Fantasy",
+        "Web Comic",
+        "Supernatural",
+        "Adaptation",
+        "Full Color"
+      ],
+      "chapters" : [
+        {
+        "id": "ch503",
+        "chapter": "503",
+        "title": "Cooperation",
+        "createdAt": "2026-03-06T12:00:00.000Z",
+        "latest": true,
+        "language": "en"
+      }
+      ],
+      "status": "ongoing"
     }
 }

@@ -39,9 +39,9 @@ export default function Home() {
 
           {/* Animated Stats */}
           <div className="flex justify-center gap-8 mb-4">
-            <StatCounter value={657} suffix="+" label="Panels Translated" />
-            <StatCounter value={6} suffix="" label="Series" />
-            <StatCounter value={34} suffix="+" label="New Chapters" />
+            <StatCounter value={715} suffix="+" label="Panels Translated" />
+            <StatCounter value={7} suffix="" label="Series" />
+            <StatCounter value={42} suffix="+" label="New Chapters" />
           </div>
 
           {/* Glowing Effect Cards */}
