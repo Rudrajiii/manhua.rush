@@ -446,11 +446,35 @@
       ],
       "chapters":[
          {
+        "id": "ch1110",
+        "chapter": "1110",
+        "title": "The Tragic Situation Of Xiaoyao Sect Master (1)",
+        "createdAt": "2026-03-07T12:00:00.000Z",
+        "latest": true,
+        "language": "en"
+      },
+         {
+        "id": "ch1109",
+        "chapter": "1109",
+        "title": "The Light Of Annihilation (3)",
+        "createdAt": "2026-03-07T12:00:00.000Z",
+        "latest": true,
+        "language": "en"
+      },
+         {
+        "id": "ch1108",
+        "chapter": "1108",
+        "title": "The Light Of Annihilation (2)",
+        "createdAt": "2026-03-07T12:00:00.000Z",
+        "latest": true,
+        "language": "en"
+      },
+         {
         "id": "ch1107",
         "chapter": "1107",
         "title": "The Light Of Annihilation (1)",
         "createdAt": "2026-03-04T12:00:00.000Z",
-        "latest": true,
+        "latest": false,
         "language": "en"
       },
          {
@@ -458,7 +482,7 @@
         "chapter": "1106",
         "title": "Attacking Tianchi (3)",
         "createdAt": "2026-03-04T12:00:00.000Z",
-        "latest": true,
+        "latest": false,
         "language": "en"
       },
          {
@@ -466,7 +490,7 @@
         "chapter": "1105",
         "title": "Attacking Tianchi (2)",
         "createdAt": "2026-03-04T12:00:00.000Z",
-        "latest": true,
+        "latest": false,
         "language": "en"
       },
          {
@@ -474,7 +498,7 @@
         "chapter": "1104",
         "title": "Attacking Tianchi (1)",
         "createdAt": "2026-03-04T12:00:00.000Z",
-        "latest": true,
+        "latest": false,
         "language": "en"
       },
          {
@@ -482,7 +506,7 @@
         "chapter": "1103",
         "title": "Qinglin Reincarnation Sword (3)",
         "createdAt": "2026-03-04T12:00:00.000Z",
-        "latest": true,
+        "latest": false,
         "language": "en"
       },
          {
