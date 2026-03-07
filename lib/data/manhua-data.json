@@ -592,6 +592,14 @@
       ],
       "chapters" : [
         {
+        "id": "ch504",
+        "chapter": "504",
+        "title": "The Slaughtered Angel Clan",
+        "createdAt": "2026-07-06T12:00:00.000Z",
+        "latest": true,
+        "language": "en"
+      },
+        {
         "id": "ch503",
         "chapter": "503",
         "title": "Cooperation",
