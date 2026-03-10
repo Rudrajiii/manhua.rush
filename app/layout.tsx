@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Playfair_Display } from "next/font/google";
 import "./globals.css";
 import Link from "next/link";
 import ConditionalNav from "./components/ConditionalNav";
@@ -7,6 +7,7 @@ import ConditionalWrapper from "./components/ConditionalWrapper";
 import UserButton from "./components/UserButton";
 import MobileNav from "./components/MobileNav";
 import TopLoader from "./components/TopLoader";
+import Footer from "./components/Footer";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -16,6 +17,12 @@ const geistSans = Geist({
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
+});
+
+const playfair = Playfair_Display({
+  variable: "--font-playfair",
+  subsets: ["latin"],
+  weight: ["700", "800", "900"],
 });
 
 export const metadata: Metadata = {
@@ -36,7 +43,7 @@ export default function RootLayout({
         <link rel="icon" href={encodeURI('/logo/Fierce dragon with purple lightning.ico')} />
       </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${playfair.variable} antialiased`}
       >
         <TopLoader />
         <ConditionalNav>
@@ -78,6 +85,7 @@ export default function RootLayout({
         </ConditionalNav>
 
         <ConditionalWrapper>{children}</ConditionalWrapper>
+        <Footer />
       </body>
     </html>
   );
