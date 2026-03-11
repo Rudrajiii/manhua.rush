@@ -130,17 +130,25 @@
       ],
       "chapters": [
         {
-        "id": "ch1098",
+        "id": "ch110",
+        "chapter": "110",
+        "title": "The Ultimate Versailles",
+        "createdAt": "2026-03-11T12:00:00.000Z",
+        "latest": true,
+        "language": "en"
+      },
+        {
+        "id": "ch109",
         "chapter": "109",
         "title": "The Buster Call",
         "createdAt": "2026-02-26T12:00:00.000Z",
-        "latest": true,
+        "latest": false,
         "language": "en"
       },
         {
         "id": "ch108",
         "chapter": "108",
-        "title": "Xiaohong’s anger",
+        "title": "Hong Qinaye's anger",
         "createdAt": "2026-02-15T12:00:00.000Z",
         "latest": false,
         "language": "en"
@@ -364,7 +372,7 @@
         "chapter": "110",
         "title": "Demora March",
         "createdAt": "2026-03-02T12:00:00.000Z",
-        "latest": true,
+        "latest": false,
         "language": "en"
       },
           {
@@ -372,7 +380,7 @@
         "chapter": "109",
         "title": "You are mine",
         "createdAt": "2026-02-28T12:00:00.000Z",
-        "latest": true,
+        "latest": false,
         "language": "en"
       },
           {
@@ -380,7 +388,7 @@
         "chapter": "108",
         "title": "Your Fate is in my hand",
         "createdAt": "2026-02-23T12:00:00.000Z",
-        "latest": true,
+        "latest": false,
         "language": "en"
       },
           {
