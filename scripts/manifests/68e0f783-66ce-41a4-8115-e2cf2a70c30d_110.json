@@ -7,10 +7,10 @@
       "order": 1,
       "original_name": "img_001.jpg",
       "obfuscated_name": "e5d01698f9c75597.avif",
-      "cloudinary_url": "https://res.cloudinary.com/dsc1cwi5i/image/upload/v1773247624/manhua-rush-production/68e0f783-66ce-41a4-8115-e2cf2a70c30d/110/e5d01698f9c75597.avif",
+      "cloudinary_url": "https://res.cloudinary.com/dsc1cwi5i/image/upload/v1773248710/manhua-rush-production/68e0f783-66ce-41a4-8115-e2cf2a70c30d/110/e5d01698f9c75597.avif",
       "cloudinary_public_id": "manhua-rush-production/68e0f783-66ce-41a4-8115-e2cf2a70c30d/110/e5d01698f9c75597",
-      "original_size": 1707497,
-      "converted_size": 289548,
+      "original_size": 1706248,
+      "converted_size": 289201,
       "skipped_conversion": false
     },
     {
@@ -85,10 +85,10 @@
     }
   ],
   "stats": {
-    "total_original_size": 12883073,
-    "total_converted_size": 2178909,
-    "compression_ratio": 0.1691,
-    "space_saved_bytes": 10704164,
-    "space_saved_percent": 83.09
+    "total_original_size": 1706248,
+    "total_converted_size": 289201,
+    "compression_ratio": 0.1695,
+    "space_saved_bytes": 1417047,
+    "space_saved_percent": 83.05
   }
 }
