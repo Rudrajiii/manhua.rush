@@ -218,12 +218,20 @@
         "Full Color"
       ],
        "chapters" : [
-         {
+        {
+          "id": "ch118",
+          "chapter": "118",
+          "title": "The Divine Guide of the Heavenly Gods?",
+          "createdAt": "2026-03-12T12:00:00.000Z",
+          "latest": true,
+          "language": "en"
+        },
+        {
         "id": "ch117",
         "chapter": "117",
         "title": "A Blood-Pumping Night.",
         "createdAt": "2026-03-05T12:00:00.000Z",
-        "latest": true,
+        "latest": false,
         "language": "en"
       },
          {
