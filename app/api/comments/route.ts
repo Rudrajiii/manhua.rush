@@ -2,22 +2,23 @@ import { NextRequest, NextResponse } from 'next/server';
 import { randomUUID } from 'crypto';
 import { getDatabase } from '@/lib/mongodb';
 
-// Get comments for a manhua
+// Get comments for a manhua chapter
 export async function GET(request: NextRequest) {
   try {
     const { searchParams } = new URL(request.url);
     const mangadexId = searchParams.get('mangadexId');
+    const chapter = searchParams.get('chapter');
 
-    if (!mangadexId) {
-      return NextResponse.json({ error: 'MangadexId is required' }, { status: 400 });
+    if (!mangadexId || !chapter) {
+      return NextResponse.json({ error: 'MangadexId and chapter are required' }, { status: 400 });
     }
 
     const db = await getDatabase();
     const commentsCollection = db.collection('comments');
 
-    // Find all top-level comments for this manhua
+    // Find all top-level comments for this specific chapter
     const comments = await commentsCollection
-      .find({ mangadexId, parentId: null })
+      .find({ mangadexId, chapter, parentId: null })
       .sort({ timestamp: -1 })
       .toArray();
 
@@ -32,11 +33,11 @@ export async function GET(request: NextRequest) {
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
-    const { action, mangadexId, username, userId } = body;
+    const { action, mangadexId, chapter, username, userId } = body;
 
-    if (!mangadexId || !username || !userId) {
+    if (!mangadexId || !chapter || !username || !userId) {
       return NextResponse.json(
-        { error: 'MangadexId, username, and userId are required' },
+        { error: 'MangadexId, chapter, username, and userId are required' },
         { status: 400 }
       );
     }
@@ -59,6 +60,7 @@ export async function POST(request: NextRequest) {
       const newComment = {
         id: randomUUID(),
         mangadexId,
+        chapter,
         parentId: null,
         author: username,
         userId: userId,
@@ -117,7 +119,7 @@ export async function POST(request: NextRequest) {
       }
 
       // Parent is nested - get all top-level comments and search recursively
-      const allComments = await commentsCollection.find({ mangadexId, parentId: null }).toArray();
+      const allComments = await commentsCollection.find({ mangadexId, chapter, parentId: null }).toArray();
       
       let foundDoc = null;
       
@@ -172,7 +174,7 @@ export async function POST(request: NextRequest) {
 
       if (!comment) {
         // Not a top-level comment - get all top-level comments and search recursively
-        const allComments = await commentsCollection.find({ mangadexId, parentId: null }).toArray();
+        const allComments = await commentsCollection.find({ mangadexId, chapter, parentId: null }).toArray();
         
         for (const doc of allComments) {
           const findReply = (replies: any[]): any => {
@@ -267,5 +269,188 @@ export async function POST(request: NextRequest) {
   } catch (error) {
     console.error('Error processing comment action:', error);
     return NextResponse.json({ error: 'Failed to process comment action' }, { status: 500 });
+  }
+}
+
+// Update (edit) a comment
+export async function PUT(request: NextRequest) {
+  try {
+    const body = await request.json();
+    const { commentId, newText, userId, mangadexId, chapter } = body;
+
+    if (!commentId || !newText || !userId || !mangadexId || !chapter) {
+      return NextResponse.json(
+        { error: 'Comment ID, new text, user ID, manga ID, and chapter are required' },
+        { status: 400 }
+      );
+    }
+
+    if (newText.trim().length === 0) {
+      return NextResponse.json({ error: 'Comment text cannot be empty' }, { status: 400 });
+    }
+
+    const db = await getDatabase();
+    const commentsCollection = db.collection('comments');
+
+    // Try to find as top-level comment first
+    let comment = await commentsCollection.findOne({ id: commentId, mangadexId, chapter });
+    let isNested = false;
+    let parentDoc = null;
+
+    if (!comment) {
+      // Not a top-level comment - search in nested replies
+      const allComments = await commentsCollection.find({ mangadexId, chapter, parentId: null }).toArray();
+
+      for (const doc of allComments) {
+        const findReply = (replies: any[]): any => {
+          for (const reply of replies) {
+            if (reply.id === commentId) return reply;
+            if (reply.replies && reply.replies.length > 0) {
+              const found = findReply(reply.replies);
+              if (found) return found;
+            }
+          }
+          return null;
+        };
+
+        const foundReply = findReply(doc.replies || []);
+        if (foundReply) {
+          comment = foundReply;
+          parentDoc = doc;
+          isNested = true;
+          break;
+        }
+      }
+    }
+
+    if (!comment) {
+      return NextResponse.json({ error: 'Comment not found' }, { status: 404 });
+    }
+
+    // Check if user owns the comment
+    if (comment.userId !== userId) {
+      return NextResponse.json(
+        { error: 'You can only edit your own comments' },
+        { status: 403 }
+      );
+    }
+
+    // Update the comment text
+    comment.text = newText.trim();
+    comment.updatedAt = new Date().toISOString();
+
+    // Update in database
+    if (isNested && parentDoc) {
+      // Update nested reply
+      await commentsCollection.updateOne(
+        { _id: parentDoc._id },
+        { $set: { replies: parentDoc.replies } }
+      );
+    } else {
+      // Update top-level comment
+      await commentsCollection.updateOne(
+        { id: commentId },
+        {
+          $set: {
+            text: comment.text,
+            updatedAt: comment.updatedAt,
+          }
+        }
+      );
+    }
+
+    return NextResponse.json({ success: true, comment });
+  } catch (error) {
+    console.error('Error updating comment:', error);
+    return NextResponse.json({ error: 'Failed to update comment' }, { status: 500 });
+  }
+}
+
+// Delete a comment
+export async function DELETE(request: NextRequest) {
+  try {
+    const body = await request.json();
+    const { commentId, userId, mangadexId, chapter } = body;
+
+    if (!commentId || !userId || !mangadexId || !chapter) {
+      return NextResponse.json(
+        { error: 'Comment ID, user ID, manga ID, and chapter are required' },
+        { status: 400 }
+      );
+    }
+
+    const db = await getDatabase();
+    const commentsCollection = db.collection('comments');
+
+    // Try to find as top-level comment first
+    let comment = await commentsCollection.findOne({ id: commentId, mangadexId, chapter });
+    let isNested = false;
+    let parentDoc = null;
+
+    if (!comment) {
+      // Not a top-level comment - search in nested replies
+      const allComments = await commentsCollection.find({ mangadexId, chapter, parentId: null }).toArray();
+
+      for (const doc of allComments) {
+        const findReply = (replies: any[]): any => {
+          for (const reply of replies) {
+            if (reply.id === commentId) return reply;
+            if (reply.replies && reply.replies.length > 0) {
+              const found = findReply(reply.replies);
+              if (found) return found;
+            }
+          }
+          return null;
+        };
+
+        const foundReply = findReply(doc.replies || []);
+        if (foundReply) {
+          comment = foundReply;
+          parentDoc = doc;
+          isNested = true;
+          break;
+        }
+      }
+    }
+
+    if (!comment) {
+      return NextResponse.json({ error: 'Comment not found' }, { status: 404 });
+    }
+
+    // Check if user owns the comment
+    if (comment.userId !== userId) {
+      return NextResponse.json(
+        { error: 'You can only delete your own comments' },
+        { status: 403 }
+      );
+    }
+
+    // Delete from database
+    if (isNested && parentDoc) {
+      // Remove from nested replies
+      const removeReply = (replies: any[]): any[] => {
+        return replies.filter(reply => {
+          if (reply.id === commentId) return false;
+          if (reply.replies && reply.replies.length > 0) {
+            reply.replies = removeReply(reply.replies);
+          }
+          return true;
+        });
+      };
+
+      parentDoc.replies = removeReply(parentDoc.replies || []);
+      await commentsCollection.updateOne(
+        { _id: parentDoc._id },
+        { $set: { replies: parentDoc.replies } }
+      );
+    } else {
+      // Delete top-level comment
+      await commentsCollection.deleteOne({ id: commentId, mangadexId, chapter });
+    }
+
+    return NextResponse.json({ success: true });
+  } catch (error) {
+    console.error('Error deleting comment:', error);
+    return NextResponse.json({ error: 'Failed to delete comment' }, { status: 500 });
   }
 }

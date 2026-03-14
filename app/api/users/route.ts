@@ -38,7 +38,7 @@ export async function POST(request: NextRequest) {
     const newUser = {
       id: randomUUID(),
       username: trimmedUsername,
-      isAdmin: trimmedUsername === ADMIN_USERNAME,
+      isAdmin: trimmedUsername.toLowerCase() === ADMIN_USERNAME.toLowerCase(),
       createdAt: new Date().toISOString(),
     };
 
@@ -136,7 +136,7 @@ export async function PUT(request: NextRequest) {
       { 
         $set: { 
           username: trimmedUsername,
-          isAdmin: trimmedUsername === ADMIN_USERNAME,
+          isAdmin: trimmedUsername.toLowerCase() === ADMIN_USERNAME.toLowerCase(),
           updatedAt: new Date().toISOString()
         } 
       }

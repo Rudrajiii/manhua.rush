@@ -86,6 +86,30 @@ export default function ReaderControls({ mangaId, currentChapter, chapters, mang
     };
   }, [zoom]);
 
+  // Handle keyboard shortcuts for zoom (Ctrl/Cmd + Plus/Minus)
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      // Check for Ctrl (Windows/Linux) or Cmd (Mac)
+      const isCtrlPressed = event.ctrlKey || event.metaKey;
+      
+      if (!isCtrlPressed) return;
+
+      // Prevent default browser zoom
+      if (event.key === '+' || event.key === '=' || event.key === '-') {
+        event.preventDefault();
+      }
+
+      if (event.key === '+' || event.key === '=') {
+        zoomIn();
+      } else if (event.key === '-') {
+        zoomOut();
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, []);
+
   if (isMobile) {
     return (
       <>
