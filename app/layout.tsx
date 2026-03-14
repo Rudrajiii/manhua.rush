@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Playfair_Display } from "next/font/google";
+import { Toaster } from "sonner";
 import "./globals.css";
 import Link from "next/link";
 import ConditionalNav from "./components/ConditionalNav";
@@ -46,6 +47,19 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} ${playfair.variable} antialiased`}
       >
         <TopLoader />
+        <Toaster
+          position="bottom-right"
+          richColors
+          theme="dark"
+          toastOptions={{
+            style: {
+              borderRadius: '8px',
+              background: 'rgba(31, 31, 31, 0.95)',
+              border: 'none',
+              color: '#e9d5ff',
+            },
+          }}
+        />
         <ConditionalNav>
           <header className="nav-wrap">
             <nav className="site-nav" aria-label="Main navigation">

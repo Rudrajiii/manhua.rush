@@ -1343,6 +1343,301 @@ body {
   pointer-events: none;
 }
 
+/* Pagination Styles - Simple & Clean */
+
+.chapters-header-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+
+.chapters-header-left {
+  display: flex;
+  align-items: center;
+}
+
+/* Group search bar and counter together */
+.chapters-search-counter-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.chapters-counter-simple {
+  font-size: 12px;
+  color: #9ca3af;
+  background: rgba(139, 92, 246, 0.08);
+  padding: 9px 12px;
+  border-radius: 6px;
+  font-weight: 600;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+/* Chapter Search Bar - Inline with button inside */
+.chapter-search-inline {
+  display: flex;
+  flex-shrink: 0;
+}
+
+.chapter-search-input-group-inline {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0 3.6px;
+  background: rgba(82, 82, 83, 0.08);
+  border: 1px solid rgba(139, 92, 246, 0.2);
+  border-radius: 6px;
+  transition: all 0.25s ease;
+  position: relative;
+  min-width: 200px;
+}
+
+.chapter-search-input-group-inline:focus-within {
+  background: rgba(139, 92, 246, 0.12);
+  border-color: rgba(139, 92, 246, 0.35);
+}
+
+.search-icon {
+  color: #9ca3af;
+  flex-shrink: 0;
+}
+
+.chapter-search-input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  padding: 8px 0;
+  color: #e9d5ff;
+  font-size: 12px;
+}
+
+.chapter-search-input::placeholder {
+  color: #6b7280;
+}
+
+.chapter-search-btn-inline {
+  background: #a78bfa;
+  color: #000;
+  border: none;
+  width: 28px;
+  height: 28px;
+  border-radius: 4px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: all 0.2s ease;
+  padding: 0;
+}
+
+.chapter-search-btn-inline:hover {
+  background: #8b5cf6;
+  transform: scale(1.05);
+}
+
+.chapter-search-btn-inline:active {
+  transform: scale(0.95);
+}
+
+/* Highlighted Chapter */
+.chapter-item.highlighted {
+  background: linear-gradient(90deg, rgba(139, 92, 246, 0.15), rgba(99, 102, 241, 0.08));
+  border-radius: 8px;
+  animation: highlight-pulse 1s ease-in-out;
+}
+
+@keyframes highlight-pulse {
+  0% {
+    background: linear-gradient(90deg, rgba(174, 74, 255, 0.3), rgba(99, 102, 241, 0.2));
+  }
+  50% {
+    background: linear-gradient(90deg, rgba(139, 92, 246, 0.15), rgba(99, 102, 241, 0.08));
+  }
+  100% {
+    background: linear-gradient(90deg, rgba(139, 92, 246, 0.15), rgba(99, 102, 241, 0.08));
+  }
+}
+
+/* Pagination Controls */
+.pagination-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  margin-top: 10px;
+  flex-wrap: wrap;
+}
+
+.pagination-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  background: rgba(139, 92, 246, 0.12);
+  border-radius: 6px;
+  color: #d1d5db;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.pagination-btn:hover:not(:disabled) {
+  background: rgba(139, 92, 246, 0.2);
+  border-color: rgba(139, 92, 246, 0.4);
+  color: #e9d5ff;
+}
+
+.pagination-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.pagination-btn span {
+  display: none;
+}
+
+@media (min-width: 640px) {
+  .pagination-btn span {
+    display: inline;
+  }
+}
+
+.pagination-indicators {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.pagination-indicator {
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  background: rgba(139, 92, 246, 0.1);
+  border-radius: 6px;
+  color: #9ca3af;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.pagination-indicator:hover {
+  background: rgba(139, 92, 246, 0.2);
+  border-color: rgba(139, 92, 246, 0.35);
+  color: #d1d5db;
+}
+
+.pagination-indicator.active {
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.4) 0%, rgba(99, 102, 241, 0.3) 100%);
+  border-color: rgba(139, 92, 246, 0.5);
+  color: #e9d5ff;
+}
+
+/* Responsive - Mobile */
+@media (max-width: 1024px) {
+  .chapter-search-input-group-inline {
+    min-width: 160px;
+  }
+
+  .chapter-search-input {
+    font-size: 11px;
+  }
+}
+
+@media (max-width: 768px) {
+  .chapters-header-wrapper {
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .chapters-header-left {
+    order: 1;
+    width: 100%;
+  }
+
+  .chapters-search-counter-group {
+    order: 2;
+    width: 100%;
+    gap: 8px;
+  }
+
+  .chapter-search-inline {
+    flex: 1;
+  }
+
+  .chapter-search-input-group-inline {
+    width: 100%;
+    min-width: unset;
+  }
+}
+
+@media (max-width: 480px) {
+  .chapters-header-wrapper {
+    gap: 8px;
+  }
+
+  .chapters-counter-simple {
+    font-size: 11px;
+    padding: 5px 10px;
+  }
+
+  .chapter-search-input-group-inline {
+    padding: 0 4px;
+  }
+
+  .chapter-search-input {
+    font-size: 11px;
+    padding: 6px 0;
+  }
+
+  .search-icon {
+    width: 13px;
+    height: 13px;
+  }
+
+  .chapter-search-btn-inline {
+    width: 26px;
+    height: 26px;
+  }
+
+  .chapter-search-btn-inline svg {
+    width: 14px;
+    height: 14px;
+  }
+}
+
+@media (max-width: 640px) {
+  .pagination-controls {
+    gap: 8px;
+  }
+
+  .pagination-btn {
+    padding: 6px 10px;
+    font-size: 12px;
+  }
+
+  .pagination-indicator {
+    width: 28px;
+    height: 28px;
+    font-size: 11px;
+  }
+
+  .chapters-header-pagination {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
 /* Main grid: brand | spacer | nav columns */
 .footer-inner {
   position: relative;

@@ -5,6 +5,7 @@ import { notFound } from 'next/navigation';
 import DescriptionToggle from '@/app/components/DescriptionToggle';
 import ViewCounter from '@/app/components/ViewCounter';
 import LinkWithLoader from '@/app/components/LinkWithLoader';
+import PaginatedChapters from '@/app/components/PaginatedChapters';
 import { FaPlay } from "react-icons/fa";
 import type { StaticImageData } from "next/image";
 
@@ -93,56 +94,7 @@ export default async function ManhuaDetailPage({ params, searchParams }: Props) 
             </div>
           )}
 
-          <section className="chapters-section">
-            <h2 style={{ margin: 0, fontSize: 18 }}>Latest Chapters</h2>
-            <div className="chapters-list">
-              {manhua.chapters.length > 0 ? (
-                manhua.chapters.map((chapter) => {
-                  const uploaded = new Date(chapter.createdAt).toLocaleDateString();
-                  return (
-                    <Link
-                      key={chapter.id}
-                      href={`/reader/${manhua.mangadexId}/${chapter.chapter}`}
-                      className={`chapter-item ${chapter.latest ? 'latest' : ''}`}
-                    >
-                      <div>
-                        <div className="chapter-title-row">
-                          <div className="chapter-title">
-                            Ch. {chapter.chapter}
-                            {chapter.title ? ` — ${chapter.title}` : ''}
-                          </div>
-                          {chapter.latest && (
-                            <span className="latest-badge">
-                              <span className="latest-dot" />
-                              Latest
-                            </span>
-                          )}
-                        </div>
-                        <div className="chapter-meta">Uploaded: {uploaded}</div>
-                      </div>
-
-                      <div className="chapter-meta">{chapter.language}</div>
-                    </Link>
-                  );
-                })
-              ) : (
-                <div style={{ padding: 12, color: '#9ca3af' }}>No chapters found.</div>
-              )}
-            </div>
-            <div className="chapters-footer mt-3">
-              Little Reminder — to read previous chapters visit{' '}
-              <a
-                className="no-underline hover:underline"
-                href="https://comix.to/home"
-                target="_blank"
-                rel="noreferrer"
-                style={{ color: '#a78bfa' }}
-              >
-                this site
-              </a>
-              .
-            </div>
-          </section>
+          <PaginatedChapters chapters={manhua.chapters} mangadexId={manhua.mangadexId} />
         </div>
       </div>
     </main>
