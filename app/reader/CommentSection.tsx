@@ -89,7 +89,9 @@ function CommentItem({
   currentUserId,
   onRequestOpenUsername,
   onCommentUpdate,
-  onCommentDelete
+  onCommentDelete,
+  isMobile = false,
+  onShowReplies = () => {}
 }: { 
   comment: CommentType; 
   depth?: number;
@@ -100,6 +102,8 @@ function CommentItem({
   onRequestOpenUsername?: () => void;
   onCommentUpdate?: () => void;
   onCommentDelete?: () => void;
+  isMobile?: boolean;
+  onShowReplies?: (commentId: string) => void;
 }) {
   const [showFullText, setShowFullText] = useState(false);
   const [voted, setVoted] = useState<'up' | 'down' | null>(null);
@@ -248,22 +252,61 @@ function CommentItem({
           />
 
           {comment.replies && comment.replies.length > 0 && (
-            <div className={styles['replies']}>
-              {comment.replies.map((reply) => (
-                <CommentItem 
-                  key={reply.id} 
-                  comment={reply} 
-                  depth={depth + 1}
-                  mangadexId={mangadexId}
-                  chapter={chapter}
-                  onReply={onReply}
-                  currentUserId={currentUserId}
-                  onRequestOpenUsername={onRequestOpenUsername}
-                  onCommentUpdate={onCommentUpdate}
-                  onCommentDelete={onCommentDelete}
-                />
-              ))}
-            </div>
+            <>
+              {isMobile && depth === 1 ? (
+                <button
+                  className={styles['show-more-replies-btn']}
+                  onClick={() => onShowReplies(comment.id)}
+                >
+                  Show {comment.replies.length} {comment.replies.length === 1 ? 'reply' : 'replies'}
+                </button>
+              ) : isMobile && depth >= 2 ? (
+                <button
+                  className={styles['show-more-replies-btn']}
+                  onClick={() => onShowReplies(comment.id)}
+                >
+                  ▶ Show {comment.replies.length} {comment.replies.length === 1 ? 'reply' : 'replies'}
+                </button>
+              ) : isMobile && depth === 0 ? (
+                <div className={styles['replies']}>
+                  {comment.replies.map((reply) => (
+                    <CommentItem 
+                      key={reply.id} 
+                      comment={reply} 
+                      depth={depth + 1}
+                      mangadexId={mangadexId}
+                      chapter={chapter}
+                      onReply={onReply}
+                      currentUserId={currentUserId}
+                      onRequestOpenUsername={onRequestOpenUsername}
+                      onCommentUpdate={onCommentUpdate}
+                      onCommentDelete={onCommentDelete}
+                      isMobile={isMobile}
+                      onShowReplies={onShowReplies}
+                    />
+                  ))}
+                </div>
+              ) : !isMobile ? (
+                <div className={styles['replies']}>
+                  {comment.replies.map((reply) => (
+                    <CommentItem 
+                      key={reply.id} 
+                      comment={reply} 
+                      depth={depth + 1}
+                      mangadexId={mangadexId}
+                      chapter={chapter}
+                      onReply={onReply}
+                      currentUserId={currentUserId}
+                      onRequestOpenUsername={onRequestOpenUsername}
+                      onCommentUpdate={onCommentUpdate}
+                      onCommentDelete={onCommentDelete}
+                      isMobile={isMobile}
+                      onShowReplies={onShowReplies}
+                    />
+                  ))}
+                </div>
+              ) : null}
+            </>
           )}
         </div>
       </div>
@@ -521,6 +564,8 @@ export default function CommentSection({ mangaId, chapter }: { mangaId: string; 
   const [isUsernameModalOpen, setIsUsernameModalOpen] = useState(false);
   const [mentionSuggestions, setMentionSuggestions] = useState<string[]>([]);
   const [showMentionSuggestions, setShowMentionSuggestions] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+  const [expandedThreadId, setExpandedThreadId] = useState<string | null>(null);
   const mentionInputRef = useRef<HTMLTextAreaElement>(null);
 
   useEffect(() => {
@@ -529,7 +574,16 @@ export default function CommentSection({ mangaId, chapter }: { mangaId: string; 
     setCurrentUsername(username);
     setCurrentUserId(userId);
 
+    // Detect mobile
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+
     fetchComments();
+
+    return () => window.removeEventListener('resize', checkMobile);
   }, [mangaId, chapter]);
 
   useEffect(() => {
@@ -627,6 +681,26 @@ export default function CommentSection({ mangaId, chapter }: { mangaId: string; 
   };
 
   const openUsernameModal = () => setIsUsernameModalOpen(true);
+
+  // Find a comment in the tree by ID
+  const findCommentById = (id: string, commentsList: CommentType[] = comments): CommentType | null => {
+    for (const comment of commentsList) {
+      if (comment.id === id) return comment;
+      if (comment.replies && comment.replies.length > 0) {
+        const found = findCommentById(id, comment.replies);
+        if (found) return found;
+      }
+    }
+    return null;
+  };
+
+  const handleShowReplies = (commentId: string) => {
+    setExpandedThreadId(commentId);
+  };
+
+  const handleCloseExpandedThread = () => {
+    setExpandedThreadId(null);
+  };
 
   const handleUsernameSuccess = (username: string, userId: string) => {
     setCurrentUsername(username);
@@ -806,8 +880,45 @@ export default function CommentSection({ mangaId, chapter }: { mangaId: string; 
           Loading comments...
         </div>
       ) : comments.length === 0 ? (
-        <div style={{ padding: '20px', textAlign: 'center', color: '#9ca3af' }}>
+        <div style={{ padding: '25px 20px', textAlign: 'center', color: '#9ca3af' }}>
           No comments yet. Be the first to comment!
+        </div>
+      ) : expandedThreadId ? (
+        <div className={`${styles['comment-list']} comment-list`}>
+          <button
+            className={styles['back-to-comments-btn']}
+            onClick={handleCloseExpandedThread}
+          >
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M19 12H5M12 19l-7-7 7-7"/>
+            </svg>
+            Back to comments
+          </button>
+          {(() => {
+            const parentComment = findCommentById(expandedThreadId);
+            if (!parentComment || !parentComment.replies || parentComment.replies.length === 0) return null;
+            
+            return (
+              <div className={styles['replies']}>
+                {parentComment.replies.map((reply) => (
+                  <CommentItem 
+                    key={reply.id} 
+                    comment={reply}
+                    depth={1}
+                    mangadexId={mangaId}
+                    chapter={chapter}
+                    onReply={handleReply}
+                    currentUserId={currentUserId}
+                    onRequestOpenUsername={openUsernameModal}
+                    onCommentUpdate={fetchComments}
+                    onCommentDelete={fetchComments}
+                    isMobile={isMobile}
+                    onShowReplies={handleShowReplies}
+                  />
+                ))}
+              </div>
+            );
+          })()}
         </div>
       ) : (
         <div className={`${styles['comment-list']} comment-list`}>
@@ -822,6 +933,8 @@ export default function CommentSection({ mangaId, chapter }: { mangaId: string; 
               onRequestOpenUsername={openUsernameModal}
               onCommentUpdate={fetchComments}
               onCommentDelete={fetchComments}
+              isMobile={isMobile}
+              onShowReplies={handleShowReplies}
             />
           ))}
         </div>

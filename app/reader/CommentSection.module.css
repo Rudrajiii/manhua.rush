@@ -6,7 +6,7 @@
   position: absolute;
   left: 15px;
   top: 0;
-  bottom: 18px;
+  bottom: 55.8px;
   width: 2px;
   background: rgba(107, 114, 128, 0.4);
 }
@@ -14,9 +14,9 @@
 .reply-connector {
   position: absolute;
   left: 15px;
-  bottom: -1px;
+  bottom: 27px;
   width: 19px;
-  height: 18.8px;
+  height: 28.8px;
   border-left: 2px solid rgba(107, 114, 128, 0.4);
   border-bottom: 2px solid rgba(107, 114, 128, 0.4);
   border-bottom-left-radius: 10px;
@@ -151,6 +151,56 @@
 
 .replies {
   margin-top: 12px;
+}
+
+.show-more-replies-btn {
+  background: transparent;
+  border: none;
+  color: #a78bfa;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 6px 0;
+  margin-top: 12px;
+  margin-bottom: 12px;
+  margin-left: 0;
+  text-align: left;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.show-more-replies-btn:hover {
+  color: #c4b5fd;
+}
+
+.show-more-replies-btn:active {
+  transform: scale(0.98);
+}
+
+.back-to-comments-btn {
+  background: transparent;
+  border: none;
+  color: #a78bfa;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 8px 0;
+  margin-bottom: 16px;
+  text-align: left;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.back-to-comments-btn:hover {
+  color: #c4b5fd;
+}
+
+.back-to-comments-btn:active {
+  transform: scale(0.98);
 }
 
 .comment-section {
