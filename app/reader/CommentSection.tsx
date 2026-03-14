@@ -880,7 +880,7 @@ export default function CommentSection({ mangaId, chapter }: { mangaId: string; 
           Loading comments...
         </div>
       ) : comments.length === 0 ? (
-        <div style={{ padding: '25px 20px', textAlign: 'center', color: '#9ca3af' }}>
+        <div style={{ padding: '20px', textAlign: 'center', color: '#9ca3af' }}>
           No comments yet. Be the first to comment!
         </div>
       ) : expandedThreadId ? (

@@ -339,6 +339,8 @@
 @media (max-width: 1024px) {
   .comment-section {
     padding: 16px;
+    margin-bottom: 16px;
+    /* background: red; */
   }
 
   .comment-title {
