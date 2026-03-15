@@ -19,6 +19,71 @@ type CommentType = {
   replies?: CommentType[];
 };
 
+// Generate consistent avatar color based on userId
+function generateAvatarColors(userId: string) {
+  const colors = [
+    { primary: '#FF6B6B', secondary: '#FFE66D' }, // Red-Yellow
+    { primary: '#4ECDC4', secondary: '#44A08D' }, // Teal-Green
+    { primary: '#95E1D3', secondary: '#F38181' }, // Mint-Pink
+    { primary: '#A8E6CF', secondary: '#FFD3B6' }, // Green-Orange
+    { primary: '#FF8B94', secondary: '#FFB4B4' }, // Pink-Light Pink
+    { primary: '#6BCB77', secondary: '#4D96FF' }, // Green-Blue
+    { primary: '#FF6348', secondary: '#FFD700' }, // Tomato-Gold
+    { primary: '#FF69B4', secondary: '#87CEEB' }, // Hot Pink-Sky Blue
+    { primary: '#9D4EDD', secondary: '#3A86FF' }, // Purple-Blue
+    { primary: '#FB5607', secondary: '#FFBE0B' }, // Orange-Yellow
+    { primary: '#8338EC', secondary: '#3A86FF' }, // Violet-Blue
+    { primary: '#FF006E', secondary: '#FB5607' }, // Hot Pink-Orange
+  ];
+  
+  // Create a hash from userId to consistently pick a color pair
+  let hash = 0;
+  for (let i = 0; i < userId.length; i++) {
+    const char = userId.charCodeAt(i);
+    hash = ((hash << 5) - hash) + char;
+    hash = hash & hash; // Convert to 32bit integer
+  }
+  
+  const colorIndex = Math.abs(hash) % colors.length;
+  return colors[colorIndex];
+}
+
+// Component to render gradient avatar
+function AvatarBadge({ userId, author }: { userId: string; author: string }) {
+  const colors = generateAvatarColors(userId);
+  const gradientId = `gradient-${userId}`;
+  const initials = author
+    .split(' ')
+    .map(n => n[0])
+    .join('')
+    .toUpperCase()
+    .slice(0, 2);
+  
+  return (
+    <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+      <defs>
+        <linearGradient id={gradientId} x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stopColor={colors.primary} />
+          <stop offset="100%" stopColor={colors.secondary} />
+        </linearGradient>
+      </defs>
+      <circle cx="16" cy="16" r="16" fill={`url(#${gradientId})`} />
+      <circle cx="16" cy="16" r="14" fill="none" stroke="rgba(255,255,255,0.2)" strokeWidth="0.5" />
+      <text
+        x="16"
+        y="18"
+        textAnchor="middle"
+        fill="white"
+        fontSize="12"
+        fontWeight="bold"
+        fontFamily="system-ui, -apple-system, sans-serif"
+      >
+        {initials}
+      </text>
+    </svg>
+  );
+}
+
 function timeAgo(timestamp: string) {
   try {
     const t = new Date(timestamp).getTime();
@@ -207,9 +272,7 @@ function CommentItem({
 
       <div className={styles['comment-item']}>
         <div className={styles['comment-avatar']}>
-          <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
-            <circle cx="16" cy="16" r="16" fill="#4f46e5"/>
-          </svg>
+          <AvatarBadge userId={comment.userId} author={comment.author} />
         </div>
 
         <div className={styles['comment-content']}>
