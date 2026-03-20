@@ -596,11 +596,27 @@
       ],
       "chapters" : [
         {
+        "id": "ch507",
+        "chapter": "507",
+        "title": "The Alliance Of The Gods, The Fall Of The Heaven Reaching World Tree",
+        "createdAt": "2026-03-21T12:00:00.000Z",
+        "latest": true,
+        "language": "en"
+      },
+        {
+        "id": "ch506",
+        "chapter": "506",
+        "title": "A Battle Between Gods",
+        "createdAt": "2026-03-21T12:00:00.000Z",
+        "latest": true,
+        "language": "en"
+      },
+        {
         "id": "ch505",
         "chapter": "505",
         "title": "The Oppression of the God of Light",
         "createdAt": "2026-03-09T12:00:00.000Z",
-        "latest": true,
+        "latest": false,
         "language": "en"
       },
         {
