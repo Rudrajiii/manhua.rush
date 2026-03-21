@@ -316,11 +316,19 @@
       ],
       "chapters" : [
           {
+        "id": "ch114",
+        "chapter": "114",
+        "title": "Demon Demora Vs Ice Demon King",
+        "createdAt": "2026-03-21T12:00:00.000Z",
+        "latest": true,
+        "language": "en"
+      },
+          {
         "id": "ch113",
         "chapter": "113",
         "title": "Luring Demora",
         "createdAt": "2026-03-14T12:00:00.000Z",
-        "latest": true,
+        "latest": false,
         "language": "en"
       },
           {
