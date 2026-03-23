@@ -99,7 +99,7 @@ export default function UsernameModal({ isOpen, onClose, onSuccess, currentUsern
               value={username}
               onChange={(e) => setUsername(e.target.value)}
               placeholder="Enter username (4-12 characters)"
-              maxLength={12}
+              maxLength={20}
               className={styles.input}
               disabled={loading}
               autoFocus
