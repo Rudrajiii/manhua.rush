@@ -71,10 +71,10 @@ function AvatarBadge({ userId, author }: { userId: string; author: string }) {
       <circle cx="16" cy="16" r="14" fill="none" stroke="rgba(255,255,255,0.2)" strokeWidth="0.5" />
       <text
         x="16"
-        y="18"
+        y="21"
         textAnchor="middle"
         fill="white"
-        fontSize="12"
+        fontSize="15"
         fontWeight="bold"
         fontFamily="system-ui, -apple-system, sans-serif"
       >

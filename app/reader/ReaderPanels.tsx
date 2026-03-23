@@ -1,9 +1,19 @@
 "use client";
 import React, { useState, useEffect, useRef } from "react";
+import ChapterNavigation from "./ChapterNavigation";
+
+type Chapter = {
+  id: string;
+  chapter: string;
+  title: string;
+};
 
 type Props = {
   imageUrls: string[];
   isCloud?: boolean;
+  currentChapter?: string;
+  chapters?: Chapter[];
+  mangaId?: string;
 };
 
 /** How many panels to render eagerly on first visit (no observer needed). */
@@ -113,7 +123,13 @@ function LazyPanel({
   );
 }
 
-export default function ReaderPanels({ imageUrls, isCloud = false }: Props) {
+export default function ReaderPanels({ 
+  imageUrls, 
+  isCloud = false,
+  currentChapter,
+  chapters,
+  mangaId
+}: Props) {
   const panelsRef = useRef<HTMLDivElement>(null);
   const [scrollRoot, setScrollRoot] = useState<Element | null>(null);
 
@@ -149,6 +165,13 @@ export default function ReaderPanels({ imageUrls, isCloud = false }: Props) {
           eager={idx < EAGER_COUNT}
         />
       ))}
+      {currentChapter && chapters && mangaId && (
+        <ChapterNavigation
+          currentChapter={currentChapter}
+          chapters={chapters}
+          mangaId={mangaId}
+        />
+      )}
     </div>
   );
 }

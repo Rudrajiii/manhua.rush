@@ -102,9 +102,22 @@ export default async function ReaderPage({ params }: Props) {
     imageUrls = await loadLocalPanels(mangadexId, chapter);
   }
 
-  const panelsContent = <ReaderPanels imageUrls={imageUrls} isCloud={isCloud} />;
+  const panelsContent = (
+    <ReaderPanels 
+      imageUrls={imageUrls} 
+      isCloud={isCloud}
+      currentChapter={chapter}
+      chapters={manhua.chapters}
+      mangaId={mangadexId}
+    />
+  );
 
   const sidebarContent = <CommentSection mangaId={mangadexId} chapter={chapter} />;
+
+  // Get the maximum chapter number from all chapters
+  const maxChapter = manhua.chapters && manhua.chapters.length > 0
+    ? Math.max(...manhua.chapters.map((ch: any) => parseInt(ch.chapter) || 0))
+    : 1;
 
   return (
     <div className="reader-container">
@@ -113,7 +126,11 @@ export default async function ReaderPage({ params }: Props) {
         <div className="reader-brand">
           <Link href="/">Manhua Rush</Link>
         </div>
-        <ReaderTitle title={manhua.title} chapter={chapter} />
+        <ReaderTitle 
+          title={manhua.title} 
+          chapter={chapter}
+          maxChapter={maxChapter}
+        />
         <div className="reader-controls-wrapper">
           <ReaderControls
             mangaId={mangadexId}
