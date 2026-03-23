@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { IoArrowBack, IoArrowForward } from "react-icons/io5";
 import styles from "./ChapterNavigation.module.css";
 
 type Chapter = {
@@ -47,7 +48,7 @@ export default function ChapterNavigation({
               <span className={styles["nav-text"]}>Previous Chapter</span>
               <span className={styles["nav-chapter"]}>Ch. {prevChapter.chapter}</span>
             </div>
-            <span className={styles["nav-icon"]}>←</span>
+            <IoArrowBack className={styles["nav-icon"]} />
           </Link>
         ) : (
           <div className={styles["nav-button"] + " " + styles["prev-button"] + " " + styles["disabled"]}>
@@ -55,7 +56,7 @@ export default function ChapterNavigation({
               <span className={styles["nav-text"]}>No Previous</span>
               <span className={styles["nav-chapter"]}>First Chapter</span>
             </div>
-            <span className={styles["nav-icon"]}>←</span>
+            <IoArrowBack className={styles["nav-icon"]} />
           </div>
         )}
 
@@ -69,7 +70,7 @@ export default function ChapterNavigation({
               <span className={styles["nav-text"]}>Next Chapter</span>
               <span className={styles["nav-chapter"]}>Ch. {nextChapter.chapter}</span>
             </div>
-            <span className={styles["nav-icon"]}>→</span>
+            <IoArrowForward className={styles["nav-icon"]} />
           </Link>
         ) : (
           <div className={styles["nav-button"] + " " + styles["next-button"] + " " + styles["disabled"]}>
@@ -77,7 +78,7 @@ export default function ChapterNavigation({
               <span className={styles["nav-text"]}>No Next</span>
               <span className={styles["nav-chapter"]}>Latest Chapter</span>
             </div>
-            <span className={styles["nav-icon"]}>→</span>
+            <IoArrowForward className={styles["nav-icon"]} />
           </div>
         )}
       </div>

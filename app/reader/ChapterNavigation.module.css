@@ -91,8 +91,8 @@
 /* Icon Styling */
 .nav-icon {
   font-size: 28px;
-  font-weight: 300;
-  line-height: 1;
+  width: 24px;
+  height: 24px;
   color: #ae4aff;
   transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
   flex-shrink: 0;
@@ -164,7 +164,8 @@
   }
 
   .nav-icon {
-    font-size: 24px;
+    width: 20px;
+    height: 20px;
   }
 
   .nav-label {
@@ -188,7 +189,7 @@
 @media (max-width: 480px) {
   .chapter-nav-container {
     padding: 32px 12px 24px;
-    margin-top: 32px;
+    margin: 0;
   }
 
   .chapter-nav-content {
@@ -201,7 +202,8 @@
   }
 
   .nav-icon {
-    font-size: 20px;
+    width: 18px;
+    height: 18px;
   }
 
   .nav-text {
