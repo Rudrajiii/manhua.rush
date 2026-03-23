@@ -16,7 +16,7 @@ export default function UsernameModal({ isOpen, onClose, onSuccess, currentUsern
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const trimmed = username.trim();
-  const isValid = trimmed.length >= 4 && trimmed.length <= 12;
+  const isValid = trimmed.length >= 4 && trimmed.length <= 20;
   const isUpdateMode = !!currentUsername && !!currentUserId;
 
   useEffect(() => {
@@ -35,8 +35,8 @@ export default function UsernameModal({ isOpen, onClose, onSuccess, currentUsern
     setError('');
 
     const name = username.trim();
-    if (name.length < 4 || name.length > 12) {
-      setError('Username must be between 4 and 12 characters long');
+    if (name.length < 4 || name.length > 20) {
+      setError('Username must be between 4 and 20 characters long');
       return;
     }
 
@@ -98,7 +98,7 @@ export default function UsernameModal({ isOpen, onClose, onSuccess, currentUsern
               type="text"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
-              placeholder="Enter username (4-12 characters)"
+              placeholder="Enter username (4-20 characters)"
               maxLength={20}
               className={styles.input}
               disabled={loading}
