@@ -10,9 +10,9 @@ export async function POST(request: NextRequest) {
   try {
     const { username } = await request.json();
 
-    if (!username || username.trim().length < 4 || username.trim().length > 12) {
+    if (!username || username.trim().length < 4 || username.trim().length > 20) {
       return NextResponse.json(
-        { error: 'Username must be between 4 and 12 characters long' },
+        { error: 'Username must be between 4 and 20 characters long' },
         { status: 400 }
       );
     }
