@@ -636,11 +636,27 @@
       ],
       "chapters" : [
         {
+        "id": "ch509",
+        "chapter": "509",
+        "title": "But I Refuse",
+        "createdAt": "2026-03-27T12:00:00.000Z",
+        "latest": true,
+        "language": "en"
+      },
+        {
+        "id": "ch508",
+        "chapter": "508",
+        "title": "Battle Against God",
+        "createdAt": "2026-03-27T12:00:00.000Z",
+        "latest": true,
+        "language": "en"
+      },
+        {
         "id": "ch507",
         "chapter": "507",
         "title": "The Alliance Of The Gods, The Fall Of The Heaven Reaching World Tree",
         "createdAt": "2026-03-21T12:00:00.000Z",
-        "latest": true,
+        "latest": false,
         "language": "en"
       },
         {
@@ -648,7 +664,7 @@
         "chapter": "506",
         "title": "A Battle Between Gods",
         "createdAt": "2026-03-21T12:00:00.000Z",
-        "latest": true,
+        "latest": false,
         "language": "en"
       },
         {
