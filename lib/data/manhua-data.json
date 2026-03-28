@@ -39,11 +39,19 @@
       ],
       "chapters": [
         {
+        "id": "ch255",
+        "chapter": "255",
+        "title": "Reunion with an old friend.",
+        "createdAt": "2026-03-28T12:00:00.000Z",
+        "latest": true,
+        "language": "en"
+      },
+        {
         "id": "ch254",
         "chapter": "254",
         "title": "Heavenly Court Turmoil",
         "createdAt": "2026-03-21T12:00:00.000Z",
-        "latest": true,
+        "latest": false,
         "language": "en"
       },
         {
