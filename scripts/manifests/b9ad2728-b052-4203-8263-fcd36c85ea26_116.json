@@ -1,0 +1,44 @@
+{
+  "manga_id": "b9ad2728-b052-4203-8263-fcd36c85ea26",
+  "chapter": "116",
+  "total_panels": 3,
+  "panels": [
+    {
+      "order": 1,
+      "original_name": "img_001.jpg",
+      "obfuscated_name": "86ad56ad03079161.avif",
+      "cloudinary_url": "https://res.cloudinary.com/dsc1cwi5i/image/upload/v1774704827/manhua-rush-production/b9ad2728-b052-4203-8263-fcd36c85ea26/116/86ad56ad03079161.avif",
+      "cloudinary_public_id": "manhua-rush-production/b9ad2728-b052-4203-8263-fcd36c85ea26/116/86ad56ad03079161",
+      "original_size": 3746854,
+      "converted_size": 821922,
+      "skipped_conversion": false
+    },
+    {
+      "order": 2,
+      "original_name": "img_002.jpg",
+      "obfuscated_name": "341a4a1eb61047af.avif",
+      "cloudinary_url": "https://res.cloudinary.com/dsc1cwi5i/image/upload/v1774704877/manhua-rush-production/b9ad2728-b052-4203-8263-fcd36c85ea26/116/341a4a1eb61047af.avif",
+      "cloudinary_public_id": "manhua-rush-production/b9ad2728-b052-4203-8263-fcd36c85ea26/116/341a4a1eb61047af",
+      "original_size": 3517526,
+      "converted_size": 685430,
+      "skipped_conversion": false
+    },
+    {
+      "order": 3,
+      "original_name": "img_003.jpg",
+      "obfuscated_name": "b2c2bd6a0f74a62b.avif",
+      "cloudinary_url": "https://res.cloudinary.com/dsc1cwi5i/image/upload/v1774704914/manhua-rush-production/b9ad2728-b052-4203-8263-fcd36c85ea26/116/b2c2bd6a0f74a62b.avif",
+      "cloudinary_public_id": "manhua-rush-production/b9ad2728-b052-4203-8263-fcd36c85ea26/116/b2c2bd6a0f74a62b",
+      "original_size": 3402286,
+      "converted_size": 674516,
+      "skipped_conversion": false
+    }
+  ],
+  "stats": {
+    "total_original_size": 10666666,
+    "total_converted_size": 2181868,
+    "compression_ratio": 0.2046,
+    "space_saved_bytes": 8484798,
+    "space_saved_percent": 79.54
+  }
+}

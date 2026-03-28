@@ -340,11 +340,19 @@
       ],
       "chapters" : [
           {
+        "id": "ch116",
+        "chapter": "116",
+        "title": "The Witch Awakens",
+        "createdAt": "2026-03-28T12:00:00.000Z",
+        "latest": true,
+        "language": "en"
+      },
+          {
         "id": "ch115",
         "chapter": "115",
         "title": "Hellish Tree & Cold Storm",
         "createdAt": "2026-03-22T12:00:00.000Z",
-        "latest": true,
+        "latest": false,
         "language": "en"
       },
           {
