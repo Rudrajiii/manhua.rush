@@ -45,7 +45,7 @@ export default function Footer() {
           {/* Social / extra icons */}
           <div className="footer-socials">
             <a
-              href="https://discord.gg/yv7rR8Y3"
+              href="https://discord.gg/hcTkdenHwh"
               target="_blank"
               rel="noopener noreferrer"
               className="footer-social-btn"
@@ -89,7 +89,7 @@ export default function Footer() {
             <ul className="footer-nav-list">
               <li><Link href="/craft?mode=dev" className="footer-nav-link">Craft &amp; Translate</Link></li>
               <li>
-                <a href="https://discord.gg/yv7rR8Y3" target="_blank" rel="noopener noreferrer" className="footer-nav-link">
+                <a href="https://discord.gg/hcTkdenHwh" target="_blank" rel="noopener noreferrer" className="footer-nav-link">
                   Join Discord
                 </a>
               </li>
