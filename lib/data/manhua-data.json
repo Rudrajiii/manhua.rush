@@ -40,10 +40,18 @@
       "chapters": [
         {
         "id": "ch255",
+        "chapter": "256",
+        "title": "Is She Still Alive?",
+        "createdAt": "2026-04-04T12:00:00.000Z",
+        "latest": true,
+        "language": "en"
+      },
+        {
+        "id": "ch255",
         "chapter": "255",
         "title": "Reunion with an old friend.",
         "createdAt": "2026-03-28T12:00:00.000Z",
-        "latest": true,
+        "latest": false,
         "language": "en"
       },
         {
@@ -356,11 +364,19 @@
       ],
       "chapters" : [
           {
+        "id": "ch118",
+        "chapter": "118",
+        "title": "Thousand Handed Asura Vs Frost Giant",
+        "createdAt": "2026-04-04T12:00:00.000Z",
+        "latest": true,
+        "language": "en"
+      },
+          {
         "id": "ch117",
         "chapter": "117",
         "title": "Good",
         "createdAt": "2026-03-30T12:00:00.000Z",
-        "latest": true,
+        "latest": false,
         "language": "en"
       },
           {
@@ -676,11 +692,27 @@
       ],
       "chapters" : [
         {
+        "id": "ch511",
+        "chapter": "511",
+        "title": "The Power Of Transformation",
+        "createdAt": "2026-04-04T12:00:00.000Z",
+        "latest": true,
+        "language": "en"
+      },
+        {
+        "id": "ch510",
+        "chapter": "509",
+        "title": "The True Appearance",
+        "createdAt": "2026-04-04T12:00:00.000Z",
+        "latest": true,
+        "language": "en"
+      },
+        {
         "id": "ch509",
         "chapter": "509",
         "title": "But I Refuse",
         "createdAt": "2026-03-27T12:00:00.000Z",
-        "latest": true,
+        "latest": false,
         "language": "en"
       },
         {
@@ -688,7 +720,7 @@
         "chapter": "508",
         "title": "Battle Against God",
         "createdAt": "2026-03-27T12:00:00.000Z",
-        "latest": true,
+        "latest": false,
         "language": "en"
       },
         {
