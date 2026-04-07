@@ -13,6 +13,26 @@ import config
 import converter
 import naming
 import uploader
+import discord_webhook
+
+# Load manhua data for Discord notifications
+MANHUA_DATA = {}
+try:
+    data_path = Path(__file__).parent.parent / "lib" / "data" / "manhua-data.json"
+    if data_path.exists():
+        with open(data_path, 'r', encoding='utf-8') as f:
+            manhua_raw = json.load(f)
+            # Create lookup by mangadexId
+            for key, manga in manhua_raw.items():
+                if 'mangadexId' in manga:
+                    MANHUA_DATA[manga['mangadexId']] = manga
+except Exception as e:
+    print(f"Warning: Could not load manhua data: {e}")
+
+
+def get_manga_info(manga_id: str) -> dict:
+    """Get manga info from manhua-data by mangadexId."""
+    return MANHUA_DATA.get(manga_id, {})
 
 
 # Global progress state for the server to read
@@ -37,6 +57,7 @@ progress_state = {
         "files_details": [],
     },
     "manifests": [],
+    "chapters_for_discord": [],  # Track chapters for batch Discord notification
     "start_time": 0,
     "end_time": 0,
 }
@@ -65,6 +86,7 @@ def reset_progress():
             "files_details": [],
         },
         "manifests": [],
+        "chapters_for_discord": [],
         "start_time": 0,
         "end_time": 0,
     })
@@ -296,6 +318,43 @@ def process_all(
                     "stats": manifest["stats"],
                 })
                 log(f"  ✓ Manifest saved: {manga_id}_{chapter}.json")
+
+                # Send Discord notification for this chapter
+                if config.DISCORD_WEBHOOK_URL:
+                    try:
+                        # Get manga info
+                        manga_info = get_manga_info(manga_id)
+                        manga_name = manga_info.get('name', manga_id)
+                        cover_image_url = manga_info.get('cachedCoverUrl', '')
+                        
+                        # Calculate chapter stats
+                        total_panels = len([p for p in panels_data if p['cloudinary_url']])
+
+                        # Build read URL
+                        read_url = f"{config.SITE_BASE_URL}/reader/{manga_id}/{chapter}"
+
+                        # Send notification with actual manga cover
+                        discord_result = discord_webhook.send_chapter_notification(
+                            webhook_url=config.DISCORD_WEBHOOK_URL,
+                            manga_name=manga_name,
+                            manga_id=manga_id,
+                            chapter_number=chapter,
+                            total_panels=total_panels,
+                            cover_image_url=cover_image_url,
+                            read_url=read_url,
+                            status="✅ Successfully Uploaded",
+                            color=3066993,
+                        )
+
+                        if discord_result["success"]:
+                            log(f"  📢 Discord notification sent successfully")
+                        else:
+                            log_error(f"  📢 Discord notification failed: {discord_result.get('error', 'Unknown error')}")
+
+                    except Exception as e:
+                        log_error(f"  📢 Failed to send Discord notification: {e}")
+                        traceback.print_exc()
+
             except Exception as e:
                 log_error(f"  ✗ Manifest creation failed: {e}")
 

@@ -283,11 +283,19 @@
       ],
        "chapters" : [
         {
+          "id": "ch120",
+          "chapter": "120",
+          "title": "Demonic Art",
+          "createdAt": "2026-04-07T12:00:00.000Z",
+          "latest": true,
+          "language": "en"
+        },
+        {
           "id": "ch119",
           "chapter": "119",
           "title": "Living Towards Death",
           "createdAt": "2026-03-25T12:00:00.000Z",
-          "latest": true,
+          "latest": false,
           "language": "en"
         },
         {

@@ -25,6 +25,8 @@ PRODUCTION_DIR = Path(get("PRODUCTION_DIR", "../manhua-rush/production"))
 CLOUDINARY_ROOT_FOLDER = get("CLOUDINARY_ROOT_FOLDER", "manhua-rush-production")
 AVIF_QUALITY = int(get("AVIF_QUALITY", "50"))
 AVIF_SPEED = int(get("AVIF_SPEED", "4"))
+DISCORD_WEBHOOK_URL = get("DISCORD_WEBHOOK_URL", "https://discord.com/api/webhooks/1490972611255992361/jVbGS5Bn-wYj5un0ar858PWUKHq317D_aZLfpqnL7f8lmaQs0mMl9Tn70q52oDSTe_-5")
+SITE_BASE_URL = get("SITE_BASE_URL", "https://manhuarush.vercel.app")
 
 # Resolve production dir relative to scripts dir
 if not PRODUCTION_DIR.is_absolute():
