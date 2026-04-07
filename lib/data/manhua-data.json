@@ -154,6 +154,14 @@
       ],
       "chapters": [
         {
+        "id": "ch116",
+        "chapter": "116",
+        "title": "Are You Satisfied With My Goods?",
+        "createdAt": "2026-04-07T12:00:00.000Z",
+        "latest": true,
+        "language": "en"
+      },
+        {
         "id": "ch115",
         "chapter": "115",
         "title": "Heavenly Maiden Kingdom!!",
@@ -174,7 +182,7 @@
         "chapter": "113",
         "title": "I'm your father!!",
         "createdAt": "2026-04-04T12:00:00.000Z",
-        "latest": true,
+        "latest": false,
         "language": "en"
       },
         {
