@@ -117,14 +117,6 @@
         "createdAt": "2026-01-30T12:00:00.000Z",
         "latest": false,
         "language": "en"
-      },
-      {
-        "id": "ch247",
-        "chapter": "247",
-        "title": "welcome new member",
-        "createdAt": "2026-01-25T12:00:00.000Z",
-        "latest": false,
-        "language": "en"
       }
     ],
       "status": "On Going"
@@ -733,7 +725,7 @@
       },
         {
         "id": "ch510",
-        "chapter": "509",
+        "chapter": "510",
         "title": "The True Appearance",
         "createdAt": "2026-04-04T12:00:00.000Z",
         "latest": true,

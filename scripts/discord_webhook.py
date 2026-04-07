@@ -24,7 +24,6 @@ def send_chapter_notification(
     total_panels: int,
     cover_image_url: str = "",
     read_url: str = "",
-    status: str = "✅ Success",
     color: int = 3066993,  # Green
     original_size: str = "0 B",
     converted_size: str = "0 B",
@@ -67,7 +66,6 @@ def send_chapter_notification(
         )
         
         # Add fields
-        embed.add_field(name="✅ Live On Site", value=status, inline=False)
         embed.add_field(name="📂 Panels", value=str(total_panels), inline=False)
         embed.add_field(name="ℹ️ Manga ID", value=f"`{manga_id}`", inline=False)
         
