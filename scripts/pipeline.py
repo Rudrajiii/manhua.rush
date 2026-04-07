@@ -342,7 +342,6 @@ def process_all(
                             total_panels=total_panels,
                             cover_image_url=cover_image_url,
                             read_url=read_url,
-                            status="✅ Successfully Uploaded",
                             color=3066993,
                         )
 

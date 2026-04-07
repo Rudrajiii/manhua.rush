@@ -67,7 +67,7 @@ def send_chapter_notification(
         )
         
         # Add fields
-        embed.add_field(name="✅ Status", value=status, inline=False)
+        embed.add_field(name="✅ Live On Site", value=status, inline=False)
         embed.add_field(name="📂 Panels", value=str(total_panels), inline=False)
         embed.add_field(name="ℹ️ Manga ID", value=f"`{manga_id}`", inline=False)
         
