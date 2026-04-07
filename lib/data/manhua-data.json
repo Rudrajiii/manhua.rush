@@ -554,11 +554,19 @@
       ],
       "chapters":[
          {
+        "id": "ch1113",
+        "chapter": "1113",
+        "title": "The Burning Of Xiaoyao Sect (1)",
+        "createdAt": "2026-04-07T12:00:00.000Z",
+        "latest": true,
+        "language": "en"
+      },
+         {
         "id": "ch1112",
         "chapter": "1112",
         "title": "The Tragic Situation Of Xiaoyao Sect Master (3)",
         "createdAt": "2026-03-09T12:00:00.000Z",
-        "latest": true,
+        "latest": false,
         "language": "en"
       },
          {
@@ -566,7 +574,7 @@
         "chapter": "1111",
         "title": "The Tragic Situation Of Xiaoyao Sect Master (2)",
         "createdAt": "2026-03-09T12:00:00.000Z",
-        "latest": true,
+        "latest": false,
         "language": "en"
       },
          {
