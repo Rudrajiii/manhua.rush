@@ -22,6 +22,7 @@ import config
 import pipeline
 import uploader
 import converter
+import discord_webhook
 
 app = Flask(__name__)
 CORS(app)
@@ -30,6 +31,58 @@ DASHBOARD_PATH = Path(__file__).parent / "dashboard.html"
 
 # Background processing thread
 _processing_thread = None
+_webhook_executor_thread = None
+
+
+def execute_pending_webhooks():
+    """Background thread that executes pending Discord webhooks after delay."""
+    while True:
+        try:
+            state = pipeline.progress_state
+            now = time.time()
+            
+            # Check if notifications are scheduled and ready to send
+            if (state["discord_notification_scheduled_at"] > 0 and 
+                now >= state["discord_notification_scheduled_at"] and
+                len(state["pending_discord_notifications"]) > 0):
+                
+                # Send all pending notifications
+                pending = state["pending_discord_notifications"]
+                pipeline.log(f"📢 Sending {len(pending)} queued Discord notifications...")
+                
+                for notification in pending:
+                    try:
+                        result = discord_webhook.send_chapter_notification(
+                            webhook_url=config.DISCORD_WEBHOOK_URL,
+                            manga_name=notification["manga_name"],
+                            manga_id=notification["manga_id"],
+                            chapter_number=notification["chapter_number"],
+                            total_panels=notification["total_panels"],
+                            cover_image_url=notification["cover_image_url"],
+                            read_url=notification["read_url"],
+                            color=3066993,
+                        )
+                        
+                        if result["success"]:
+                            pipeline.log(f"  ✓ Discord: {notification['manga_name']} Ch.{notification['chapter_number']}")
+                        else:
+                            pipeline.log_error(f"  Discord failed: {result.get('error', 'Unknown')}")
+                    except Exception as e:
+                        pipeline.log_error(f"  Discord error: {e}")
+                
+                # Clear scheduled notifications
+                state["pending_discord_notifications"] = []
+                state["discord_notification_scheduled_at"] = 0
+        
+        except Exception as e:
+            print(f"Error in webhook executor: {e}")
+        
+        time.sleep(1)  # Check every 1 second
+
+
+# Start webhook executor thread
+_webhook_executor_thread = threading.Thread(target=execute_pending_webhooks, daemon=True)
+_webhook_executor_thread.start()
 
 
 @app.route("/")
@@ -155,6 +208,30 @@ def get_progress():
                 },
                 "manifests_count": len(state["manifests"]),
             }
+
+            # Add webhook timer info
+            now = time.time()
+            scheduled_at = state.get("discord_notification_scheduled_at", 0)
+            delay_seconds = state.get("discord_notification_delay_seconds", 300)
+            pending = state.get("pending_discord_notifications", [])
+            
+            if scheduled_at > 0 and len(pending) > 0:
+                time_until_send = max(0, scheduled_at - now)
+                time_percent = max(0, min(100, (1 - time_until_send / delay_seconds) * 100))
+                payload["webhook"] = {
+                    "has_pending": True,
+                    "pending_count": len(pending),
+                    "time_until_send": round(time_until_send, 1),
+                    "progress_percent": round(time_percent, 1),
+                    "scheduled_at": scheduled_at,
+                }
+            else:
+                payload["webhook"] = {
+                    "has_pending": False,
+                    "pending_count": 0,
+                    "time_until_send": 0,
+                    "progress_percent": 0,
+                }
 
             # Add timing info
             if state["start_time"] > 0:
@@ -292,6 +369,93 @@ def upload_production():
         return jsonify({"status": "ok", "saved": saved, "production_dir": str(prod_dir)}), 200
     except Exception as e:
         return jsonify({"error": str(e)}), 500
+
+
+@app.route("/api/webhook-status")
+def webhook_status():
+    """Get the status of pending Discord webhooks and timer."""
+    state = pipeline.progress_state
+    now = time.time()
+    
+    scheduled_at = state.get("discord_notification_scheduled_at", 0)
+    delay_seconds = state.get("discord_notification_delay_seconds", 300)
+    pending = state.get("pending_discord_notifications", [])
+    
+    if scheduled_at > 0 and len(pending) > 0:
+        time_until_send = max(0, scheduled_at - now)
+        time_percent = max(0, min(100, (1 - time_until_send / delay_seconds) * 100))
+    else:
+        time_until_send = 0
+        time_percent = 0
+    
+    return jsonify({
+        "has_pending": len(pending) > 0,
+        "pending_count": len(pending),
+        "scheduled_at": scheduled_at,
+        "time_until_send": round(time_until_send, 1),
+        "delay_minutes": delay_seconds // 60,
+        "delay_seconds": delay_seconds,
+        "progress_percent": round(time_percent, 1),
+        "pending_notifications": [
+            {
+                "manga_name": n["manga_name"],
+                "chapter_number": n["chapter_number"],
+                "queued_at": n["queued_at"],
+            }
+            for n in pending
+        ],
+    })
+
+
+@app.route("/api/webhook-config", methods=["GET", "POST"])
+def webhook_config():
+    """Get or set Discord webhook delay configuration."""
+    state = pipeline.progress_state
+    
+    if request.method == "POST":
+        data = request.get_json() or {}
+        delay_minutes = data.get("delay_minutes")
+        
+        if delay_minutes is None or delay_minutes < 1 or delay_minutes > 60:
+            return jsonify({"error": "delay_minutes must be between 1 and 60"}), 400
+        
+        state["discord_notification_delay_seconds"] = int(delay_minutes * 60)
+        pipeline.log(f"⚙️ Discord webhook delay updated to {delay_minutes} minutes")
+        
+        return jsonify({
+            "status": "updated",
+            "delay_minutes": delay_minutes,
+            "delay_seconds": state["discord_notification_delay_seconds"],
+        })
+    else:
+        # GET
+        delay_seconds = state.get("discord_notification_delay_seconds", 300)
+        return jsonify({
+            "delay_minutes": delay_seconds // 60,
+            "delay_seconds": delay_seconds,
+            "min_delay": 1,
+            "max_delay": 60,
+        })
+
+
+@app.route("/api/webhook-execute", methods=["POST"])
+def webhook_execute():
+    """Manually trigger pending webhook execution."""
+    state = pipeline.progress_state
+    pending = state.get("pending_discord_notifications", [])
+    
+    if len(pending) == 0:
+        return jsonify({"error": "No pending notifications"}), 404
+    
+    # Force execution by setting scheduled_at to now
+    state["discord_notification_scheduled_at"] = time.time()
+    pipeline.log(f"📢 Manual webhook execution triggered for {len(pending)} pending notifications")
+    
+    return jsonify({
+        "status": "executing",
+        "count": len(pending),
+        "message": f"Sending {len(pending)} webhooks immediately",
+    })
 
 
 if __name__ == "__main__":

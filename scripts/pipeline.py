@@ -60,6 +60,10 @@ progress_state = {
     "chapters_for_discord": [],  # Track chapters for batch Discord notification
     "start_time": 0,
     "end_time": 0,
+    # Delayed webhook fields
+    "pending_discord_notifications": [],  # List of pending notifications with timestamps
+    "discord_notification_scheduled_at": 0,  # When the next batch will be sent
+    "discord_notification_delay_seconds": 300,  # Default 5 minutes
 }
 
 
@@ -89,6 +93,9 @@ def reset_progress():
         "chapters_for_discord": [],
         "start_time": 0,
         "end_time": 0,
+        "pending_discord_notifications": [],
+        "discord_notification_scheduled_at": 0,
+        "discord_notification_delay_seconds": int(config.DISCORD_WEBHOOK_DELAY_MINUTES * 60),
     })
 
 
@@ -107,6 +114,47 @@ def log_error(message: str):
     progress_state["errors"].append(entry)
     progress_state["logs"].append(entry)
     print(entry)
+
+
+def queue_discord_notification(
+    manga_name: str,
+    manga_id: str,
+    chapter_number: str,
+    total_panels: int,
+    cover_image_url: str = "",
+    read_url: str = "",
+) -> dict:
+    """
+    Queue a Discord notification to be sent after a delay.
+    If already scheduled, append to the pending list. If not scheduled, schedule it.
+    
+    Returns a dict with scheduling info.
+    """
+    notification = {
+        "manga_name": manga_name,
+        "manga_id": manga_id,
+        "chapter_number": chapter_number,
+        "total_panels": total_panels,
+        "cover_image_url": cover_image_url,
+        "read_url": read_url,
+        "queued_at": time.time(),
+    }
+    
+    progress_state["pending_discord_notifications"].append(notification)
+    
+    # Schedule notification if not already scheduled
+    if progress_state["discord_notification_scheduled_at"] == 0:
+        delay_seconds = progress_state["discord_notification_delay_seconds"]
+        progress_state["discord_notification_scheduled_at"] = time.time() + delay_seconds
+        log(f"📢 Discord notification scheduled in {delay_seconds}s ({delay_seconds // 60} min) for: {manga_name} Ch.{chapter_number}")
+    else:
+        log(f"📢 Added to pending Discord notifications: {manga_name} Ch.{chapter_number}")
+    
+    return {
+        "queued": True,
+        "scheduled_at": progress_state["discord_notification_scheduled_at"],
+        "pending_count": len(progress_state["pending_discord_notifications"]),
+    }
 
 
 def scan_production(production_dir: Optional[Path] = None) -> dict:
@@ -319,7 +367,7 @@ def process_all(
                 })
                 log(f"  ✓ Manifest saved: {manga_id}_{chapter}.json")
 
-                # Send Discord notification for this chapter
+                # Queue Discord notification for this chapter (will be sent after delay)
                 if config.DISCORD_WEBHOOK_URL:
                     try:
                         # Get manga info
@@ -333,25 +381,23 @@ def process_all(
                         # Build read URL
                         read_url = f"{config.SITE_BASE_URL}/reader/{manga_id}/{chapter}"
 
-                        # Send notification with actual manga cover
-                        discord_result = discord_webhook.send_chapter_notification(
-                            webhook_url=config.DISCORD_WEBHOOK_URL,
+                        # Queue notification with delay
+                        queue_result = queue_discord_notification(
                             manga_name=manga_name,
                             manga_id=manga_id,
                             chapter_number=chapter,
                             total_panels=total_panels,
                             cover_image_url=cover_image_url,
                             read_url=read_url,
-                            color=3066993,
                         )
 
-                        if discord_result["success"]:
-                            log(f"  📢 Discord notification sent successfully")
-                        else:
-                            log_error(f"  📢 Discord notification failed: {discord_result.get('error', 'Unknown error')}")
+                        scheduled_at = queue_result.get("scheduled_at", 0)
+                        if scheduled_at > 0:
+                            pending = queue_result.get("pending_count", 0)
+                            log(f"  ✓ Discord notification queued ({pending} pending)")
 
                     except Exception as e:
-                        log_error(f"  📢 Failed to send Discord notification: {e}")
+                        log_error(f"  Failed to queue Discord notification: {e}")
                         traceback.print_exc()
 
             except Exception as e:
