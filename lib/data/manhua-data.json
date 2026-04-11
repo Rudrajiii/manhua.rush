@@ -740,11 +740,19 @@
       ],
       "chapters" : [
         {
+        "id": "ch512",
+        "chapter": "512",
+        "title": "The Death Of Tongtian Jianmu",
+        "createdAt": "2026-04-11T12:00:00.000Z",
+        "latest": true,
+        "language": "en"
+      },
+        {
         "id": "ch511",
         "chapter": "511",
         "title": "The Power Of Transformation",
         "createdAt": "2026-04-04T12:00:00.000Z",
-        "latest": true,
+        "latest": false,
         "language": "en"
       },
         {
@@ -752,7 +760,7 @@
         "chapter": "510",
         "title": "The True Appearance",
         "createdAt": "2026-04-04T12:00:00.000Z",
-        "latest": true,
+        "latest": false,
         "language": "en"
       },
         {
