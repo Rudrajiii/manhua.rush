@@ -60,7 +60,7 @@ def send_chapter_notification(
         # Create embed using discord.py
         embed = Embed(
             title=f"📖 {manga_name}",
-            description=f"**Chapter {chapter_number}** has been uploaded!",
+            description=f"**Chapter {chapter_number}** is now Live!",
             color=Color(0x8B00FF),  # Purple
             timestamp=datetime.utcnow()
         )
@@ -78,7 +78,7 @@ def send_chapter_notification(
             embed.set_image(url=cover_image_url)
         
         # Set footer
-        embed.set_footer(text="ManhuaRush Upload System")
+        embed.set_footer(text="ManhuaRush")
         
         # Send webhook
         message = webhook.send(embed=embed, username="Lokey")
