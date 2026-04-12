@@ -162,9 +162,17 @@
       ],
       "chapters": [
         {
+        "id": "ch118",
+        "chapter": "118",
+        "title": "Missing Xiao Hong!!",
+        "createdAt": "2026-04-12T12:00:00.000Z",
+        "latest": true,
+        "language": "en"
+      },
+        {
         "id": "ch117",
         "chapter": "117",
-        "title": "Missing Xiao Hong!!",
+        "title": "This Man is called Xiao Shuai",
         "createdAt": "2026-04-12T12:00:00.000Z",
         "latest": true,
         "language": "en"

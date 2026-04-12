@@ -449,7 +449,7 @@ def webhook_execute():
     
     # Force execution by setting scheduled_at to now
     state["discord_notification_scheduled_at"] = time.time()
-    pipeline.log(f"📢 Manual webhook execution triggered for {len(pending)} pending notifications")
+    pipeline.log(f"Manual webhook execution triggered for {len(pending)} pending notifications")
     
     return jsonify({
         "status": "executing",
