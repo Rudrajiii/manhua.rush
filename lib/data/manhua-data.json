@@ -404,11 +404,19 @@
       ],
       "chapters" : [
           {
+        "id": "ch122",
+        "chapter": "122",
+        "title": "Royal bloodline",
+        "createdAt": "2026-04-18T12:00:00.000Z",
+        "latest": true,
+        "language": "en"
+      },
+          {
         "id": "ch121",
         "chapter": "121",
         "title": "Throw him out of the window",
         "createdAt": "2026-04-12T12:00:00.000Z",
-        "latest": true,
+        "latest": false,
         "language": "en"
       },
           {
