@@ -39,11 +39,19 @@
       ],
       "chapters": [
         {
+        "id": "ch258",
+        "chapter": "258",
+        "title": "Good Bye Fang Liang!!",
+        "createdAt": "2026-04-18T12:00:00.000Z",
+        "latest": true,
+        "language": "en"
+      },
+        {
         "id": "ch257",
         "chapter": "257",
         "title": "Fang Liang ascends to heaven",
         "createdAt": "2026-04-11T12:00:00.000Z",
-        "latest": true,
+        "latest": false,
         "language": "en"
       },
         {
