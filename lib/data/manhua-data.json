@@ -420,11 +420,19 @@
       ],
       "chapters" : [
           {
+        "id": "ch124",
+        "chapter": "124",
+        "title": "Radical and Conservative Factions of royal family",
+        "createdAt": "2026-04-25T12:00:00.000Z",
+        "latest": true,
+        "language": "en"
+      },
+          {
         "id": "ch123",
         "chapter": "123",
         "title": "Don't Pry into things in the academic world.",
         "createdAt": "2026-04-21T12:00:00.000Z",
-        "latest": true,
+        "latest": false,
         "language": "en"
       },
           {
@@ -432,7 +440,7 @@
         "chapter": "122",
         "title": "Royal bloodline",
         "createdAt": "2026-04-18T12:00:00.000Z",
-        "latest": true,
+        "latest": false,
         "language": "en"
       },
           {

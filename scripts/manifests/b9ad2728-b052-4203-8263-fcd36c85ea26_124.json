@@ -1,0 +1,54 @@
+{
+  "manga_id": "b9ad2728-b052-4203-8263-fcd36c85ea26",
+  "chapter": "124",
+  "total_panels": 4,
+  "panels": [
+    {
+      "order": 1,
+      "original_name": "img_001.jpg",
+      "obfuscated_name": "c22cf086da8b60e7.avif",
+      "cloudinary_url": "https://res.cloudinary.com/dsc1cwi5i/image/upload/v1777127727/manhua-rush-production/b9ad2728-b052-4203-8263-fcd36c85ea26/124/c22cf086da8b60e7.avif",
+      "cloudinary_public_id": "manhua-rush-production/b9ad2728-b052-4203-8263-fcd36c85ea26/124/c22cf086da8b60e7",
+      "original_size": 2749017,
+      "converted_size": 514579,
+      "skipped_conversion": false
+    },
+    {
+      "order": 2,
+      "original_name": "img_002.jpg",
+      "obfuscated_name": "a285698ef01cdf6c.avif",
+      "cloudinary_url": "https://res.cloudinary.com/dsc1cwi5i/image/upload/v1777127751/manhua-rush-production/b9ad2728-b052-4203-8263-fcd36c85ea26/124/a285698ef01cdf6c.avif",
+      "cloudinary_public_id": "manhua-rush-production/b9ad2728-b052-4203-8263-fcd36c85ea26/124/a285698ef01cdf6c",
+      "original_size": 2641745,
+      "converted_size": 481931,
+      "skipped_conversion": false
+    },
+    {
+      "order": 3,
+      "original_name": "img_003.jpg",
+      "obfuscated_name": "eda843fc5261b401.avif",
+      "cloudinary_url": "https://res.cloudinary.com/dsc1cwi5i/image/upload/v1777127783/manhua-rush-production/b9ad2728-b052-4203-8263-fcd36c85ea26/124/eda843fc5261b401.avif",
+      "cloudinary_public_id": "manhua-rush-production/b9ad2728-b052-4203-8263-fcd36c85ea26/124/eda843fc5261b401",
+      "original_size": 2815863,
+      "converted_size": 676461,
+      "skipped_conversion": false
+    },
+    {
+      "order": 4,
+      "original_name": "img_004.jpg",
+      "obfuscated_name": "7218b31a1867c45d.avif",
+      "cloudinary_url": "https://res.cloudinary.com/dsc1cwi5i/image/upload/v1777127814/manhua-rush-production/b9ad2728-b052-4203-8263-fcd36c85ea26/124/7218b31a1867c45d.avif",
+      "cloudinary_public_id": "manhua-rush-production/b9ad2728-b052-4203-8263-fcd36c85ea26/124/7218b31a1867c45d",
+      "original_size": 3169172,
+      "converted_size": 635942,
+      "skipped_conversion": false
+    }
+  ],
+  "stats": {
+    "total_original_size": 11375797,
+    "total_converted_size": 2308913,
+    "compression_ratio": 0.203,
+    "space_saved_bytes": 9066884,
+    "space_saved_percent": 79.7
+  }
+}
