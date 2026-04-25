@@ -39,11 +39,19 @@
       ],
       "chapters": [
         {
+        "id": "ch259",
+        "chapter": "259",
+        "title": "Vermilion Bird Clan Leader",
+        "createdAt": "2026-04-25T12:00:00.000Z",
+        "latest": true,
+        "language": "en"
+      },
+        {
         "id": "ch258",
         "chapter": "258",
         "title": "Good Bye Fang Liang!!",
         "createdAt": "2026-04-18T12:00:00.000Z",
-        "latest": true,
+        "latest": false,
         "language": "en"
       },
         {
