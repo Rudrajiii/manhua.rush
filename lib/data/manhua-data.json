@@ -39,11 +39,19 @@
       ],
       "chapters": [
         {
+        "id": "ch260",
+        "chapter": "260",
+        "title": "Founding a sect",
+        "createdAt": "2026-05-02T12:00:00.000Z",
+        "latest": true,
+        "language": "en"
+      },
+        {
         "id": "ch259",
         "chapter": "259",
         "title": "Vermilion Bird Clan Leader",
         "createdAt": "2026-04-25T12:00:00.000Z",
-        "latest": true,
+        "latest": false,
         "language": "en"
       },
         {
