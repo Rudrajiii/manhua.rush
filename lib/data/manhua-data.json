@@ -428,11 +428,19 @@
       ],
       "chapters" : [
           {
+        "id": "ch126",
+        "chapter": "126",
+        "title": "Goal: Awaken the eyes of cause and effect",
+        "createdAt": "2026-05-06T12:00:00.000Z",
+        "latest": true,
+        "language": "en"
+      },
+          {
         "id": "ch125",
         "chapter": "125",
         "title": "Don't Rush!! Hehehe",
         "createdAt": "2026-04-26T12:00:00.000Z",
-        "latest": true,
+        "latest": false,
         "language": "en"
       },
           {
@@ -440,7 +448,7 @@
         "chapter": "124",
         "title": "Radical and Conservative Factions of royal family",
         "createdAt": "2026-04-25T12:00:00.000Z",
-        "latest": true,
+        "latest": false,
         "language": "en"
       },
           {
