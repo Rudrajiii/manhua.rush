@@ -42,7 +42,7 @@ export default function Home() {
           {/* Main Quote Heading */}
           <h1 style={{
             fontFamily: "GangBangers, var(--font-playfair), serif",
-            fontSize: "clamp(2rem, 7vw, 4rem)",
+            fontSize: "clamp(2.8rem, 9vw, 4rem)",
             fontWeight: "bold",
             marginBottom: "1.5rem",
             lineHeight: "1.2",
@@ -58,7 +58,7 @@ export default function Home() {
             Endure Today<br />Freedom Tomorrow
           </h1>
 
-          <p className="text-lg md:text-xl text-gray-300 mb-8 font-medium italic tracking-wide">
+          <p className="text-base md:text-lg text-gray-300 mb-8 font-medium italic tracking-wide">
             Follow the journey of Han Jue as he rises against fate
           </p>
 

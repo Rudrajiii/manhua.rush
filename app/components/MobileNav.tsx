@@ -44,7 +44,7 @@ export default function MobileNav() {
         <div className="mobile-nav-dropdown">
           {[
             { href: "/", label: "Home" },
-            { href: "/collections/all?p=all", label: "Collections" },
+            { href: "/ttp-providence", label: "View Chapters" },
             { href: "/craft?mode=dev", label: "Craft" },
           ].map((link) => (
             <Link
