@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Playfair_Display } from "next/font/google";
 import { Toaster } from "sonner";
-import "./globals.css";
+import "./globals.css"
 import Link from "next/link";
 import ConditionalNav from "./components/ConditionalNav";
 import ConditionalWrapper from "./components/ConditionalWrapper";
@@ -82,10 +82,10 @@ export default function RootLayout({
 
               <ul className="breadcrumb" role="list">
                 <li><Link className="nav-link" href="/">Home</Link></li>
-                <span>/</span>
-                <li><Link className="nav-link" href="/collections/all?p=all">Collections</Link></li>
-                <span>/</span>
-                <li><Link className="nav-link" href="/craft?mode=dev">Craft</Link></li>
+                <li className="separator">/</li>
+                <li><Link className="nav-link" href="/ttp-providence">View Chapters</Link></li>
+                <li className="separator">/</li>
+                <li><Link className="nav-link" href="/craft">Craft</Link></li>
               </ul>
 
               <div className="nav-right">

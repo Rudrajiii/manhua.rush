@@ -1,3 +1,10 @@
+@font-face {
+  font-family: "GangBangers";
+  src: url("/fonts/GangBangers-x35DR.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
 @import "tailwindcss";
 
 :root {
@@ -50,6 +57,30 @@
       transform: translateY(0);
       opacity: 1;
     }
+  }
+
+  @keyframes flowing-gradient {
+    0% {
+      background-position: 0% center;
+    }
+    50% {
+      background-position: 100% center;
+    }
+    100% {
+      background-position: 0% center;
+    }
+  }
+}
+
+@keyframes flowing-gradient {
+  0% {
+    background-position: 0% center;
+  }
+  50% {
+    background-position: 100% center;
+  }
+  100% {
+    background-position: 0% center;
   }
 }
 
@@ -369,6 +400,13 @@ body {
 
 /* breadcrumb list items */
 .breadcrumb li { list-style: none }
+.breadcrumb li.separator {
+  display: flex;
+  align-items: center;
+  color: #9ca3af;
+  font-weight: 500;
+  margin: 0 4px;
+}
 .breadcrumb li a {
   display: inline-flex;
   align-items: center;

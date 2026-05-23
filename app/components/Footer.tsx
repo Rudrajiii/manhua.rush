@@ -39,7 +39,7 @@ export default function Footer() {
             />
           </Link>
           <p className="footer-tagline">
-            Fan translations of manga, manhwa &amp; manhua — fast &amp; free.
+            Fan translations of series <strong>Top Tier Providence</strong> for free with fast release.
           </p>
 
           {/* Social / extra icons */}
@@ -77,17 +77,15 @@ export default function Footer() {
             <h3 className="footer-nav-heading">Explore</h3>
             <ul className="footer-nav-list">
               <li><Link href="/" className="footer-nav-link">Home</Link></li>
-              <li><Link href="/collections/all?p=all" className="footer-nav-link">All Collections</Link></li>
-              <li><Link href="/collections/manhwa" className="footer-nav-link">Manhwa</Link></li>
-              <li><Link href="/collections/manga" className="footer-nav-link">Manga</Link></li>
-              <li><Link href="/collections/manhua" className="footer-nav-link">Manhua</Link></li>
+              <li><Link href="/ttp-providence" className="footer-nav-link">Chapters</Link></li>
+
             </ul>
           </div>
 
           <div className="footer-nav-col">
             <h3 className="footer-nav-heading">Community</h3>
             <ul className="footer-nav-list">
-              <li><Link href="/craft?mode=dev" className="footer-nav-link">Craft &amp; Translate</Link></li>
+              <li><Link href="/craft" className="footer-nav-link">Craft &amp; Translate</Link></li>
               <li>
                 <a href="https://discord.gg/hcTkdenHwh" target="_blank" rel="noopener noreferrer" className="footer-nav-link">
                   Join Discord
