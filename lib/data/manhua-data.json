@@ -39,11 +39,19 @@
       ],
       "chapters": [
         {
+        "id": "ch263",
+        "chapter": "263",
+        "title": "Uninvited Guest.",
+        "createdAt": "2026-05-24T12:00:00.000Z",
+        "latest": true,
+        "language": "en"
+      },
+        {
         "id": "ch262",
         "chapter": "262",
         "title": "Brother was arrested!!",
         "createdAt": "2026-05-16T12:00:00.000Z",
-        "latest": true,
+        "latest": false,
         "language": "en"
       },
         {
