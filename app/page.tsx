@@ -1,6 +1,8 @@
 "use client";
 import React from "react";
 import Link from "next/link";
+import { FiArrowRight } from "react-icons/fi";
+import { FaReddit } from "react-icons/fa";
 
 export default function Home() {
   return (
@@ -13,7 +15,6 @@ export default function Home() {
           backgroundSize: "contain",
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
-          backgroundAttachment: "fixed",
         }}
       >
         {/* Gradient overlay for text readability */}
@@ -64,12 +65,12 @@ export default function Home() {
 
           {/* CTA Buttons */}
           <div className="home-actions flex flex-col sm:flex-row gap-4 justify-center">
-            <Link href="/ttp-providence" className="home-btn primary px-8 py-3 rounded-lg font-semibold text-lg transition-all hover:scale-105">
-              Start Reading →
+            <Link href="/ttp-providence" className="home-btn primary px-8 py-3 rounded-lg font-semibold text-lg transition-all hover:scale-105 flex items-center gap-2 justify-center">
+              Start Reading <FiArrowRight size={20} />
             </Link>
-            <Link href="/ttp-providence" className="home-btn secondary px-8 py-3 rounded-lg font-semibold text-lg transition-all hover:scale-105">
-              Share Us
-            </Link>
+            <a href="https://reddit.com" target="_blank" rel="noopener noreferrer" className="home-btn secondary px-8 py-3 rounded-lg font-semibold text-lg transition-all hover:scale-105 flex items-center gap-2 justify-center">
+              <FaReddit size={20} /> Share Us
+            </a>
           </div>
         </div>
       </div>
