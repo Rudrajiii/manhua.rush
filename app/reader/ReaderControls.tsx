@@ -49,7 +49,7 @@ export default function ReaderControls({ mangaId, currentChapter, chapters, mang
 
   const handleBack = () => {
     startTransition(() => {
-      router.push(`/collections/all/${mangaSlug}`);
+      router.push(`/ttp-providence`);
     });
   };
 

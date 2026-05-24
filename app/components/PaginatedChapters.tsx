@@ -209,7 +209,7 @@ export default function PaginatedChapters({ chapters, mangadexId }: PaginatedCha
         </div>
       )}
 
-      <div className="chapters-footer mt-3">
+      {/* <div className="chapters-footer mt-3">
         Little Reminder — to read previous chapters visit{' '}
         <a
           className="no-underline hover:underline"
@@ -221,7 +221,7 @@ export default function PaginatedChapters({ chapters, mangadexId }: PaginatedCha
           this site
         </a>
         .
-      </div>
+      </div> */}
     </section>
   );
 }

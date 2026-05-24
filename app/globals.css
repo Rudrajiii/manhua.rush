@@ -103,14 +103,103 @@ body {
   gap: 24px;
   align-items: flex-start;
 }
-.cover {
+.cover-section {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
   width: 220px;
   flex: 0 0 220px;
+}
+.cover {
+  width: 100%;
+  flex: 0 0 auto;
 }
 .cover-img {
   width: 100%;
   border-radius: 8px;
   box-shadow: 0 6px 18px rgba(0,0,0,0.6);
+}
+.cover-action-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  min-height: auto;
+}
+.btn-resume {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 14px 16px;
+  height: 48px;
+  background: linear-gradient(135deg, #8b5cf6 0%, #a78bfa 100%);
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 14px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+.btn-resume::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.1);
+  transition: left 0.3s ease;
+}
+.btn-resume:hover {
+  transform: translateY(-2px);
+}
+.btn-resume:hover::before {
+  left: 100%;
+}
+.resume-icon {
+  font-size: 12px;
+  display: inline-block;
+}
+.btn-notification {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 14px 16px;
+  height: 48px;
+  background: linear-gradient(135deg, #a78bfa 0%, #c4b5fd 100%);
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 14px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+.btn-notification::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.15);
+  transition: left 0.3s ease;
+}
+.btn-notification:hover {
+  transform: translateY(-2px);
+  background: linear-gradient(135deg, #c4b5fd 0%, #ddd6fe 100%);
+}
+.btn-notification:hover::before {
+  left: 100%;
 }
 .manga-info {
   flex: 1;
@@ -1003,11 +1092,25 @@ body {
     gap: 16px;
   }
 
-  .cover {
+  .cover-section {
     width: 100%;
     max-width: 280px;
-    flex: none;
     margin: 0 auto;
+  }
+
+  .cover {
+    width: 100%;
+  }
+
+  .cover-action-buttons {
+    gap: 8px;
+  }
+
+  .btn-resume,
+  .btn-notification {
+    padding: 12px 14px;
+    height: 44px;
+    font-size: 13px;
   }
 
   .manga-title {

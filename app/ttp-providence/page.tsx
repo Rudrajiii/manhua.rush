@@ -6,6 +6,7 @@ import DescriptionToggle from '@/app/components/DescriptionToggle';
 import ViewCounter from '@/app/components/ViewCounter';
 import LinkWithLoader from '@/app/components/LinkWithLoader';
 import PaginatedChapters from '@/app/components/PaginatedChapters';
+import CoverActionButtons from '@/app/components/CoverActionButtons';
 import { FaPlay } from "react-icons/fa";
 
 type Props = {
@@ -38,13 +39,26 @@ export default async function TopTierProvidencePage({ searchParams }: Props) {
         </div>
       )}
       <div className="manga-header">
-        <div className="cover">
-          {manhua.cover ? (
-            // eslint-disable-next-line @next/next/no-img-element
-            <img src={manhua.cover} alt={manhua.title} className="cover-img" />
-          ) : (
-            <div style={{ width: '100%', height: 320, background: '#2d2d2d', borderRadius: 8 }} />
-          )}
+        <div className="cover-section">
+          <div className="cover">
+            {manhua.cover ? (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img src={manhua.cover} alt={manhua.title} className="cover-img" />
+            ) : (
+              <div style={{ width: '100%', height: 320, background: '#2d2d2d', borderRadius: 8 }} />
+            )}
+          </div>
+          
+          {/* Cover Action Buttons */}
+          <CoverActionButtons
+            mangadexId={manhua.mangadexId}
+            firstChapterNumber={
+              manhua.chapters && manhua.chapters.length > 0
+                ? manhua.chapters[0].chapter
+                : undefined
+            }
+            seriesTitle={manhua.title}
+          />
         </div>
 
         <div className="manga-info">
