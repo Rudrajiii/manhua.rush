@@ -595,6 +595,7 @@ body {
 /* ── Mobile: ≤ 768px ─────────────────────────────────────────────────────
    Breadcrumbs hidden, hamburger shown — give the logo more compact sizing  */
 @media (max-width: 768px) {
+ 
   .breadcrumb { display: none; }
   .nav-right  { display: none; }
   /* mobile-nav-wrapper slides into column 3, nav-right already hidden */
@@ -608,6 +609,7 @@ body {
 
 /* ── Small mobile: ≤ 480px ───────────────────────────────────────────── */
 @media (max-width: 480px) {
+   
  .logo-icon     { width: 58px; height: 58px; }
   .logo-wordmark { height: 70px; margin-left: -6px; }
   .site-nav      { padding: 6px 10px; }
