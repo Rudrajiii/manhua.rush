@@ -1,0 +1,84 @@
+{
+  "manga_id": "c089b50c-beeb-434a-ab8d-2676dc026564",
+  "chapter": "246",
+  "total_panels": 7,
+  "panels": [
+    {
+      "order": 1,
+      "original_name": "000.webp",
+      "obfuscated_name": "dc61776d416e8c2e.avif",
+      "cloudinary_url": "https://res.cloudinary.com/dsc1cwi5i/image/upload/v1779910038/manhua-rush-production/c089b50c-beeb-434a-ab8d-2676dc026564/246/dc61776d416e8c2e.avif",
+      "cloudinary_public_id": "manhua-rush-production/c089b50c-beeb-434a-ab8d-2676dc026564/246/dc61776d416e8c2e",
+      "original_size": 2251842,
+      "converted_size": 445656,
+      "skipped_conversion": false
+    },
+    {
+      "order": 2,
+      "original_name": "001.webp",
+      "obfuscated_name": "e7fa297d2bbd904a.avif",
+      "cloudinary_url": "https://res.cloudinary.com/dsc1cwi5i/image/upload/v1779910056/manhua-rush-production/c089b50c-beeb-434a-ab8d-2676dc026564/246/e7fa297d2bbd904a.avif",
+      "cloudinary_public_id": "manhua-rush-production/c089b50c-beeb-434a-ab8d-2676dc026564/246/e7fa297d2bbd904a",
+      "original_size": 2584368,
+      "converted_size": 541158,
+      "skipped_conversion": false
+    },
+    {
+      "order": 3,
+      "original_name": "002.webp",
+      "obfuscated_name": "0c22ac645d73a141.avif",
+      "cloudinary_url": "https://res.cloudinary.com/dsc1cwi5i/image/upload/v1779910074/manhua-rush-production/c089b50c-beeb-434a-ab8d-2676dc026564/246/0c22ac645d73a141.avif",
+      "cloudinary_public_id": "manhua-rush-production/c089b50c-beeb-434a-ab8d-2676dc026564/246/0c22ac645d73a141",
+      "original_size": 2302500,
+      "converted_size": 446764,
+      "skipped_conversion": false
+    },
+    {
+      "order": 4,
+      "original_name": "003.webp",
+      "obfuscated_name": "8abc922a8aebe99c.avif",
+      "cloudinary_url": "https://res.cloudinary.com/dsc1cwi5i/image/upload/v1779910101/manhua-rush-production/c089b50c-beeb-434a-ab8d-2676dc026564/246/8abc922a8aebe99c.avif",
+      "cloudinary_public_id": "manhua-rush-production/c089b50c-beeb-434a-ab8d-2676dc026564/246/8abc922a8aebe99c",
+      "original_size": 2725068,
+      "converted_size": 580176,
+      "skipped_conversion": false
+    },
+    {
+      "order": 5,
+      "original_name": "004.webp",
+      "obfuscated_name": "b215fbcdbf8f85f4.avif",
+      "cloudinary_url": "https://res.cloudinary.com/dsc1cwi5i/image/upload/v1779910118/manhua-rush-production/c089b50c-beeb-434a-ab8d-2676dc026564/246/b215fbcdbf8f85f4.avif",
+      "cloudinary_public_id": "manhua-rush-production/c089b50c-beeb-434a-ab8d-2676dc026564/246/b215fbcdbf8f85f4",
+      "original_size": 1285992,
+      "converted_size": 207052,
+      "skipped_conversion": false
+    },
+    {
+      "order": 6,
+      "original_name": "005.webp",
+      "obfuscated_name": "63664d98dceff7fb.avif",
+      "cloudinary_url": "https://res.cloudinary.com/dsc1cwi5i/image/upload/v1779910139/manhua-rush-production/c089b50c-beeb-434a-ab8d-2676dc026564/246/63664d98dceff7fb.avif",
+      "cloudinary_public_id": "manhua-rush-production/c089b50c-beeb-434a-ab8d-2676dc026564/246/63664d98dceff7fb",
+      "original_size": 2998950,
+      "converted_size": 525641,
+      "skipped_conversion": false
+    },
+    {
+      "order": 7,
+      "original_name": "006.webp",
+      "obfuscated_name": "c08e8c2d367c02e5.avif",
+      "cloudinary_url": "https://res.cloudinary.com/dsc1cwi5i/image/upload/v1779910160/manhua-rush-production/c089b50c-beeb-434a-ab8d-2676dc026564/246/c08e8c2d367c02e5.avif",
+      "cloudinary_public_id": "manhua-rush-production/c089b50c-beeb-434a-ab8d-2676dc026564/246/c08e8c2d367c02e5",
+      "original_size": 2722732,
+      "converted_size": 624715,
+      "skipped_conversion": false
+    }
+  ],
+  "stats": {
+    "total_original_size": 16871452,
+    "total_converted_size": 3371162,
+    "compression_ratio": 0.1998,
+    "space_saved_bytes": 13500290,
+    "space_saved_percent": 80.02
+  }
+}

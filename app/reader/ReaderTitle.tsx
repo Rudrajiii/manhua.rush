@@ -1,14 +1,25 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
+import ChapterDropdown from '@/app/components/ChapterDropdown';
+
+interface Chapter {
+  id: string;
+  chapter: string;
+  title: string;
+}
 
 interface ReaderTitleProps {
   title: string;
   chapter: string;
   maxChapter?: number;
+  chapters?: Chapter[];
+  mangaId?: string;
 }
 
-export default function ReaderTitle({ title, chapter, maxChapter }: ReaderTitleProps) {
+export default function ReaderTitle({ title, chapter, maxChapter, chapters = [], mangaId }: ReaderTitleProps) {
+  const router = useRouter();
   const [displayTitle, setDisplayTitle] = useState(title);
   const [isMobile, setIsMobile] = useState(false);
 
@@ -36,15 +47,21 @@ export default function ReaderTitle({ title, chapter, maxChapter }: ReaderTitleP
     return () => window.removeEventListener('resize', updateTitle);
   }, [title]);
 
-  // Mobile: Show only chapter progress indicator
+  const handleChapterChange = (chapterNum: string) => {
+    if (mangaId) {
+      router.push(`/reader/${mangaId}/${chapterNum}`);
+    }
+  };
+
+  // Mobile: Show chapter dropdown in navbar
   if (isMobile) {
-    const chapterNum = parseInt(chapter) || 0;
-    // Always use the max chapter number as total
-    const total = maxChapter || 1;
-    
     return (
       <div className="reader-mobile-chapter-indicator">
-        {chapterNum} / {total}
+        <ChapterDropdown
+          chapters={chapters}
+          currentChapter={chapter}
+          onChapterChange={handleChapterChange}
+        />
       </div>
     );
   }

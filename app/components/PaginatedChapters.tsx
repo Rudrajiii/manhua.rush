@@ -27,6 +27,13 @@ export default function PaginatedChapters({ chapters, mangadexId }: PaginatedCha
   const [highlightedChapterId, setHighlightedChapterId] = useState<string | null>(null);
 
   const totalPages = Math.ceil(chapters.length / CHAPTERS_PER_PAGE);
+  const VISIBLE_PAGES = 5; // Show only 5 page numbers at a time
+  
+  // Calculate which page set we're in
+  const pageSetIndex = Math.floor((currentPage - 1) / VISIBLE_PAGES);
+  const pageSetStart = pageSetIndex * VISIBLE_PAGES + 1;
+  const pageSetEnd = Math.min(pageSetStart + VISIBLE_PAGES - 1, totalPages);
+  
   const startIndex = (currentPage - 1) * CHAPTERS_PER_PAGE;
   const paginatedChapters = chapters.slice(startIndex, startIndex + CHAPTERS_PER_PAGE);
 
@@ -184,7 +191,19 @@ export default function PaginatedChapters({ chapters, mangadexId }: PaginatedCha
           </button>
 
           <div className="pagination-indicators">
-            {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
+            {/* Previous page set button */}
+            {pageSetIndex > 0 && (
+              <button
+                onClick={() => goToPage(pageSetStart - VISIBLE_PAGES)}
+                className="pagination-indicator pagination-set-nav"
+                aria-label="Previous page set"
+              >
+                ...
+              </button>
+            )}
+
+            {/* Display only 5 page numbers */}
+            {Array.from({ length: pageSetEnd - pageSetStart + 1 }, (_, i) => pageSetStart + i).map((page) => (
               <button
                 key={page}
                 onClick={() => goToPage(page)}
@@ -195,6 +214,17 @@ export default function PaginatedChapters({ chapters, mangadexId }: PaginatedCha
                 {page}
               </button>
             ))}
+
+            {/* Next page set button */}
+            {pageSetEnd < totalPages && (
+              <button
+                onClick={() => goToPage(pageSetEnd + 1)}
+                className="pagination-indicator pagination-set-nav"
+                aria-label="Next page set"
+              >
+                ...
+              </button>
+            )}
           </div>
 
           <button

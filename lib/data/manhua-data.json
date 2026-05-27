@@ -169,8 +169,392 @@
       {
         "id": "ch248",
         "chapter": "248",
-        "title": "cycle marathon has finally come to a successful conclusion.",
-        "createdAt": "2026-01-30T12:00:00.000Z",
+        "title": "marathon has finally come to a successful conclusion.",
+        "createdAt": "2026-05-28T12:00:00.000Z",
+        "latest": false,
+        "language": "en"
+      },
+      {
+        "id": "ch247",
+        "chapter": "247",
+        "title": "Welcome the new members.",
+        "createdAt": "2026-05-28T12:00:00.000Z",
+        "latest": false,
+        "language": "en"
+      },
+      {
+        "id": "ch246",
+        "chapter": "246",
+        "title": "Taking on apprentices? No!",
+        "createdAt": "2026-05-28T12:00:00.000Z",
+        "latest": false,
+        "language": "en"
+      },
+      {
+        "id": "ch245",
+        "chapter": "245",
+        "title": "Li Yao's Dilemma",
+        "createdAt": "2026-05-28T12:00:00.000Z",
+        "latest": false,
+        "language": "en"
+      },
+      {
+        "id": "ch244",
+        "chapter": "244",
+        "title": "New Year, New Look, New Wife",
+        "createdAt": "2026-05-28T12:00:00.000Z",
+        "latest": false,
+        "language": "en"
+      },
+      {
+        "id": "ch243",
+        "chapter": "243",
+        "title": "Emperor Yanjun",
+        "createdAt": "2026-05-28T12:00:00.000Z",
+        "latest": false,
+        "language": "en"
+      },
+      {
+        "id": "ch242",
+        "chapter": "242",
+        "title": "The Heavenly Court's Foundation, A Powerful Enemy Approaches",
+        "createdAt": "2026-05-28T12:00:00.000Z",
+        "latest": false,
+        "language": "en"
+      },
+      {
+        "id": "ch241",
+        "chapter": "241",
+        "title": "visitors",
+        "createdAt": "2026-05-28T12:00:00.000Z",
+        "latest": false,
+        "language": "en"
+      },
+      {
+        "id": "ch240",
+        "chapter": "240",
+        "title": "Memories",
+        "createdAt": "2026-05-28T12:00:00.000Z",
+        "latest": false,
+        "language": "en"
+      },
+      {
+        "id": "ch239",
+        "chapter": "239",
+        "title": "A Hero Cuts Off His Own Arm",
+        "createdAt": "2026-05-28T12:00:00.000Z",
+        "latest": false,
+        "language": "en"
+      },
+      {
+        "id": "ch238",
+        "chapter": "238",
+        "title": "",
+        "createdAt": "2026-05-28T12:00:00.000Z",
+        "latest": false,
+        "language": "en"
+      },
+      {
+        "id": "ch237",
+        "chapter": "237",
+        "title": "Talented Individuals Emerge in Great Numbers",
+        "createdAt": "2026-05-28T12:00:00.000Z",
+        "latest": false,
+        "language": "en"
+      },
+      {
+        "id": "ch236",
+        "chapter": "236",
+        "title": "Awakening of the Primordial Celestial Body",
+        "createdAt": "2026-05-28T12:00:00.000Z",
+        "latest": false,
+        "language": "en"
+      },
+      {
+        "id": "ch235",
+        "chapter": "235",
+        "title": "Meeting an Old Friend Again",
+        "createdAt": "2026-05-28T12:00:00.000Z",
+        "latest": false,
+        "language": "en"
+      },
+      {
+        "id": "ch234",
+        "chapter": "234",
+        "title": "",
+        "createdAt": "2026-05-28T12:00:00.000Z",
+        "latest": false,
+        "language": "en"
+      },
+      {
+        "id": "ch233",
+        "chapter": "233",
+        "title": "",
+        "createdAt": "2026-05-28T12:00:00.000Z",
+        "latest": false,
+        "language": "en"
+      },
+      {
+        "id": "ch232",
+        "chapter": "232",
+        "title": "",
+        "createdAt": "2026-05-28T12:00:00.000Z",
+        "latest": false,
+        "language": "en"
+      },
+      {
+        "id": "ch231",
+        "chapter": "231",
+        "title": "Reincarnation Divine Eye",
+        "createdAt": "2026-05-28T12:00:00.000Z",
+        "latest": false,
+        "language": "en"
+      },
+      {
+        "id": "ch230",
+        "chapter": "230",
+        "title": "Immortal Emperor",
+        "createdAt": "2026-05-28T12:00:00.000Z",
+        "latest": false,
+        "language": "en"
+      },
+      {
+        "id": "ch229",
+        "chapter": "229",
+        "title": "The True Immortal Realm of Reincarnation",
+        "createdAt": "2026-05-28T12:00:00.000Z",
+        "latest": false,
+        "language": "en"
+      },
+      {
+        "id": "ch228",
+        "chapter": "228",
+        "title": "The Great Sage Who Pacifies Heaven",
+        "createdAt": "2026-05-28T12:00:00.000Z",
+        "latest": false,
+        "language": "en"
+      },
+      {
+        "id": "ch227",
+        "chapter": "227",
+        "title": "Myriad Realms Ranking",
+        "createdAt": "2026-05-28T12:00:00.000Z",
+        "latest": false,
+        "language": "en"
+      },
+      {
+        "id": "ch226",
+        "chapter": "226",
+        "title": "Emperor Taibai",
+        "createdAt": "2026-05-28T12:00:00.000Z",
+        "latest": false,
+        "language": "en"
+      },
+      {
+        "id": "ch225",
+        "chapter": "225",
+        "title": "The Path to Heaven Sword",
+        "createdAt": "2026-05-28T12:00:00.000Z",
+        "latest": false,
+        "language": "en"
+      },
+      {
+        "id": "ch224",
+        "chapter": "224",
+        "title": "The Heavenly Emperor's Lament",
+        "createdAt": "2026-05-28T12:00:00.000Z",
+        "latest": false,
+        "language": "en"
+      },
+      {
+        "id": "ch223",
+        "chapter": "223",
+        "title": "The biggest backer!",
+        "createdAt": "2026-05-28T12:00:00.000Z",
+        "latest": false,
+        "language": "en"
+      },
+      {
+        "id": "ch222",
+        "chapter": "222",
+        "title": "One force can overcome all methods",
+        "createdAt": "2026-05-28T12:00:00.000Z",
+        "latest": false,
+        "language": "en"
+      },
+      {
+        "id": "ch221",
+        "chapter": "221",
+        "title": "The Three Pure Ones Exterminate the World, Nine Heavens",
+        "createdAt": "2026-05-28T12:00:00.000Z",
+        "latest": false,
+        "language": "en"
+      },
+      {
+        "id": "ch220",
+        "chapter": "220",
+        "title": "Mutual probing",
+        "createdAt": "2026-05-28T12:00:00.000Z",
+        "latest": false,
+        "language": "en"
+      },
+      {
+        "id": "ch219",
+        "chapter": "219",
+        "title": "A 1,100-year-old celestial being",
+        "createdAt": "2026-05-28T12:00:00.000Z",
+        "latest": false,
+        "language": "en"
+      },
+      {
+        "id": "ch218",
+        "chapter": "218",
+        "title": "Han Jue vs. Giant Spirit Martial God",
+        "createdAt": "2026-05-28T12:00:00.000Z",
+        "latest": false,
+        "language": "en"
+      },
+      {
+        "id": "ch217",
+        "chapter": "217",
+        "title": "The hem of her clothes was slightly dirty",
+        "createdAt": "2026-05-28T12:00:00.000Z",
+        "latest": false,
+        "language": "en"
+      },
+      {
+        "id": "ch216",
+        "chapter": "216",
+        "title": "Gods Fighting",
+        "createdAt": "2026-05-28T12:00:00.000Z",
+        "latest": false,
+        "language": "en"
+      },
+      {
+        "id": "ch215",
+        "chapter": "215",
+        "title": "Gods and immortals descend to earth to cleanse the human world.",
+        "createdAt": "2026-05-28T12:00:00.000Z",
+        "latest": false,
+        "language": "en"
+      },
+      {
+        "id": "ch214",
+        "chapter": "214",
+        "title": "Xi Xuan's Feelings",
+        "createdAt": "2026-05-28T12:00:00.000Z",
+        "latest": false,
+        "language": "en"
+      },
+      {
+        "id": "ch213",
+        "chapter": "213",
+        "title": "The Great Wheel of Destiny's Sword Qi, Son of the Heavenly Emperor",
+        "createdAt": "2026-05-28T12:00:00.000Z",
+        "latest": false,
+        "language": "en"
+      },
+      {
+        "id": "ch212",
+        "chapter": "212",
+        "title": "Golden Elixir of Immediate Standing",
+        "createdAt": "2026-05-28T12:00:00.000Z",
+        "latest": false,
+        "language": "en"
+      },
+      {
+        "id": "ch211",
+        "chapter": "211",
+        "title": "Disaster strikes, a great calamity is imminent",
+        "createdAt": "2026-05-28T12:00:00.000Z",
+        "latest": false,
+        "language": "en"
+      },
+      {
+        "id": "ch210",
+        "chapter": "210",
+        "title": "Farewell, wishing you peace and safety.",
+        "createdAt": "2026-05-28T12:00:00.000Z",
+        "latest": false,
+        "language": "en"
+      },
+      {
+        "id": "ch209",
+        "chapter": "209",
+        "title": "Mysterious Red Stone, Han Jue Becomes Stronger",
+        "createdAt": "2026-05-28T12:00:00.000Z",
+        "latest": false,
+        "language": "en"
+      },
+      {
+        "id": "ch208",
+        "chapter": "208",
+        "title": "The Obsession of the People of Chu",
+        "createdAt": "2026-05-28T12:00:00.000Z",
+        "latest": false,
+        "language": "en"
+      },
+      {
+        "id": "ch207",
+        "chapter": "207",
+        "title": "Only you are not good enough",
+        "createdAt": "2026-05-28T12:00:00.000Z",
+        "latest": false,
+        "language": "en"
+      },
+      {
+        "id": "ch206",
+        "chapter": "206",
+        "title": "Evil Demon Saint",
+        "createdAt": "2026-05-28T12:00:00.000Z",
+        "latest": false,
+        "language": "en"
+      },
+      {
+        "id": "ch205",
+        "chapter": "205",
+        "title": "A decision made out of necessity for 2.05 million",
+        "createdAt": "2026-05-28T12:00:00.000Z",
+        "latest": false,
+        "language": "en"
+      },
+      {
+        "id": "ch204",
+        "chapter": "204",
+        "title": "",
+        "createdAt": "2026-05-28T12:00:00.000Z",
+        "latest": false,
+        "language": "en"
+      },
+      {
+        "id": "ch203",
+        "chapter": "203",
+        "title": "Reincarnation Heavenly Realm, how delightful!",
+        "createdAt": "2026-05-28T12:00:00.000Z",
+        "latest": false,
+        "language": "en"
+      },
+      {
+        "id": "ch202",
+        "chapter": "202",
+        "title": "Disciples who break through realms as easily as drinking water - Accept!",
+        "createdAt": "2026-05-28T12:00:00.000Z",
+        "latest": false,
+        "language": "en"
+      },
+      {
+        "id": "ch201",
+        "chapter": "201",
+        "title": "has reached the age of one thousand, three choices",
+        "createdAt": "2026-05-28T12:00:00.000Z",
+        "latest": false,
+        "language": "en"
+      },
+      {
+        "id": "ch200",
+        "chapter": "200",
+        "title": "reincarnations of the World Honored One, Buddha",
+        "createdAt": "2026-05-28T12:00:00.000Z",
         "latest": false,
         "language": "en"
       }

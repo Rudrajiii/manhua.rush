@@ -3,6 +3,7 @@ import React, { useState, useEffect, useRef, useTransition } from 'react';
 import { useRouter } from 'next/navigation';
 import { FaGear } from "react-icons/fa6";
 import { HiMenu } from "react-icons/hi";
+import ChapterDropdown from '@/app/components/ChapterDropdown';
 import styles from './ReaderControls.module.css';
 
 
@@ -126,24 +127,6 @@ export default function ReaderControls({ mangaId, currentChapter, chapters, mang
           {showMobileMenu && (
             <div className={styles['mobile-menu-dropdown']}>
               <div className={styles['mobile-menu-item']}>
-                <span className={styles['mobile-menu-label']}>Chapter</span>
-                <select
-                  value={currentChapter}
-                  onChange={(e) => {
-                    handleChapterChange(e.target.value);
-                    setShowMobileMenu(false);
-                  }}
-                  className={styles['mobile-chapter-select']}
-                >
-                  {chapters.map((ch) => (
-                    <option key={ch.id} value={ch.chapter}>
-                      Ch. {ch.chapter}
-                    </option>
-                  ))}
-                </select>
-              </div>
-              
-              <div className={styles['mobile-menu-item']}>
                 <span className={styles['mobile-menu-label']}>Zoom</span>
                 <div className={styles['zoom-controls']}>
                   <button onClick={zoomOut} className={styles['zoom-btn-small']} title="Zoom Out">
@@ -183,19 +166,11 @@ export default function ReaderControls({ mangaId, currentChapter, chapters, mang
   return (
     <>
       {/* Chapter Dropdown */}
-      <div className={styles['reader-controls-chapter']}>
-        <select
-          value={currentChapter}
-          onChange={(e) => handleChapterChange(e.target.value)}
-          className={styles['chapter-dropdown']}
-        >
-          {chapters.map((ch) => (
-            <option key={ch.id} value={ch.chapter}>
-              Ch. {ch.chapter}
-            </option>
-          ))}
-        </select>
-      </div>
+      <ChapterDropdown
+        chapters={chapters}
+        currentChapter={currentChapter}
+        onChapterChange={handleChapterChange}
+      />
 
       {/* Settings Button with Zoom Controls */}
       <div className={styles['settings-menu-wrapper']} ref={settingsRef}>

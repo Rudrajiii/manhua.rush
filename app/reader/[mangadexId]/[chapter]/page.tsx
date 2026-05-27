@@ -130,6 +130,8 @@ export default async function ReaderPage({ params }: Props) {
           title={manhua.title} 
           chapter={chapter}
           maxChapter={maxChapter}
+          chapters={manhua.chapters}
+          mangaId={mangadexId}
         />
         <div className="reader-controls-wrapper">
           <ReaderControls
