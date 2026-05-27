@@ -48,10 +48,23 @@ def check_connection() -> dict:
     """Test Cloudinary connection and return account info."""
     init_cloudinary()
     try:
+        # Test basic connectivity with ping
         result = cloudinary.api.ping()
-        usage = cloudinary.api.usage()
+        
+        # Try to get usage stats (requires 'read' permission)
+        usage = None
+        read_permission_error = None
+        try:
+            usage = cloudinary.api.usage()
+        except Exception as e:
+            error_str = str(e)
+            # Check if it's a 403 permission error
+            if "403" in error_str or "missing permissions" in error_str or "actions=[\"read\"]" in error_str:
+                read_permission_error = "API key missing 'read' permission. Upload will still work, but usage stats unavailable."
+            else:
+                raise
 
-        # Helper to safely extract numeric values from several possible key names
+        # Helper to safely extract numeric values
         def _num(dct, *keys, default=0):
             for k in keys:
                 v = dct.get(k) if isinstance(dct, dict) else None
@@ -66,67 +79,86 @@ def check_connection() -> dict:
                         return default
             return default
 
-        storage_section = usage.get("storage") or usage.get("storage_usage") or {}
-        bandwidth_section = usage.get("bandwidth") or usage.get("transfer") or usage.get("bandwidth_usage") or {}
-        credits_section = usage.get("credits") or {}
-        transformations_section = usage.get("transformations") or {}
-
-        storage_used = _num(storage_section, "used_bytes", "usage_bytes", "usage", "used")
-        storage_limit = _num(storage_section, "limit", "limit_bytes", "max")
-        storage_used_pct = _num(storage_section, "used_percent", "usage_percent", default=0)
-
-        bandwidth_used = _num(bandwidth_section, "used_bytes", "usage_bytes", "usage", "used")
-        bandwidth_limit = _num(bandwidth_section, "limit", "limit_bytes", "max")
-
-        # If storage seems 0 or suspicious, try to compute by listing resources
-        storage_computed = False
-        if storage_used == 0:
-            try:
-                total = 0
-                next_cursor = None
-                fetched = 0
-                # iterate pages of resources (careful: could be many resources)
-                while True:
-                    opts = {"max_results": 500}
-                    if next_cursor:
-                        opts["next_cursor"] = next_cursor
-                    resp = cloudinary.api.resources(**opts)
-                    rlist = resp.get("resources") or []
-                    for r in rlist:
-                        try:
-                            total += int(r.get("bytes") or 0)
-                        except Exception:
-                            continue
-                    fetched += len(rlist)
-                    next_cursor = resp.get("next_cursor")
-                    # safety: stop if too many resources
-                    if not next_cursor or fetched > 5000:
-                        break
-                if total > 0:
-                    storage_used = total
-                    storage_computed = True
-            except Exception:
-                # ignore fallback failures
-                pass
-
-        return {
+        response = {
             "connected": True,
             "status": result.get("status", "ok"),
             "cloud_name": config.CLOUDINARY_CLOUD_NAME,
-            "plan": usage.get("plan", "Free"),
-            "storage_used": storage_used,
-            "storage_limit": storage_limit,
-            "storage_used_percent": storage_used_pct,
-            "bandwidth_used": bandwidth_used,
-            "bandwidth_limit": bandwidth_limit,
-            "credits_used": _num(credits_section, "used_percent", "usage_percent", default=0),
-            "transformations_used": _num(transformations_section, "usage", "count", default=0),
-            "resources": _num(usage, "resources", default=0),
-            "derived_resources": _num(usage, "derived_resources", default=0),
-            "raw_usage": usage,
-            "storage_computed": storage_computed,
+            "ping_ok": True,
         }
+
+        # If we got usage stats, include them
+        if usage:
+            storage_section = usage.get("storage") or usage.get("storage_usage") or {}
+            bandwidth_section = usage.get("bandwidth") or usage.get("transfer") or usage.get("bandwidth_usage") or {}
+            credits_section = usage.get("credits") or {}
+            transformations_section = usage.get("transformations") or {}
+
+            storage_used = _num(storage_section, "used_bytes", "usage_bytes", "usage", "used")
+            storage_limit = _num(storage_section, "limit", "limit_bytes", "max")
+            storage_used_pct = _num(storage_section, "used_percent", "usage_percent", default=0)
+
+            bandwidth_used = _num(bandwidth_section, "used_bytes", "usage_bytes", "usage", "used")
+            bandwidth_limit = _num(bandwidth_section, "limit", "limit_bytes", "max")
+
+            # Try to compute storage by listing resources as fallback
+            storage_computed = False
+            if storage_used == 0:
+                try:
+                    total = 0
+                    next_cursor = None
+                    fetched = 0
+                    while True:
+                        opts = {"max_results": 500}
+                        if next_cursor:
+                            opts["next_cursor"] = next_cursor
+                        resp = cloudinary.api.resources(**opts)
+                        rlist = resp.get("resources") or []
+                        for r in rlist:
+                            try:
+                                total += int(r.get("bytes") or 0)
+                            except Exception:
+                                continue
+                        fetched += len(rlist)
+                        next_cursor = resp.get("next_cursor")
+                        if not next_cursor or fetched > 5000:
+                            break
+                    if total > 0:
+                        storage_used = total
+                        storage_computed = True
+                except Exception:
+                    pass
+
+            response.update({
+                "plan": usage.get("plan", "Free"),
+                "storage_used": storage_used,
+                "storage_limit": storage_limit,
+                "storage_used_percent": storage_used_pct,
+                "bandwidth_used": bandwidth_used,
+                "bandwidth_limit": bandwidth_limit,
+                "credits_used": _num(credits_section, "used_percent", "usage_percent", default=0),
+                "transformations_used": _num(transformations_section, "usage", "count", default=0),
+                "resources": _num(usage, "resources", default=0),
+                "derived_resources": _num(usage, "derived_resources", default=0),
+                "storage_computed": storage_computed,
+            })
+        elif read_permission_error:
+            response.update({
+                "usage_available": False,
+                "warning": read_permission_error,
+                "plan": "Free (info unavailable)",
+            })
+
+        return response
+        
     except Exception as e:
+        error_str = str(e)
+        if "403" in error_str and "missing permissions" in error_str:
+            return {
+                "connected": False,
+                "error": "API key missing read/write permissions",
+                "details": error_str,
+                "fix": "Go to Cloudinary dashboard → Settings → Access Keys, enable 'read' and 'write' permissions",
+            }
         return {"connected": False, "error": str(e)}
 
 

@@ -121,9 +121,14 @@ def test_cloudinary():
     """Test Cloudinary connection and return usage stats."""
     try:
         result = uploader.check_connection()
-        return jsonify(result)
+        # If connected but has warnings, still return 200 with the info
+        if result.get("connected"):
+            return jsonify(result)
+        else:
+            # Not connected - return error
+            return jsonify(result), 500
     except Exception as e:
-        return jsonify({"connected": False, "error": str(e)}), 500
+        return jsonify({"connected": False, "error": str(e), "fix": "Check .env credentials"}), 500
 
 
 @app.route("/api/scan", methods=["POST"])

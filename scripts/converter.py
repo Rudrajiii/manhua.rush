@@ -112,16 +112,24 @@ def convert_to_avif(
     output_path: Path,
     quality: int = config.AVIF_QUALITY,
     speed: int = config.AVIF_SPEED,
+    force: bool = False,
 ) -> dict:
     """
     Convert an image to AVIF format with high compression.
     Falls back to WebP if AVIF is not available.
     Returns dict with original_size, converted_size, skipped status.
+    
+    Args:
+        input_path: Path to input image
+        output_path: Path to output image
+        quality: Quality level (0-100)
+        speed: Speed level for AVIF (0-10, higher = faster)
+        force: If True, force re-conversion even if already in target format
     """
     original_size = get_file_size(input_path)
 
-    # If already in target format, copy as-is
-    if input_path.suffix.lower() == OUTPUT_EXT:
+    # If already in target format and not forcing conversion, copy as-is
+    if not force and input_path.suffix.lower() == OUTPUT_EXT:
         if input_path != output_path:
             import shutil
             output_path.parent.mkdir(parents=True, exist_ok=True)
