@@ -11,7 +11,10 @@ export default function ResizableReader({ panels, sidebar }: Props) {
   const [panelWidth, setPanelWidth] = useState(65); // percentage
   const [isDragging, setIsDragging] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+  const [scrollMode, setScrollMode] = useState<'top' | 'bottom'>('bottom'); // Track if should scroll to top or bottom
   const containerRef = useRef<HTMLDivElement>(null);
+  const panelsRef = useRef<HTMLDivElement>(null);
+  const mobileScrollRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const checkMobile = () => {
@@ -58,11 +61,53 @@ export default function ResizableReader({ panels, sidebar }: Props) {
     };
   }, [isDragging]);
 
+  const handleScrollToggle = () => {
+    if (!panelsRef.current) return;
+
+    if (scrollMode === 'bottom') {
+      // Scroll to bottom
+      panelsRef.current.scrollTo({
+        top: panelsRef.current.scrollHeight,
+        behavior: 'smooth'
+      });
+      setScrollMode('top');
+    } else {
+      // Scroll to top
+      panelsRef.current.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+      setScrollMode('bottom');
+    }
+  };
+
+  const handleMobileScrollToggle = () => {
+    if (!mobileScrollRef.current) return;
+
+    if (scrollMode === 'bottom') {
+      // Scroll to bottom
+      mobileScrollRef.current.scrollTo({
+        top: mobileScrollRef.current.scrollHeight,
+        behavior: 'smooth'
+      });
+      setScrollMode('top');
+    } else {
+      // Scroll to top
+      mobileScrollRef.current.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+      setScrollMode('bottom');
+    }
+  };
+
   if (isMobile) {
     return (
-      <div className={styles['reader-main-mobile']} ref={containerRef}>
+      <div className={styles['reader-main-mobile']} ref={mobileScrollRef}>
         {/* Panels */}
-        <div className={styles['reader-panels-wrapper-mobile']}>
+        <div 
+          className={styles['reader-panels-wrapper-mobile']}
+        >
           {panels}
         </div>
         
@@ -70,6 +115,24 @@ export default function ResizableReader({ panels, sidebar }: Props) {
         <div className={styles['reader-sidebar-mobile']}>
           {sidebar}
         </div>
+
+        {/* Scroll Toggle Button - Bottom Right Corner (Mobile) */}
+        <button
+          className={styles['scroll-toggle-btn-mobile']}
+          onClick={handleMobileScrollToggle}
+          title={scrollMode === 'bottom' ? 'Scroll to Bottom' : 'Scroll to Top'}
+          aria-label={scrollMode === 'bottom' ? 'Scroll to Bottom' : 'Scroll to Top'}
+        >
+          {scrollMode === 'bottom' ? (
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          ) : (
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <polyline points="18 15 12 9 6 15"></polyline>
+            </svg>
+          )}
+        </button>
       </div>
     );
   }
@@ -77,8 +140,30 @@ export default function ResizableReader({ panels, sidebar }: Props) {
   return (
     <div className={styles['reader-main']} ref={containerRef}>
       {/* Left: Scrollable Panels */}
-      <div className={styles['reader-panels-wrapper']} style={{ width: `${panelWidth}%` }}>
+      <div 
+        className={styles['reader-panels-wrapper']} 
+        style={{ width: `${panelWidth}%` }}
+        ref={panelsRef}
+      >
         {panels}
+
+        {/* Scroll Toggle Button - Bottom Right Corner */}
+        <button
+          className={styles['scroll-toggle-btn']}
+          onClick={handleScrollToggle}
+          title={scrollMode === 'bottom' ? 'Scroll to Bottom' : 'Scroll to Top'}
+          aria-label={scrollMode === 'bottom' ? 'Scroll to Bottom' : 'Scroll to Top'}
+        >
+          {scrollMode === 'bottom' ? (
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          ) : (
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <polyline points="18 15 12 9 6 15"></polyline>
+            </svg>
+          )}
+        </button>
       </div>
 
       {/* Resizer Handle */}

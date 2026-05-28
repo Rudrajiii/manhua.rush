@@ -27,7 +27,7 @@ export default function PaginatedChapters({ chapters, mangadexId }: PaginatedCha
   const [highlightedChapterId, setHighlightedChapterId] = useState<string | null>(null);
 
   const totalPages = Math.ceil(chapters.length / CHAPTERS_PER_PAGE);
-  const VISIBLE_PAGES = 5; // Show only 5 page numbers at a time
+  const VISIBLE_PAGES = 4; // Show only 5 page numbers at a time
   
   // Calculate which page set we're in
   const pageSetIndex = Math.floor((currentPage - 1) / VISIBLE_PAGES);

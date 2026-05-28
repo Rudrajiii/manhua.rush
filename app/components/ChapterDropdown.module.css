@@ -8,10 +8,10 @@
   align-items: center;
   gap: 8px;
   padding: 8px 12px;
-  background: rgba(139, 92, 246, 0.1);
+  background: #8b5cf626;
   /* border: 1px solid rgba(139, 92, 246, 0.25); */
   border-radius: 6px;
-  color: #d1d5db;
+  color: #e9d5ff;
   font-size: 13px;
   font-weight: 600;
   cursor: pointer;
