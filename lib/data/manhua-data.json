@@ -39,6 +39,14 @@
       ],
       "chapters": [
         {
+        "id": "ch264",
+        "chapter": "264",
+        "title": "Fierce Battle!!",
+        "createdAt": "2026-05-30T12:00:00.000Z",
+        "latest": true,
+        "language": "en"
+      },
+        {
         "id": "ch263",
         "chapter": "263",
         "title": "Uninvited Guest.",
