@@ -28,8 +28,45 @@ const playfair = Playfair_Display({
 });
 
 export const metadata: Metadata = {
-  title: "Manhua Rush",
-  description: "Made for Quick Access & Fast Release - No Money No Adds.",
+  title: "Manhua Rush - Free Manga & Manhua Reader | Quick Access & Fast Release",
+  description: "Join Manhua Rush - A community platform for fans to collaborate and translate manga and manhua into multiple languages. Get the newest chapters as soon as they're released, free and ad-free.",
+  keywords: "manhua, manga, reading, translation, community, free reader",
+  viewport: "width=device-width, initial-scale=1, maximum-scale=5",
+  robots: "index, follow",
+  openGraph: {
+    title: "Manhua Rush - Free Manga & Manhua Reader",
+    description: "Collaborate to translate manga and manhua into multiple languages. Quick access, fast releases, community-driven.",
+    type: "website",
+    locale: "en_US",
+    images: [
+      {
+        url: "/logo/manhua_rush.webp",
+        width: 1200,
+        height: 630,
+        alt: "Manhua Rush - Community Translation Platform",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Manhua Rush - Free Manga & Manhua Reader",
+    description: "Collaborate to translate manga and manhua into multiple languages.",
+    images: ["/logo/manhua_rush.webp"],
+  },
+  icons: {
+    icon: [
+      {
+        url: "/favicon.ico",
+        sizes: "any",
+      },
+      {
+        url: "/logo/manhua_rush.webp",
+        type: "image/webp",
+      },
+    ],
+    apple: "/logo/manhua_rush.webp",
+  },
+  metadataBase: new URL("https://manhuarush.vercel.app"),
 };
 
 export default function RootLayout({
@@ -40,9 +77,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
+        <meta charSet="utf-8" />
+        <meta name="theme-color" content="#1f1f1f" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
         <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap" rel="stylesheet" />
-        <link rel="icon" href={encodeURI('/logo/Fierce dragon with purple lightning.ico')} />
+        <link rel="canonical" href="https://manhuarush.vercel.app" />
+        {/* Favicon configured in metadata.icons */}
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${playfair.variable} antialiased`}

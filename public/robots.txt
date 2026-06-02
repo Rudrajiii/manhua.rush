@@ -1,0 +1,13 @@
+# Allow all crawlers
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /admin/
+Disallow: /_next/
+Disallow: /.next/
+
+# Sitemaps
+Sitemap: https://manhuarush.vercel.app/sitemap.xml
+
+# Crawl delay
+Crawl-delay: 1
