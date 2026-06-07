@@ -39,11 +39,19 @@
       ],
       "chapters": [
         {
+        "id": "ch265",
+        "chapter": "265",
+        "title": "Murong Qi's Past Life",
+        "createdAt": "2026-06-07T12:00:00.000Z",
+        "latest": true,
+        "language": "en"
+      },
+        {
         "id": "ch264",
         "chapter": "264",
         "title": "Fierce Battle!!",
         "createdAt": "2026-05-30T12:00:00.000Z",
-        "latest": true,
+        "latest": false,
         "language": "en"
       },
         {
