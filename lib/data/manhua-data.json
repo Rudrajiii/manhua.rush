@@ -8,7 +8,7 @@
       "cachedCoverUrl": "https://uploads.mangadex.org/covers/c089b50c-beeb-434a-ab8d-2676dc026564/1b68d2fc-8e1c-4703-8daa-2e8228d5ad6c.jpg",
       "title": "Top Tier Providence: I Secretly Cultivated for 1,000 Years",
       "year": 2022,
-      "notification": true,
+      "notification": false,
       "notificationMsg": "Chapter 266 is cooking and will be released after 4-5 hours , stay tuned!!",
       "altTitles": [
         "顶级气运，悄悄修炼千年",
@@ -39,11 +39,19 @@
       ],
       "chapters": [
         {
+        "id": "ch266",
+        "chapter": "266",
+        "title": "Alliance of heavenly court and divine palace",
+        "createdAt": "2026-06-13T12:00:00.000Z",
+        "latest": true,
+        "language": "en"
+      },
+        {
         "id": "ch265",
         "chapter": "265",
         "title": "Murong Qi's Past Life",
         "createdAt": "2026-06-07T12:00:00.000Z",
-        "latest": true,
+        "latest": false,
         "language": "en"
       },
         {
